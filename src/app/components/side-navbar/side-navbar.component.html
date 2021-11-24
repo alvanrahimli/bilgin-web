@@ -1,0 +1,43 @@
+<div class="sidenav">
+    <app-side-user-info></app-side-user-info>
+    <div class="menu">
+        <ul>
+            <li>
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
+                    [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}">
+                    <i class="fas fa-home"></i>
+                    Əsas səhifə
+                </button>
+            </li>
+            <li>
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
+                    [routerLink]="['/test-subjects']">
+                    <i class="far fa-comment-dots"></i>
+                    Testlər
+                </button>
+
+            </li>
+            <li>
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
+                    [routerLink]="['/q-and-a']">
+                    <i class="fas fa-align-left"></i>
+                    Sual-cavab
+                </button>
+
+            </li>
+            <li>
+                <button class="menu-button tablinks mybtn" onclick="openCity(event, 'MTM3')">
+                    <i class="fal fa-file-medical"></i>
+                    Məqalələr
+                </button>
+
+            </li>
+            <li>
+                <button class="menu-button tablinks mybtn" onclick="openCity(event, 'MTM4')">
+                    <i class="fal fa-cog"></i>
+                    Tənzimləmələr
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
