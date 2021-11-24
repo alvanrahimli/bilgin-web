@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { TestSubjectsComponent } from './pages/test-subjects/test-subjects.compo
 import { TestPackagesComponent } from './pages/test-packages/test-packages.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { QAndAComponent } from './pages/q-and-a/q-and-a.component';
+import { TestPackageComponent } from './components/test-package/test-package.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import { QAndAComponent } from './pages/q-and-a/q-and-a.component';
     TestPackagesComponent,
     HomePageComponent,
     QAndAComponent,
+    TestPackageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
