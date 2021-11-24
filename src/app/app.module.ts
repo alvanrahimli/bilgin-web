@@ -15,6 +15,7 @@ import { TestPackagesComponent } from './pages/test-packages/test-packages.compo
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { QAndAComponent } from './pages/q-and-a/q-and-a.component';
 import { TestPackageComponent } from './components/test-package/test-package.component';
+import { TestSubjectComponent } from './components/test-subject/test-subject.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TestPackageComponent } from './components/test-package/test-package.com
     HomePageComponent,
     QAndAComponent,
     TestPackageComponent,
+    TestSubjectComponent,
   ],
   imports: [
     BrowserModule,
