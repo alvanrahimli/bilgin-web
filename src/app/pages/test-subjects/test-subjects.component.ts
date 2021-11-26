@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectResponse } from 'src/app/models/test-subject/response/subjectResponse';
-import { TestSubjectsService } from 'src/app/services/test-subjects/test-subjects.service';
+import { TestSubjectsService } from 'src/app/services/tests/test-subjects/test-subjects.service';
 
 @Component({
   selector: 'app-test-subjects',
