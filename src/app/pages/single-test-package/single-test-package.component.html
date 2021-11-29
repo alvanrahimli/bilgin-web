@@ -1,10 +1,11 @@
 <div class="row p-4 mar-no bg-rad">
-    <a [routerLink]="['/']">
-        <button class="back-to-article-2">
-            <i class="fas fa-angle-double-left"></i>
-        </button>
-    </a>
+    
     <div class="col-md-12">
+        <a [routerLink]="['/']">
+            <button class="back-to-article-2">
+                <i class="fas fa-angle-double-left"></i>
+            </button>
+        </a>
         <div class="test-inner-title">
             <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
             <p class="icon-color mrb-unset  test-num-inner test-num">
@@ -12,24 +13,16 @@
             </p>
         </div>
         <div class="mt-4 question">
-            <button class="q-button question-prev">
-                <i class="far fa-arrow-left"></i>
-            </button>
-            <!-- question-box-true -->
-            <!-- question-box-false -->
-            <!-- question-box-undo -->
-
-            <div class="question-box {{ isModified ? 'question-box-true' : '' }}" *ngFor="let isModified of modifiedTests">
-                <!-- <i class="far fa-check"></i> -->
+            <div class="question-box {{ isModified ? 'question-box-true' : '' }}" 
+                 *ngFor="let isModified of modifiedTests">
             </div>
-            <button class="q-button question-next">
-                <i class="far fa-arrow-right"></i>
-            </button>
         </div>
-        <div>
+        <div *ngIf="package?.tests">
             <!-- INDIVIDUAL TEST -->
             <div class="question-title">
-                <p class="mrb-unset icon-color mt-3">{{ package.tests[currentTestIndex].question }}</p>
+                <p class="mrb-unset icon-color mt-3">
+                    {{ package.tests[currentTestIndex].question }}
+                </p>
             </div>
 
             <!-- CHOICES -->

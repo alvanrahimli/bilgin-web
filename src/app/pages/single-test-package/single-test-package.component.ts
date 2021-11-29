@@ -31,6 +31,13 @@ export class SingleTestPackageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     var params = await firstValueFrom(this.activatedRoute.params);
     await this.loadPackage(params["pId"]);
+
+    window.onbeforeunload = function(e) {
+      e.preventDefault();
+      let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
+      e.returnValue = msg;
+      return msg;
+    };
   }
 
   async loadPackage(pId: string): Promise<void> {
@@ -121,6 +128,6 @@ export class SingleTestPackageComponent implements OnInit {
   }
 
   isCurrentTheLast(): boolean {
-    return this.currentTestIndex != this.package.tests.length - 1;
+    return this.currentTestIndex != this.package?.tests?.length - 1;
   }
 }
