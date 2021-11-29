@@ -1,0 +1,63 @@
+<div class="row p-4 mar-no bg-rad">
+    <a [routerLink]="['/']">
+        <button class="back-to-article-2">
+            <i class="fas fa-angle-double-left"></i>
+        </button>
+    </a>
+    <div class="col-md-12">
+        <div class="test-inner-title">
+            <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
+            <p class="icon-color mrb-unset  test-num-inner test-num">
+                <span>{{ currentTestIndex + 1 }}</span> / {{ totalTestCount }}
+            </p>
+        </div>
+        <div class="mt-4 question">
+            <button class="q-button question-prev">
+                <i class="far fa-arrow-left"></i>
+            </button>
+            <!-- question-box-true -->
+            <!-- question-box-false -->
+            <!-- question-box-undo -->
+
+            <div class="question-box {{ isModified ? 'question-box-true' : '' }}" *ngFor="let isModified of modifiedTests">
+                <!-- <i class="far fa-check"></i> -->
+            </div>
+            <button class="q-button question-next">
+                <i class="far fa-arrow-right"></i>
+            </button>
+        </div>
+        <div>
+            <!-- INDIVIDUAL TEST -->
+            <div class="question-title">
+                <p class="mrb-unset icon-color mt-3">{{ package.tests[currentTestIndex].question }}</p>
+            </div>
+
+            <!-- CHOICES -->
+            <div class="col-md-10 m-auto answers" *ngIf="package.tests[currentTestIndex].testType == 'MultipleChoice'">
+                <app-test-answer *ngFor="let choice of package.tests[currentTestIndex].testChoices"
+                    [choice]="choice"
+                    [clicked]="selectedChoiceId == choice.id"
+                    (onClick)="choiceClicked($event)"
+                    (onModified)="answerModified($event)"
+                    (onSubmitted)="answerSubmitted($event)"
+                    (onClear)="answerCleared($event)"></app-test-answer>
+            </div>
+
+            <!-- OPEN ENDED -->
+            <div class="col-md-10 m-auto answers" *ngIf="package.tests[currentTestIndex].testType == 'Open'">
+                <app-test-open-ended></app-test-open-ended>
+            </div>
+        </div>
+
+        <!-- CONTROL BUTTONS -->
+        <div class="col-md-10 m-auto">
+            <div class="test-buttons">
+                <button class="test-prev-button" (click)="navigateTests(NavigationDirection.Backward)">Geri</button>
+                <button class="test-next-button {{ isCurrentTheLast() ? '' : 'danger-button' }}" 
+                        (click)="navigateTests(NavigationDirection.Forward)">
+                    {{ isCurrentTheLast() ? "Irəli" : "TESTİ BİTİR"}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

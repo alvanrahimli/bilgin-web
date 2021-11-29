@@ -1,7 +1,7 @@
 <h3 class="col-title">Fənlər üzrə testlər toplusu</h3>
 <div class="row">
     <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-offset="-200"
-        *ngFor="let s of subjectList" [routerLink]="[s.id]">
+        *ngFor="let s of subjectList">
         <app-test-subject [subject]="s"></app-test-subject>
     </div>
 </div>

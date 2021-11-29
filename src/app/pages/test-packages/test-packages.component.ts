@@ -23,8 +23,9 @@ export class TestPackagesComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.activatedRoute.params.subscribe(
       async (params) => {
-        await this.loadPackageList(params["id"]);
-        await this.loadSubjectInfo(params["id"]);
+        let subjectId = params["sId"];
+        await this.loadPackageList(subjectId);
+        await this.loadSubjectInfo(subjectId);
       }
     )
   }

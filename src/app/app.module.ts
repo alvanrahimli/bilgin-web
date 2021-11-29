@@ -13,9 +13,13 @@ import { StatsBriefComponent } from './components/stats-brief/stats-brief.compon
 import { TestSubjectsComponent } from './pages/test-subjects/test-subjects.component';
 import { TestPackagesComponent } from './pages/test-packages/test-packages.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { QAndAComponent } from './pages/q-and-a/q-and-a.component';
 import { TestPackageComponent } from './components/test-package/test-package.component';
 import { TestSubjectComponent } from './components/test-subject/test-subject.component';
+import { DiscussionsComponent } from './pages/discussions/discussions.component';
+import { SingleTestPackageComponent } from './pages/single-test-package/single-test-package.component';
+import { TestAnswerComponent } from './components/test-answer/test-answer.component';
+import { TestChoicesComponent } from './components/test-choices/test-choices.component';
+import { TestOpenEndedComponent } from './components/test-open-ended/test-open-ended.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +33,13 @@ import { TestSubjectComponent } from './components/test-subject/test-subject.com
     TestSubjectsComponent,
     TestPackagesComponent,
     HomePageComponent,
-    QAndAComponent,
     TestPackageComponent,
     TestSubjectComponent,
+    DiscussionsComponent,
+    SingleTestPackageComponent,
+    TestAnswerComponent,
+    TestChoicesComponent,
+    TestOpenEndedComponent,
   ],
   imports: [
     BrowserModule,

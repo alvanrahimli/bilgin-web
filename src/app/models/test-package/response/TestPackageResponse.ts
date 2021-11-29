@@ -1,16 +1,19 @@
 import { UserBriefResponse } from "../../user/response/user-brief-response";
+import { TestResponse } from "./TestResponse";
 
-export interface TestPackageBriefResponse {
+
+export interface TestPackageResponse {
     id: string;
     description: string;
     timeLimitSeconds: number;
     price: number;
     visibility: string;
-    gradeId: number | null;
+    gradeId: number;
     gradeName: string;
-    subjectId: string | null;
+    subjectId: string;
     subjectName: string;
-    paragraphId: string | null;
+    paragraphId: string;
     paragraphName: string;
     author: UserBriefResponse;
+    tests: TestResponse[];
 }
