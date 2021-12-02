@@ -1,0 +1,10 @@
+<form class="login-form" (ngSubmit)="submitLoginVerify()">
+    <h2 class="icon-color login-left-title-1">Xoş gəlmisiniz{{ loggedInUser }}!</h2>
+    <h1 class="login-left-title-2">OTP daxil edin</h1>
+    <input class="login-form-input" type="number" placeholder="OTP-ni daxil edin"
+           [(ngModel)]="phoneCodeRequest.code" name="otp-input">
+    <button class="login-button" type="submit">Daxil olun</button>
+    <p class="mrb-unset text-center py-3">
+        Sizin hesabınız yoxdur? <a [routerLink]="['/account', 'register']">Qeydiyyatdan keçin</a>
+    </p>
+</form>

@@ -1,17 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginFormComponent } from './components/account/login-form/login-form.component';
+import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
+import { AccountComponent } from './pages/account/account/account.component';
+import { LoginComponent } from './pages/account/login/login.component';
+import { OtpComponent } from './pages/account/otp/otp.component';
+import { RegisterComponent } from './pages/account/register/register.component';
+import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SingleTestPackageComponent } from './pages/single-test-package/single-test-package.component';
 import { TestPackagesComponent } from './pages/test-packages/test-packages.component';
 import { TestSubjectsComponent } from './pages/test-subjects/test-subjects.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
-  { path: 'subjects/:sId', component: TestPackagesComponent },
-  { path: 'subjects/:sId/packages/:pId', component: SingleTestPackageComponent },
-  { path: 'discussions', component: DiscussionsComponent },
+  { path: '', component: AppBaseComponent, children: [
+    { path: '', component: HomePageComponent },
+    { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: 'subjects/:sId', component: TestPackagesComponent },
+    { path: 'subjects/:sId/packages/:pId', component: SingleTestPackageComponent },
+    { path: 'discussions', component: DiscussionsComponent },
+  ]},
+  { path: 'account', component: AccountComponent, children: [
+    { path: '', component: AccountDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'login', children: [
+      { path: '', component: LoginComponent },
+      { path: 'otp', component: OtpComponent }
+    ] },
+    { path: 'register', component: RegisterComponent }
+  ]}
 ];
 
 @NgModule({

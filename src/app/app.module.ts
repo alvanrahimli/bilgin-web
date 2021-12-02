@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,15 @@ import { SingleTestPackageComponent } from './pages/single-test-package/single-t
 import { TestAnswerComponent } from './components/test-answer/test-answer.component';
 import { TestChoicesComponent } from './components/test-choices/test-choices.component';
 import { TestOpenEndedComponent } from './components/test-open-ended/test-open-ended.component';
+import { AppBaseComponent } from './pages/app-base/app-base.component';
+import { LoginComponent } from './pages/account/login/login.component';
+import { RegisterComponent } from './pages/account/register/register.component';
+import { AccountComponent } from './pages/account/account/account.component';
+import { LoginFormComponent } from './components/account/login-form/login-form.component';
+import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
+import { FormsModule } from '@angular/forms';
+import { OtpComponent } from './pages/account/otp/otp.component';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -40,13 +49,21 @@ import { TestOpenEndedComponent } from './components/test-open-ended/test-open-e
     TestAnswerComponent,
     TestChoicesComponent,
     TestOpenEndedComponent,
+    AppBaseComponent,
+    LoginComponent,
+    RegisterComponent,
+    AccountComponent,
+    LoginFormComponent,
+    AccountDetailsComponent,
+    OtpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

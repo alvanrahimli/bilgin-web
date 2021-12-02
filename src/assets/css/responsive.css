@@ -1,0 +1,37 @@
+@media only screen and (max-width:992px){
+    #toggler-button{
+        display: block
+    }
+    #close-sidenav{
+        display: block;
+    }
+    .sidenav{
+        transform: translateX(-100%);
+        z-index: 999999999999999;
+    }
+    .main{
+        margin-left: unset;
+    }
+    .top-fixed{
+        margin-left: unset;
+    }
+}
+@media only screen and (max-width:768px){
+    .login-form input{
+        width: 100%;
+    }
+    .login-button{
+        width: 100%;
+    }
+    .login-left{
+        padding: 20px 0;
+    }
+    .login-bg1 img{
+        width: 80%;
+    }
+    .login-right{
+        height: auto;
+        border-radius: 60px 60px 0 0;
+        padding: 25px ;
+    }
+}

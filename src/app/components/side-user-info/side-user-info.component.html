@@ -1,9 +1,13 @@
-<div class="pp-main">
+<div class="pp-main" *ngIf="isLoggedIn">
     <div class="profile-photo">
         <img src="../../../assets/img/official.svg" alt="profile picture">
     </div>
     <div class="profile-name">
-        <p>Ramin Həsənov</p>
-        <p>Şagird</p>
+        <p>{{ userData.fullName }}</p>
+        <p>{{ userData.points }} xal</p>
     </div>
+</div>
+
+<div class="pp-main" *ngIf="!isLoggedIn">
+    <a [routerLink]="['/account', 'login']">Giriş</a>
 </div>

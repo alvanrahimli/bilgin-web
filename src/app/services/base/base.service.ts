@@ -9,7 +9,7 @@ import { BaseModelResponse } from 'src/app/models/base-model/response/base-model
 export class BaseService {
   headers: HttpHeaders;
   protected http: HttpClient;
-  public API_EndPoint = "http://localhost:5000/";
+  public API_EndPoint = "http://localhost:8080/";
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -44,11 +44,14 @@ export class BaseService {
     }
   }
 
-  async post<T>(url: string, request: any): Promise<BaseModelResponse<T>> {
+  async post<T>(url: string, request: any, customHeaders: any = {}): Promise<BaseModelResponse<T>> {
     let response: BaseModelResponse<T> = {} as BaseModelResponse<T>;
 
     try {
-      let tempResponseObsr = this.http.post<T>(this.API_EndPoint + url, request, { headers: this.headers });
+      let finalHeaders = customHeaders == null ? this.headers : new HttpHeaders(customHeaders);
+      let tempResponseObsr = this.http.post<T>(this.API_EndPoint + url, request, {
+        headers: finalHeaders,
+      });
       let tempResponse = await firstValueFrom(tempResponseObsr);
       
       if (tempResponse) {
@@ -62,7 +65,7 @@ export class BaseService {
       response.hasError = true;
       response.error = error;
       response.data = {} as T;
-      console.log("Error while POST", error);
+      console.error("Error while POST", error);
       return response;
     }
   }

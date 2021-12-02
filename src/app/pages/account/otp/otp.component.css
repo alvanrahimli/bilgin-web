@@ -1,0 +1,35 @@
+.login-left-title-2{
+    font-weight: 900;
+    color: blue;
+}
+.login-form-input{
+    display: block;
+    outline: none;
+    color: black;
+    border: 1px solid #8692A6;
+    border-radius: 6px;
+    padding: 10px 5px;
+    width: 400px;
+    margin: 10px 0;
+    font-size: 1em;
+}
+.check-in{
+    display: inline-block !important;
+    width: auto !important;
+}
+.for-check-in{
+    display: inline-block !important;
+}
+.login-button{
+    background: rgba(66, 185, 131, 0.8);
+    border-radius: 6px;
+    color:#fff;
+    display: block;
+    padding: 10px 5px;
+    width: 400px;
+    outline: none;
+    border: none;
+}
+.login-form label{
+    display: block;
+}

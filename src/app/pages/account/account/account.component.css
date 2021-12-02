@@ -1,0 +1,140 @@
+/* LOGIN */
+#left-pane{
+    background-color: #00d49e;
+}
+
+.login-bg1 img{
+    width: 70%;
+    margin: auto;
+    height: 400px;
+}
+.login-left{
+    padding: 30px 50px;
+    background: url('../../../../assets/img/dots.svg');
+    background-position: left bottom;
+    background-repeat: no-repeat;
+}
+.login-bg1{
+    margin-top: 65px;
+}
+.login-bg1 h3{
+    color: #fff;
+    font-weight: 600;
+}
+.login-bg1 p{
+    color: #fff;
+    font-weight: 500;
+    padding: 0 75px;
+}
+.login-right{
+    background-color:#fff !important;
+    border-radius: 60px 0 0 60px;
+    height: 100vh;
+    background: url('../../../../assets/img/login-bg2.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.login-left-title-1{
+    font-weight: 500;
+}
+.login-left-title-2{
+    font-weight: 900;
+    color: blue;
+}
+
+.auty{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+.slick-dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.slick-dots li button{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    font-size: .1em;
+    border: none;
+}
+.slick-dots li.slick-active button{
+    width: 25px;
+    height: 25px;
+    font-size: .1em;
+    border-radius: 50%;
+    background: #fff;
+    color: #fff;
+    border: 7px solid #6F74DD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cont {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color: #828282;
+    user-select: none;
+}
+.cont input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #C3C7CE;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.cont input:checked ~ .checkmark {
+    background: linear-gradient(180deg, rgba(66, 185, 131, 0.8) 0%, rgba(66, 185, 131, 0.8) 100%);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.cont input:checked ~ .checkmark:after {
+    display: block;
+}
+.cont .checkmark:after {
+    top: 8px;
+    left: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+}
+.radio-group{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.radio-in{
+    width: unset !important;
+}
+/* LOGIN-END */

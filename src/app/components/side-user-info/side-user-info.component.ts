@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserResponse } from 'src/app/models/user/response/user-response';
+import { AccountService } from 'src/app/services/account/account.service';
 
 @Component({
   selector: 'app-side-user-info',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideUserInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
-  ngOnInit(): void {
+  isLoggedIn: boolean = false;
+  userData: UserResponse | any;
+
+  async ngOnInit(): Promise<void> {
+    let userResponse = await this.accountService.getUserInfo();
+    if (userResponse.hasError) {
+      console.error("ERROR:", userResponse.error);
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+      this.userData = userResponse.data;
+    }
   }
-
 }

@@ -1,0 +1,16 @@
+
+<form class="login-form" (ngSubmit)="submitLogin()">
+    <h2 class="icon-color login-left-title-1">Xoş gəlmisiniz!</h2>
+    <h1 class="login-left-title-2">Daxil olun</h1>
+    <label for="tel-num">Mobil nömrə
+        <input class="login-form-input" id="tel-num" type="number" placeholder="5012345678" 
+        [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber">
+    </label>
+    <!-- <input class="login-form-input" type="text" placeholder="Promo kod daxil edin"> -->
+    <button class="login-button" type="submit">
+        Daxil olun
+    </button>
+    <p class="mrb-unset text-center py-3">
+        Hesabınız yoxdur? <a [routerLink]="['/account', 'register']"> Qeydiyyatdan keçin</a>
+    </p>
+</form>

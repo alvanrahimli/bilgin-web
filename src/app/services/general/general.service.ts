@@ -5,8 +5,8 @@ import { BaseService } from '../base/base.service';
   providedIn: 'root'
 })
 export class GeneralService extends BaseService {
-  public async sendPostRequest<REQ_TYPE, RES_TYPE>(request: REQ_TYPE, url: string) {
-    return await this.post<RES_TYPE>(url, request);
+  public async sendPostRequest<REQ_TYPE, RES_TYPE>(request: REQ_TYPE, url: string, headers: any = {}) {
+    return await this.post<RES_TYPE>(url, request, headers);
   }
 
   public async sendPutRequest<REQ_TYPE, RES_TYPE>(request: REQ_TYPE, url: string, headers: any = {}) {

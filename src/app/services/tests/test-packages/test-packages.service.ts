@@ -8,13 +8,13 @@ import { GeneralService } from '../../general/general.service';
   providedIn: 'root'
 })
 export class TestPackagesService extends GeneralService {
-  getPackageList(filter: TestPacksFilterContext, url: string = "TestPackages/?") {
+  getPackageList(filter: TestPacksFilterContext, url: string = "tests/TestPackages/?") {
     if (filter.subjectId) url += `SubjectId=${filter.subjectId}`;
     // TODO: Implement other filters
     return this.sendGetRequest<TestPackageBriefResponse[]>(url);
   }
 
-  getPackage(id: string, url: string = "TestPackages/") {
+  getPackage(id: string, url: string = "tests/TestPackages/") {
     return this.sendGetRequest<TestPackageResponse>(url + id);
   }
 }
