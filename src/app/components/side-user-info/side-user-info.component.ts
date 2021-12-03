@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { UserResponse } from 'src/app/models/user/response/user-response';
 import { AccountService } from 'src/app/services/account/account.service';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-side-user-info',
@@ -10,6 +12,7 @@ import { AccountService } from 'src/app/services/account/account.service';
 export class SideUserInfoComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
+  // constructor(private sharedDataService: SharedDataService) { }
 
   isLoggedIn: boolean = false;
   userData: UserResponse | any;
@@ -23,5 +26,12 @@ export class SideUserInfoComponent implements OnInit {
       this.isLoggedIn = true;
       this.userData = userResponse.data;
     }
+    // let userData = await this.sharedDataService.getUserData();
+    // if (userData == undefined) {
+    //   this.isLoggedIn = false;
+    // } else {
+    //   let data = await firstValueFrom(userData);
+    //   this.userData = data;
+    // }
   }
 }

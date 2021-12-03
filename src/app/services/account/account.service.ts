@@ -12,15 +12,15 @@ import { GeneralService } from '../general/general.service';
 })
 export class AccountService extends GeneralService {
   postLoginPhone(phoneNumber: PhoneRequest, url: string = "identity/Auth/login") {
-    return this.sendPostRequest<PhoneRequest, any>(phoneNumber, url, {"skip": "true"});
+    return this.sendPostRequest<PhoneRequest, any>(phoneNumber, url, {"auth": "none"});
   }
 
   postLoginVerify(phoneCodeRequest: PhoneCodeRequest, url: string = "identity/Auth/verify-login") {
-    return this.sendPostRequest<PhoneCodeRequest, UserTokenResponse>(phoneCodeRequest, url, {"skip": "true"});
+    return this.sendPostRequest<PhoneCodeRequest, UserTokenResponse>(phoneCodeRequest, url, {"auth": "none"});
   }
 
   getAccessToken(refreshToken: string, url: string ="identity/Auth/renew-token") {
-    return this.sendPostRequest<RefreshTokenRequest, TokenResponse>({refreshToken: refreshToken}, url, {"skip": "true"});
+    return this.sendPostRequest<RefreshTokenRequest, TokenResponse>({refreshToken: refreshToken}, url, {"auth": "none"});
   }
 
   getUserInfo(url: string = "identity/Account") {
@@ -30,5 +30,12 @@ export class AccountService extends GeneralService {
   persistToken(tokens: TokenResponse): void {
     localStorage.setItem("refresh_token", tokens.refreshToken);
     localStorage.setItem("access_token", tokens.accessToken);
+  }
+
+  getPersistedToken(): TokenResponse {
+    return {
+      refreshToken: localStorage.getItem("refresh_token") ?? "",
+      accessToken: localStorage.getItem("access_token") ?? ""
+    };
   }
 }

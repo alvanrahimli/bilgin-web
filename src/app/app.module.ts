@@ -28,7 +28,7 @@ import { LoginFormComponent } from './components/account/login-form/login-form.c
 import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
 import { FormsModule } from '@angular/forms';
 import { OtpComponent } from './pages/account/otp/otp.component';
-import { TokenInterceptorService } from './interceptors/token-interceptor.service';
+import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [

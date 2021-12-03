@@ -17,7 +17,7 @@ export class GeneralService extends BaseService {
     return await this.delete<RES_TYPE>(url);
   }
 
-  public async sendGetRequest<RES_TYPE>(url: string) {
+  public async sendGetRequest<RES_TYPE>(url: string, headers: any = {}) {
     return await this.get<RES_TYPE>(url);
   }
 }

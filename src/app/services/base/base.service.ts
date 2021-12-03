@@ -20,12 +20,13 @@ export class BaseService {
     this.headers = headers;
   }
 
-  async get<T>(url: string): Promise<BaseModelResponse<T>> {
+  async get<T>(url: string, customHeaders: any = {}): Promise<BaseModelResponse<T>> {
     let response: BaseModelResponse<T> = {} as BaseModelResponse<T>;
 
     try {
+      let finalHeaders = customHeaders == null ? this.headers : new HttpHeaders(customHeaders);
       let tempResponseObsr = this.http.get<T>(this.API_EndPoint + url, 
-        { headers: this.headers });
+        { headers: finalHeaders });
       let tempResponse = await firstValueFrom(tempResponseObsr);
 
       if (tempResponse) {

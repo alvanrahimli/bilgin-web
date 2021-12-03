@@ -24,7 +24,6 @@ export class TestSubjectsComponent implements OnInit {
       console.log("ERROR while load subject list:", sListResponse.error);
     } else {
       this.subjectList = sListResponse.data;
-      console.log(sListResponse);
     }
   }
 }
