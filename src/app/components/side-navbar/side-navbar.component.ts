@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account/account.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accountService: AccountService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.accountService.logout();
+    this.router.navigate(["/"]);
   }
 
 }

@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { TestAnswerComponent } from 'src/app/components/test-answer/test-answer.component';
 import { NavigationDirection } from 'src/app/models/enums/navigation-direction';
@@ -17,8 +18,9 @@ export class SingleTestPackageComponent implements OnInit {
   NavigationDirection = NavigationDirection;
 
   constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
     private testPackageService: TestPackagesService) { }
-  
+
   package: TestPackageResponse = {} as TestPackageResponse;
   totalTestCount: number = 0;
 
@@ -32,7 +34,7 @@ export class SingleTestPackageComponent implements OnInit {
     var params = await firstValueFrom(this.activatedRoute.params);
     await this.loadPackage(params["pId"]);
 
-    window.onbeforeunload = function(e) {
+    window.onbeforeunload = function (e) {
       e.preventDefault();
       let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
       e.returnValue = msg;
@@ -65,7 +67,6 @@ export class SingleTestPackageComponent implements OnInit {
     // Upsert new answer to answers list
     let newAnswer = {
       testId: this.package.tests[this.currentTestIndex].id,
-      testType: this.package.tests[this.currentTestIndex].testType
     } as TestAnswerRequest;
 
     if (this.package.tests[this.currentTestIndex].testType == "MultipleChoice") {
@@ -100,6 +101,40 @@ export class SingleTestPackageComponent implements OnInit {
     this.modifiedTests[this.currentTestIndex] = false;
   }
 
+  async finishTestClick(): Promise<void> {
+    console.log(this.answers);
+    let response = await this.testPackageService.submitAnswers(this.package.id, this.answers);
+    if (response.hasError) {
+      console.error(response.error);
+      if (response.error instanceof HttpErrorResponse) {
+        switch (response.error.status) {
+          case 409:
+            console.log("Bu testi artıq işləmisiniz");
+            break;
+          case 404:
+            console.log("Test tapılmadı");
+            break;
+          default:
+            console.log(response.error.statusText);
+            break;
+        }
+      } else {
+        console.log("ERROR:", response.error);
+      }
+      return;
+    }
+
+    if (response.data.showResultImmediately) {
+      console.log("FINISHED:", response.data);
+      let params = await firstValueFrom(this.activatedRoute.params);
+      this.router.navigate(["/subjects", params["sId"], "packages", params["pId"], "completion"]);
+      // this.router.navigate(["../completion"], {relativeTo: this.activatedRoute});
+    } else {
+      console.log("FINISHED, but later will see result");
+      this.router.navigate(["/"]);
+    }
+  }
+
   //#endregion
 
   navigateTests(dir: NavigationDirection): void {
@@ -127,7 +162,15 @@ export class SingleTestPackageComponent implements OnInit {
     }
   }
 
+  onPreviousClick() {
+    this.navigateTests(NavigationDirection.Backward);
+  }
+
+  onNextClick() {
+    this.navigateTests(NavigationDirection.Forward);
+  }
+
   isCurrentTheLast(): boolean {
-    return this.currentTestIndex != this.package?.tests?.length - 1;
+    return this.currentTestIndex == this.package?.tests?.length - 1;
   }
 }

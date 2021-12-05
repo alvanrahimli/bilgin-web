@@ -23,13 +23,22 @@ export class AccountService extends GeneralService {
     return this.sendPostRequest<RefreshTokenRequest, TokenResponse>({refreshToken: refreshToken}, url, {"auth": "none"});
   }
 
-  getUserInfo(url: string = "identity/Account") {
-    return this.sendGetRequest<UserResponse>(url);
+  getUserInfo(strict: boolean = false, url: string = "identity/Account") {
+    if (strict) {
+      return this.sendGetRequest<UserResponse>(url, {"auth": "strict"});
+    } else {
+      return this.sendGetRequest<UserResponse>(url);
+    }
   }
 
   persistToken(tokens: TokenResponse): void {
     localStorage.setItem("refresh_token", tokens.refreshToken);
     localStorage.setItem("access_token", tokens.accessToken);
+  }
+
+  logout(): void {
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("access_token");
   }
 
   getPersistedToken(): TokenResponse {

@@ -12,13 +12,12 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 export class SideUserInfoComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
-  // constructor(private sharedDataService: SharedDataService) { }
 
   isLoggedIn: boolean = false;
   userData: UserResponse | any;
 
   async ngOnInit(): Promise<void> {
-    let userResponse = await this.accountService.getUserInfo();
+    let userResponse = await this.accountService.getUserInfo(false);
     if (userResponse.hasError) {
       console.error("ERROR:", userResponse.error);
       this.isLoggedIn = false;
@@ -26,12 +25,5 @@ export class SideUserInfoComponent implements OnInit {
       this.isLoggedIn = true;
       this.userData = userResponse.data;
     }
-    // let userData = await this.sharedDataService.getUserData();
-    // if (userData == undefined) {
-    //   this.isLoggedIn = false;
-    // } else {
-    //   let data = await firstValueFrom(userData);
-    //   this.userData = data;
-    // }
   }
 }

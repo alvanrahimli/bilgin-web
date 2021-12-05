@@ -10,6 +10,7 @@ import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SingleTestPackageComponent } from './pages/single-test-package/single-test-package.component';
+import { TestPackResultComponent } from './pages/test-pack-result/test-pack-result.component';
 import { TestPackagesComponent } from './pages/test-packages/test-packages.component';
 import { TestSubjectsComponent } from './pages/test-subjects/test-subjects.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
@@ -17,9 +18,10 @@ import { AuthGuard } from './services/guards/auth-guard.service';
 const routes: Routes = [
   { path: '', component: AppBaseComponent, children: [
     { path: '', component: HomePageComponent },
-    { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
     { path: 'subjects/:sId', component: TestPackagesComponent },
-    { path: 'subjects/:sId/packages/:pId', component: SingleTestPackageComponent },
+    { path: 'subjects/:sId/packages/:pId', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
+    { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
     { path: 'discussions', component: DiscussionsComponent },
   ]},
   { path: 'account', component: AccountComponent, children: [

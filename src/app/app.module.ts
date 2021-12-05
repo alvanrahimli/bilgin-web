@@ -29,6 +29,8 @@ import { AccountDetailsComponent } from './pages/account/account-details/account
 import { FormsModule } from '@angular/forms';
 import { OtpComponent } from './pages/account/otp/otp.component';
 import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
+import { TestPackResultComponent } from './pages/test-pack-result/test-pack-result.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { TokenInterceptorService } from './services/interceptors/token-intercept
     LoginFormComponent,
     AccountDetailsComponent,
     OtpComponent,
+    TestPackResultComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,

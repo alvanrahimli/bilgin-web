@@ -1,10 +1,10 @@
 
 export interface TestAnswerRequest {
     testId: string;
-    testType: string;
-    choiceId: string;
-    matchings: MatchingAnswerRequest[];
-    text: string;
+
+    choiceId: string;   // for multiple choice questions
+    matchings: MatchingAnswerRequest[]; // for matching questions
+    text: string;   // for open ended questions
 }
 
 export interface MatchingAnswerRequest {

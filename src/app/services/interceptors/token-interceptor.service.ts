@@ -18,32 +18,38 @@ export class TokenInterceptorService implements HttpInterceptor {
     // auth: strict -> if refresh token fails, redirect to login
     // auth is not present -> adds access token optionally
 
-    if (request.headers.get("auth") === "none") {
+    let isStrict = request.headers.get("auth") === "strict";
+    let isNone = request.headers.get("auth") === "none";
+    let isOptional = !isStrict && !isNone;
+
+    if (isNone) {
       return next.handle(request);
     }
 
     let tokens = this.accountService.getPersistedToken();
     if (tokens.refreshToken === "") {
-      this.router.navigate(['/account', 'login'], {queryParams: {returnUrl: this.router.url}});
+      if (isStrict) {
+        this.router.navigate(['/account', 'login'], {queryParams: {returnUrl: this.router.url}});
+      } else {
+        return next.handle(request);
+      }
     }
 
     return from(this.accountService.getAccessToken(tokens.refreshToken)).pipe(
       map((tokenResponse) => {
         if (tokenResponse.hasError) {
           console.debug("ERROR IN INTERCEPTOR:", tokenResponse.error);
-          if (request.headers.get("auth") === "strict") {
-            this.router.navigate(["/account", "login"]);
+          if (isStrict) {
+            this.router.navigate(["/account", "login"], {queryParams: {returnUrl: this.router.url}});
+          } else {
+            return next.handle(request);
           }
         }
 
-        if (tokenResponse.hasError) {
-          return next.handle(request);
-        } else {
-          this.accountService.persistToken(tokenResponse.data);
-          let newHeaders = request.headers.append("Authorization", `Bearer ${tokenResponse.data.accessToken}`);
-          const authRequest = request.clone({headers: newHeaders});
-          return next.handle(authRequest);
-        }
+        this.accountService.persistToken(tokenResponse.data);
+        let newHeaders = request.headers.append("Authorization", `Bearer ${tokenResponse.data.accessToken}`);
+        const authRequest = request.clone({headers: newHeaders});
+        return next.handle(authRequest);
       }),
       concatAll(),
     );

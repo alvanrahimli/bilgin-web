@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   phoneRequest: PhoneRequest = {} as PhoneRequest;
-  returnUrl: string | any;
+  returnUrl: string | undefined;
 
   async ngOnInit(): Promise<void> {
     let params = await firstValueFrom(this.activatedRoute.queryParams);
@@ -29,14 +29,13 @@ export class LoginComponent implements OnInit {
     if (loginResponse.hasError) {
       console.log("error occured", loginResponse.error);
     } else {
-      console.log("nice", loginResponse.data);
-      if (this.returnUrl) {
-        this.router.navigate(['/account', 'login', 'otp'], {queryParams: {
-          phone: phoneNumber,
-          returnUrl: this.returnUrl,
-        }});
-      }
-      this.router.navigate(['/account', 'login', 'otp'], {queryParams: {phone: phoneNumber}});
+      // if (this.returnUrl) {
+      this.router.navigate(['/account', 'login', 'otp'], {queryParams: {
+        phone: phoneNumber,
+        returnUrl: this.returnUrl,
+      }});
+      // }
+      // this.router.navigate(['/account', 'login', 'otp'], {queryParams: {phone: phoneNumber}});
     }
   }
 }

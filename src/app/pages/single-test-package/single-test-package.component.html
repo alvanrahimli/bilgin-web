@@ -45,11 +45,13 @@
         <!-- CONTROL BUTTONS -->
         <div class="col-md-10 m-auto">
             <div class="test-buttons">
-                <button class="test-prev-button" (click)="navigateTests(NavigationDirection.Backward)">Geri</button>
-                <button class="test-next-button {{ isCurrentTheLast() ? '' : 'danger-button' }}" 
-                        (click)="navigateTests(NavigationDirection.Forward)">
-                    {{ isCurrentTheLast() ? "Irəli" : "TESTİ BİTİR"}}
-                </button>
+                <button class="test-prev-button" (click)="onPreviousClick()">Geri</button>
+                
+                <button class="test-next-button" *ngIf="!isCurrentTheLast()"
+                (click)="onNextClick()">Irəli</button>
+
+                <button class="test-next-button danger-button" *ngIf="isCurrentTheLast()"
+                        (click)="finishTestClick()">TESTİ BİTİR</button>
             </div>
         </div>
     </div>
