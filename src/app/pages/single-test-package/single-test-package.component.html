@@ -2,11 +2,8 @@
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
     
     <div class="col-md-12" *ngIf="statusIndicator.isCompleted()">
-        <a [routerLink]="['/']">
-            <button class="back-to-article-2">
-                <i class="fas fa-angle-double-left"></i>
-            </button>
-        </a>
+        <!-- TODO: Apply confirmation logic here -->
+        <app-back-button [level]="2"></app-back-button>
         <div class="test-inner-title">
             <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
             <p class="icon-color mrb-unset  test-num-inner test-num">
