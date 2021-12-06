@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { PhoneRequest } from 'src/app/models/user/request/phone-request';
 import { AccountService } from 'src/app/services/account/account.service';
+import { Status, StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   phoneRequest: PhoneRequest = {} as PhoneRequest;
   returnUrl: string | undefined;
+  statusIndicator: StatusIndicator = new StatusIndicator();
 
   async ngOnInit(): Promise<void> {
     let params = await firstValueFrom(this.activatedRoute.queryParams);
@@ -29,13 +31,10 @@ export class LoginComponent implements OnInit {
     if (loginResponse.hasError) {
       console.log("error occured", loginResponse.error);
     } else {
-      // if (this.returnUrl) {
       this.router.navigate(['/account', 'login', 'otp'], {queryParams: {
         phone: phoneNumber,
         returnUrl: this.returnUrl,
       }});
-      // }
-      // this.router.navigate(['/account', 'login', 'otp'], {queryParams: {phone: phoneNumber}});
     }
   }
 }

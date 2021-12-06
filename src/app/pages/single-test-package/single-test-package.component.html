@@ -1,6 +1,7 @@
 <div class="row p-4 mar-no bg-rad">
+    <app-status-indicator [status]="statusIndicator"></app-status-indicator>
     
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="statusIndicator.isCompleted()">
         <a [routerLink]="['/']">
             <button class="back-to-article-2">
                 <i class="fas fa-angle-double-left"></i>

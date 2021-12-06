@@ -1,8 +1,8 @@
 <h3 class="col-title">{{ subject.name }} üzrə mövzular</h3>
-<div class="row">
+<app-status-indicator [status]="statusIndicator"></app-status-indicator>
+<div class="row" *ngIf="statusIndicator.isCompleted()">
     <div class="col-md-6 aos-init aos-animate" data-aos="fade-up"
         *ngFor="let p of packages">
         <app-test-package [package]="p"></app-test-package>
     </div>
 </div>
-<p *ngIf="packages.length == 0">Heç bir toplu tapılmadı</p>

@@ -5,6 +5,7 @@ import { TestPackageBriefResponse } from 'src/app/models/test-package/response/t
 import { SubjectResponse } from 'src/app/models/test-subject/response/subjectResponse';
 import { TestPackagesService } from 'src/app/services/tests/test-packages/test-packages.service';
 import { TestSubjectsService } from 'src/app/services/tests/test-subjects/test-subjects.service';
+import { StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
   selector: 'app-test-packages',
@@ -13,6 +14,7 @@ import { TestSubjectsService } from 'src/app/services/tests/test-subjects/test-s
 })
 export class TestPackagesComponent implements OnInit {
 
+  statusIndicator = new StatusIndicator();
   packages: TestPackageBriefResponse[] = [];
   subject: SubjectResponse = {} as SubjectResponse;
 
@@ -21,11 +23,12 @@ export class TestPackagesComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
+    this.statusIndicator.setProgress();
     this.activatedRoute.params.subscribe(
       async (params) => {
         let subjectId = params["sId"];
-        await this.loadPackageList(subjectId);
         await this.loadSubjectInfo(subjectId);
+        await this.loadPackageList(subjectId);
       }
     )
   }
@@ -37,8 +40,14 @@ export class TestPackagesComponent implements OnInit {
 
     if (listResponse.hasError) {
       console.log(listResponse.error);
+      this.statusIndicator.setError();
     } else {
       this.packages = listResponse.data;
+      if (listResponse.data.length == 0) {
+        this.statusIndicator.setError("Heç bir toplu tapılmadı");
+      } else {
+        this.statusIndicator.setCompleted();
+      }
     }
   }
 

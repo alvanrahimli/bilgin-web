@@ -7,6 +7,7 @@ import { NavigationDirection } from 'src/app/models/enums/navigation-direction';
 import { MatchingAnswerRequest, TestAnswerRequest } from 'src/app/models/test-package/request/test-package';
 import { TestPackageResponse } from "src/app/models/test-package/response/TestPackageResponse";
 import { TestPackagesService } from 'src/app/services/tests/test-packages/test-packages.service';
+import { StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
   selector: 'app-single-test-package',
@@ -20,6 +21,8 @@ export class SingleTestPackageComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private testPackageService: TestPackagesService) { }
+  
+  statusIndicator: StatusIndicator = new StatusIndicator();
 
   package: TestPackageResponse = {} as TestPackageResponse;
   totalTestCount: number = 0;
@@ -34,6 +37,7 @@ export class SingleTestPackageComponent implements OnInit {
     var params = await firstValueFrom(this.activatedRoute.params);
     await this.loadPackage(params["pId"]);
 
+    // TODO: Refactor this notice
     window.onbeforeunload = function (e) {
       e.preventDefault();
       let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
@@ -43,13 +47,16 @@ export class SingleTestPackageComponent implements OnInit {
   }
 
   async loadPackage(pId: string): Promise<void> {
+    this.statusIndicator.setProgress("Test yüklənir...");
     let packageResponse = await this.testPackageService.getPackage(pId);
     if (packageResponse.hasError) {
       console.log(packageResponse.error);
+      this.statusIndicator.setError();
     } else {
       this.package = packageResponse.data;
       this.totalTestCount = packageResponse.data.tests.length;
       this.modifiedTests = packageResponse.data.tests.map(() => false);
+      this.statusIndicator.setCompleted();
     }
   }
 
@@ -128,7 +135,6 @@ export class SingleTestPackageComponent implements OnInit {
       console.log("FINISHED:", response.data);
       let params = await firstValueFrom(this.activatedRoute.params);
       this.router.navigate(["/subjects", params["sId"], "packages", params["pId"], "completion"]);
-      // this.router.navigate(["../completion"], {relativeTo: this.activatedRoute});
     } else {
       console.log("FINISHED, but later will see result");
       this.router.navigate(["/"]);

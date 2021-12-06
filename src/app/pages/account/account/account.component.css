@@ -33,6 +33,7 @@
     background: url('../../../../assets/img/login-bg2.svg');
     background-position: bottom;
     background-repeat: no-repeat;
+    background-size: contain;
     display: flex;
     align-items: center;
     justify-content: center;

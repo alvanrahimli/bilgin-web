@@ -31,6 +31,7 @@ import { OtpComponent } from './pages/account/otp/otp.component';
 import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
 import { TestPackResultComponent } from './pages/test-pack-result/test-pack-result.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
+import { StatusIndicatorComponent } from './components/status-indicator/status-indicator.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
     OtpComponent,
     TestPackResultComponent,
     BackButtonComponent,
+    StatusIndicatorComponent,
   ],
   imports: [
     BrowserModule,
