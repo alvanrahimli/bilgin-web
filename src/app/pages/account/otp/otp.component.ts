@@ -31,26 +31,26 @@ export class OtpComponent implements OnInit {
   }
 
   async submitLoginVerify() {
-    // this.statusIndicator.setProgress();
-    // let verifyResponse = await this.accountService.postLoginVerify(this.phoneCodeRequest);
+    this.statusIndicator.setProgress();
+    let verifyResponse = await this.accountService.postLoginVerify(this.phoneCodeRequest);
     
-    // if (verifyResponse.hasError) {
-    //   console.log("ERROR:", verifyResponse.error);
-    //   this.statusIndicator.setError();
-    //   if (verifyResponse.error instanceof HttpErrorResponse) {
-    //     if (verifyResponse.error.status == 400) {
-    //       this.statusIndicator.setError("Yanlış kod daxil etmisiniz");
-    //     }
-    //   }
-    // } else {
-    //   this.statusIndicator.setCompleted();
-    //   this.accountService.persistToken(verifyResponse.data.token);
-    //   if (this.returnUrl) {
-    //     this.router.navigate([this.returnUrl]);
-    //   } else {
-    //     this.router.navigate(["/"]);
-    //   }
-    // }
-    this.statusIndicator.setError();
+    if (verifyResponse.hasError) {
+      console.log("ERROR:", verifyResponse.error);
+      this.statusIndicator.setError();
+      if (verifyResponse.error instanceof HttpErrorResponse) {
+        if (verifyResponse.error.status == 400) {
+          this.statusIndicator.setError("Yanlış kod daxil etmisiniz");
+        }
+      }
+    } else {
+      this.statusIndicator.setCompleted();
+      this.accountService.persistToken(verifyResponse.data.token);
+      if (this.returnUrl) {
+        this.router.navigate([this.returnUrl]);
+      } else {
+        this.router.navigate(["/"]);
+      }
+    }
+    // this.statusIndicator.setError();
   }
 }

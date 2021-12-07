@@ -1,5 +1,5 @@
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
-<div class="thanks" *ngIf="statusIndicator.isCompleted()">
+<div class="thanks" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
     <img class="py-2" src="../../../assets/img/medal.svg" alt="">
     <h4>{{ completion.congratsText }}</h4>
     <!-- <p class=" thanks-p1 mrb-unset">Lorem ipsum dolor sit amet, consectetur <br> blandiid Curabitur</p> -->

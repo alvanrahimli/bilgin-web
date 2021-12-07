@@ -36,14 +36,6 @@ export class SingleTestPackageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     var params = await firstValueFrom(this.activatedRoute.params);
     await this.loadPackage(params["pId"]);
-
-    // TODO: Refactor this notice
-    // window.onbeforeunload = function (e) {
-    //   e.preventDefault();
-    //   let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
-    //   e.returnValue = msg;
-    //   return msg;
-    // };
   }
 
   async loadPackage(pId: string): Promise<void> {
@@ -119,21 +111,24 @@ export class SingleTestPackageComponent implements OnInit {
     this.statusIndicator.setProgress();
     let response = await this.testPackageService.submitAnswers(this.package.id, this.answers);
     if (response.hasError) {
-      this.statusIndicator.setError();
       console.error(response.error);
       if (response.error instanceof HttpErrorResponse) {
         switch (response.error.status) {
           case 409:
             console.log("Bu testi artıq işləmisiniz");
+            this.statusIndicator.setError("Bu testi artıq işləmisiniz");
             break;
           case 404:
             console.log("Test tapılmadı");
+            this.statusIndicator.setError("Test tapılmadı");
             break;
           default:
+            this.statusIndicator.setError();
             console.log(response.error.statusText);
             break;
         }
       } else {
+        this.statusIndicator.setError();
         console.log("ERROR:", response.error);
       }
       return;

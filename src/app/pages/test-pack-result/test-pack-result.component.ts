@@ -34,6 +34,9 @@ export class TestPackResultComponent implements OnInit {
           case 404:
             this.statusIndicator.setError("Siz bu testi tamamlamamısınız");
             break;
+          case 425:
+            this.statusIndicator.setCompleted("Cavablarınız qeydə alınıb. Nəticələr məlum olduqda sizə bildiriş göndəriləcək", true);
+            break;
           default:
             break;
         }
