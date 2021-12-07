@@ -38,12 +38,12 @@ export class SingleTestPackageComponent implements OnInit {
     await this.loadPackage(params["pId"]);
 
     // TODO: Refactor this notice
-    window.onbeforeunload = function (e) {
-      e.preventDefault();
-      let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
-      e.returnValue = msg;
-      return msg;
-    };
+    // window.onbeforeunload = function (e) {
+    //   e.preventDefault();
+    //   let msg = 'Səhifəni yeniləsəniz bütün cavablar silinəcək. Yeniləmək istədiyinizdən əminsiniz?';
+    //   e.returnValue = msg;
+    //   return msg;
+    // };
   }
 
   async loadPackage(pId: string): Promise<void> {
@@ -51,6 +51,13 @@ export class SingleTestPackageComponent implements OnInit {
     let packageResponse = await this.testPackageService.getPackage(pId);
     if (packageResponse.hasError) {
       console.log(packageResponse.error);
+      if (packageResponse.error instanceof HttpErrorResponse) {
+        switch (packageResponse.error.status) {
+          case 409:
+            this.router.navigate(["completion"], {relativeTo: this.activatedRoute});
+            break;
+        }
+      }
       this.statusIndicator.setError();
     } else {
       this.package = packageResponse.data;
@@ -109,9 +116,10 @@ export class SingleTestPackageComponent implements OnInit {
   }
 
   async finishTestClick(): Promise<void> {
-    console.log(this.answers);
+    this.statusIndicator.setProgress();
     let response = await this.testPackageService.submitAnswers(this.package.id, this.answers);
     if (response.hasError) {
+      this.statusIndicator.setError();
       console.error(response.error);
       if (response.error instanceof HttpErrorResponse) {
         switch (response.error.status) {
@@ -129,15 +137,15 @@ export class SingleTestPackageComponent implements OnInit {
         console.log("ERROR:", response.error);
       }
       return;
+    } else {
+      this.statusIndicator.setCompleted();
     }
 
     if (response.data.showResultImmediately) {
-      console.log("FINISHED:", response.data);
       let params = await firstValueFrom(this.activatedRoute.params);
       this.router.navigate(["/subjects", params["sId"], "packages", params["pId"], "completion"]);
     } else {
-      console.log("FINISHED, but later will see result");
-      this.router.navigate(["/"]);
+      this.statusIndicator.setCompleted("Cavablarınız qeydə alındı. Nəticələr məlum olduqda sizə bildiriş göndəriləcək", true);
     }
   }
 

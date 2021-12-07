@@ -18,6 +18,7 @@ export class SideNavbarComponent implements OnInit {
   logout() {
     this.accountService.logout();
     this.router.navigate(["/"]);
+    location.reload();
   }
 
 }

@@ -1,1 +1,38 @@
-<h3>Siz bu testdən {{ completion.result }} xal toplamısınız!</h3>
+<app-status-indicator [status]="statusIndicator"></app-status-indicator>
+<div class="thanks" *ngIf="statusIndicator.isCompleted()">
+    <img class="py-2" src="../../../assets/img/medal.svg" alt="">
+    <h4>{{ completion.congratsText }}</h4>
+    <!-- <p class=" thanks-p1 mrb-unset">Lorem ipsum dolor sit amet, consectetur <br> blandiid Curabitur</p> -->
+    <p class=" thanks-p2 mrb-unset">Doğru Cavablar</p>
+    <p class=" mrb-unset"><span class="test-n-w">{{ completion.correctCount }}</span><span class="test-n-t">/{{ completion.allCount }}</span></p>
+    <p class=" thanks-p2 mrb-unset">Qazandığınız xallar</p>
+    <div class="py-2 total-coin">
+        <img src="../../../assets/img/coins.svg" alt="xallar">
+        <p class="mrb-unset coin">(tezliklə)</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <h3 class="icon-color text-left">Digər testlər</h3>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4 text-right">
+            <a class="all-sub " [routerLink]="['/subjects']">Hamısı</a>
+        </div>
+
+        <!-- TEKRARLANAN HISSE -->
+        <div class="col-md-4" *ngFor="let subject of subjectList">
+            <div class="thanks-subject1 my-1" [routerLink]="['/subjects', subject.id]"
+                 [style.background]="subject.color">
+                <div class="on-img1"></div>
+                <div class="on-img2"></div>
+                <div class="on-img3"></div>
+                <div class="on-img4"><img src="../../../assets/img/atom.svg" alt=""></div>
+                <p class="mrb-unset">{{ subject.name }}</p>
+            </div>
+        </div>
+        <!-- TEKRARLANAN HISSE END -->
+    </div>
+</div>
+<!-- </div> -->

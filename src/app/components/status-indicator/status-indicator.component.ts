@@ -16,12 +16,15 @@ export class StatusIndicatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  errorTextExists(): boolean {
+  errorTextNotExists(): boolean {
     return this.status.errorText == "" || this.status.errorText == undefined;
   }
 
-  loadingTextExists(): boolean {
+  loadingTextNotExists(): boolean {
     return this.status.inProgressText == "" || this.status.inProgressText == undefined;
   }
 
+  completedTextNotExists(): boolean {
+    return this.status.completedText == "" || this.status.completedText == undefined;
+  }
 }

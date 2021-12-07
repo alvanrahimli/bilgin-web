@@ -1,0 +1,136 @@
+/* THANKS */
+.thanks{
+    margin: auto;
+    text-align: center;
+}
+.thanks-h4{
+    color: #262D30;
+    font-weight: 600;
+}
+.thanks-p1{
+    color: rgba(170, 170, 170, 0.61);
+    font-weight: 500;
+    font-size: 12px;
+}
+.thanks-p2{
+    color: #757D8A;
+    font-weight: 500;
+    font-size: 18px;
+}
+.test-n-w{
+    color: #FF7675;
+    font-size: 30px;
+    font-weight: bold;
+}
+.test-n-t{
+    font-weight: bold;
+    font-size: 30px;
+    color: rgba(170, 170, 170);
+}
+.coin{
+    color: #262D30;
+    font-weight: bold;
+    font-size: 30px;
+}
+.total-coin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.thanks{
+    padding: 25px 50px;
+    border-radius: 16px;
+    height: 100%;
+    width: 100%;
+    background: url('/assets/img/Yekun.png');
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.thanks-footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.all-sub{
+    color: rgba(203, 203, 203, 0.9);
+    margin-bottom: unset;
+    text-align: right;
+}
+.thanks-subject1{
+    border-radius: 20px;
+    background: linear-gradient(0deg, #56CCF2, #56CCF2);
+    padding: 40px 20px;
+    overflow: hidden;
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+    cursor: pointer;
+
+    top: 0;
+    position: relative;
+    transition: top ease 0.35s;
+}
+.thanks-subject1:hover{
+    top: -10px;
+}
+.thanks-subject2{
+    border-radius: 20px;
+    background: linear-gradient(0deg, #FF9A3E, #FF9A3E);
+    padding: 40px 20px;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+}
+.thanks-subject3{
+    border-radius: 20px;
+    background: linear-gradient(0deg, #42B983, #42B983);
+    padding: 40px 20px;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+}
+.on-img1{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+    border-radius: 50px;
+    position: absolute;
+    top: -12px;
+    left: 160px;
+    width: 150px;
+    height: 75px;
+}
+.on-img2{
+    border-radius: 50px;
+    position: absolute;
+    top: -40px;
+    left: 90px;
+    width: 150px;
+    height: 90px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+.on-img3{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+    border-radius: 50px;
+    position: absolute;
+    top: 60px;
+    left: 140px;
+    width: 150px;
+    height: 75px;
+    transform: rotate(45deg);
+}
+.on-img4{
+    position:absolute;
+    top: 10px;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}
+
+/* THANKS-END */

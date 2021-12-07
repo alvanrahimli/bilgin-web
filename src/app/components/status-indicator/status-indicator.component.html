@@ -1,9 +1,14 @@
 <div class="error-alert" *ngIf="status.status == Status.error">
     <img src="../../../assets/img/danger-icon.png">
-    <span>{{ errorTextExists() ? "Səhv baş verdi" : status.errorText }}</span>
+    <span>{{ errorTextNotExists() ? "Səhv baş verdi" : status.errorText }}</span>
 </div>
 
 <div class="loading-alert" *ngIf="status.status == Status.inProgress">
     <img src="../../../assets/img/loading3.svg">
-    <span>{{ loadingTextExists() ? "Əməliyyat aparılır..." : status.inProgressText }}</span>
+    <span>{{ loadingTextNotExists() ? "Əməliyyat aparılır..." : status.inProgressText }}</span>
+</div>
+
+<div class="completed-alert" *ngIf="status.status == Status.completed && status.persist">
+    <img src="../../../assets/img/check.svg">
+    <span>{{ completedTextNotExists() ? "Əməliyyat tamamlandı" : status.completedText }}</span>
 </div>

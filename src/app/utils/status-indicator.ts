@@ -3,6 +3,7 @@ export class StatusIndicator {
     inProgressText: string | undefined;
     errorText: string | undefined;
     completedText: string | undefined;
+    persist: boolean = false;
     
     setError(errText: string | undefined = undefined) {
         this.status = Status.error;
@@ -14,9 +15,10 @@ export class StatusIndicator {
         this.errorText = progressText
     }
 
-    setCompleted(text: string | undefined = undefined) {
+    setCompleted(text: string | undefined = undefined, shouldPersist: boolean = false) {
         this.status = Status.completed;
         this.completedText = text
+        this.persist = shouldPersist;
     }
 
     isCompleted(): boolean {

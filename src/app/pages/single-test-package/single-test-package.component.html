@@ -1,7 +1,7 @@
 <div class="row p-4 mar-no bg-rad">
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
     
-    <div class="col-md-12" *ngIf="statusIndicator.isCompleted()">
+    <div class="col-md-12" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
         <!-- TODO: Apply confirmation logic here -->
         <app-back-button [level]="2"></app-back-button>
         <div class="test-inner-title">

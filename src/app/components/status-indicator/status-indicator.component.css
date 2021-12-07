@@ -19,6 +19,27 @@
     margin-left: 10px;
 }
 
+/* COMPLETED STYLES */
+.completed-alert {
+    background: #42B983CC;
+    padding: 12px 20px;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.completed-alert img {
+    width: 22px;
+    height: 22px;
+}
+
+.completed-alert span {
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
 /* ERROR STYLES */
 .error-alert {
     background: #EB5757;
