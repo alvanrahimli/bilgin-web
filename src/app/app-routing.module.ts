@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from './components/account/login-form/login-form.component';
 import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
 import { AccountComponent } from './pages/account/account/account.component';
 import { LoginComponent } from './pages/account/login/login.component';
@@ -9,10 +8,10 @@ import { RegisterComponent } from './pages/account/register/register.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { SingleTestPackageComponent } from './pages/single-test-package/single-test-package.component';
-import { TestPackResultComponent } from './pages/test-pack-result/test-pack-result.component';
-import { TestPackagesComponent } from './pages/test-packages/test-packages.component';
-import { TestSubjectsComponent } from './pages/test-subjects/test-subjects.component';
+import { SingleTestPackageComponent } from './pages/testing/single-test-package/single-test-package.component';
+import { TestPackResultComponent } from './pages/testing/test-pack-result/test-pack-result.component';
+import { TestPackagesComponent } from './pages/testing/test-packages/test-packages.component';
+import { TestSubjectsComponent } from './pages/testing/test-subjects/test-subjects.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 
 const routes: Routes = [
