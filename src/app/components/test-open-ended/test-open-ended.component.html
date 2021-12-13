@@ -1,1 +1,3 @@
-<p>test-open-ended works!</p>
+<textarea class="open-test" cols="30" rows="10" placeholder="Cavabınızı yazın..."
+    (focus)="areaFocused()"
+    (focusout)="areaLostFocus()" [(ngModel)]="answerText"></textarea>

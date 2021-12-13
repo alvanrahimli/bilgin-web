@@ -17,25 +17,29 @@
         <div *ngIf="package?.tests">
             <!-- INDIVIDUAL TEST -->
             <div class="question-title">
-                <p class="mrb-unset icon-color mt-3">
-                    {{ package.tests[currentTestIndex].question }}
+                <p class="mrb-unset icon-color mt-3 mb-3">
+                    > {{ package.tests[currentTestIndex].question }}
                 </p>
             </div>
 
             <!-- CHOICES -->
             <div class="col-md-10 m-auto answers" *ngIf="package.tests[currentTestIndex].testType == 'MultipleChoice'">
-                <app-test-answer *ngFor="let choice of package.tests[currentTestIndex].testChoices"
+                <app-test-choices *ngFor="let choice of package.tests[currentTestIndex].testChoices"
                     [choice]="choice"
                     [clicked]="selectedChoiceId == choice.id"
                     (onClick)="choiceClicked($event)"
                     (onModified)="answerModified($event)"
                     (onSubmitted)="answerSubmitted($event)"
-                    (onClear)="answerCleared($event)"></app-test-answer>
+                    (onClear)="answerCleared($event)"></app-test-choices>
             </div>
 
             <!-- OPEN ENDED -->
             <div class="col-md-10 m-auto answers" *ngIf="package.tests[currentTestIndex].testType == 'Open'">
-                <app-test-open-ended></app-test-open-ended>
+                <app-test-open-ended
+                    [answerText]="writtenAnswerText"
+                    (onModified)="answerModified($event)"
+                    (onSubmitted)="answerSubmitted($event)"
+                    (onClear)="answerCleared($event)"></app-test-open-ended>
             </div>
         </div>
 

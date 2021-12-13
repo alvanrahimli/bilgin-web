@@ -29,6 +29,7 @@ export class SingleTestPackageComponent implements OnInit {
 
   currentTestIndex: number = 0;
   selectedChoiceId: string = "";
+  writtenAnswerText: string = "";
 
   answers: TestAnswerRequest[] = [];
   modifiedTests: boolean[] = [];
@@ -103,6 +104,7 @@ export class SingleTestPackageComponent implements OnInit {
     if (answerIndex >= 0) {
       this.answers.splice(answerIndex, 1);
       this.selectedChoiceId = "";
+      this.writtenAnswerText = "";
     }
     this.modifiedTests[this.currentTestIndex] = false;
   }
@@ -164,7 +166,7 @@ export class SingleTestPackageComponent implements OnInit {
       if (currentTest.testType == "MultipleChoice") {
         this.selectedChoiceId = currentAnswer.choiceId;
       } else if (currentTest.testType == "Open") {
-        // TODO: Add loading open test's answer
+        this.writtenAnswerText = currentAnswer.text;
       } else if (currentTest.testType == "Matching") {
         // TODO: Add loading matching test's answer
       }
