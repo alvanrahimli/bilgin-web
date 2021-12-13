@@ -13,11 +13,19 @@ export class BackButtonComponent implements OnInit {
   
   @Input()
   level: number = 1;
+  @Input()
+  confirm: boolean = false;
 
   ngOnInit(): void {
   }
 
   goBack(): void {
+    if (this.confirm) {
+      if (!confirm("Çıxmaq istədiyinizdən əminsiniz? Nəticəniz ləğv olunacaq")) {
+        return;
+      }
+    }
+
     let route = "../".repeat(this.level);
     this.router.navigate([route], {relativeTo: this.activatedRoute});
   }
