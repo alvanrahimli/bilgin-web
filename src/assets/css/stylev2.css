@@ -680,8 +680,8 @@ body{
     border-radius: 10px;
     outline: none;
     border: none;
-    float:left;
-    margin: 0 15px;
+    /* float:left; */
+    /* margin: 0 15px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -693,6 +693,7 @@ body{
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 20px;
 }
 .test-num{
     font-weight: 700;
@@ -752,12 +753,12 @@ body{
     cursor: pointer;
 }
 
+.answer-box-current {
+    border: 2px solid #0F296D;
+}
+
 .answer-box-selected{
     border: 2px solid #27AE60;
-    border-radius: 10px;
-    /* width: 80%; */
-    margin:15px auto;
-    padding: 10px;
 }
 .answer-box-selected p{
     color:#0E9033 ;

@@ -1,11 +1,14 @@
 <div class="subject-inner">
     <div class="subject-inner-head" [routerLink]="['packages', package.id]">
         <div class="d-flex">
-            <div class="subject-name-img"></div>
-            <p class="mrb-unset sub-name">{{ package.paragraphName }}</p>
+            <!-- <div class="subject-name-img"></div> -->
+            <p class="mrb-unset package-name">
+                > {{ package.paragraphName }}
+            </p>
         </div>
         <div>
-            <p class="test-cost mrb-unset">{{ package.price }} AZN</p>
+            <p class="test-cost mrb-unset" *ngIf="package.price != 0">{{ package.price }} AZN</p>
+            <p class="test-cost mrb-unset" *ngIf="package.price == 0">Pulsuz</p>
         </div>
     </div>
     <div class="subject-inner-body">

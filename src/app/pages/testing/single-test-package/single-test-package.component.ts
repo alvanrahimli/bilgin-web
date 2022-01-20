@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { TestAnswerComponent } from 'src/app/components/test-answer/test-answer.component';
 import { NavigationDirection } from 'src/app/models/enums/navigation-direction';
 import { MatchingAnswerRequest, TestAnswerRequest } from 'src/app/models/test-package/request/test-package';
 import { TestPackageResponse } from "src/app/models/test-package/response/TestPackageResponse";

@@ -31,6 +31,7 @@ import { TokenInterceptorService } from './services/interceptors/token-intercept
 import { TestPackResultComponent } from './pages/testing/test-pack-result/test-pack-result.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { StatusIndicatorComponent } from './components/status-indicator/status-indicator.component';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { StatusIndicatorComponent } from './components/status-indicator/status-i
     TestPackResultComponent,
     BackButtonComponent,
     StatusIndicatorComponent,
+    PageTitleComponent,
   ],
   imports: [
     BrowserModule,

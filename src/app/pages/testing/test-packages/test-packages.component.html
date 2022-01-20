@@ -1,5 +1,4 @@
-<app-back-button></app-back-button>
-<h3 class="col-title">{{ subject.name }} üzrə mövzular</h3>
+<app-page-title titleText="{{ subject.name }} üzrə mövzular"></app-page-title>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 <div class="row" *ngIf="statusIndicator.isCompleted()">
     <div class="col-md-6 aos-init aos-animate" data-aos="fade-up"

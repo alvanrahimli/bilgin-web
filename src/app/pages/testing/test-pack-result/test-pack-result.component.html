@@ -1,11 +1,16 @@
+<app-page-title titleText="Nəticələr" [showBackButton]="true" [level]="3"></app-page-title>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 <div class="thanks" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
     <img class="py-2" src="../../../assets/img/medal.svg" alt="">
     <h4>{{ completion.congratsText }}</h4>
     <!-- <p class=" thanks-p1 mrb-unset">Lorem ipsum dolor sit amet, consectetur <br> blandiid Curabitur</p> -->
-    <p class=" thanks-p2 mrb-unset">Doğru Cavablar</p>
-    <p class=" mrb-unset"><span class="test-n-w">{{ completion.correctCount }}</span><span class="test-n-t">/{{ completion.allCount }}</span></p>
-    <p class=" thanks-p2 mrb-unset">Qazandığınız xallar</p>
+    <p class="thanks-p2 mrb-unset">Doğru Cavablar</p>
+    <p class="mrb-unset"><span class="test-n-w">{{ completion.correctCount }}</span><span class="test-n-t">/{{ completion.allCount }}</span></p>
+    <div *ngIf="completion.pendingCount > 0">
+        <p class="thanks-p2 mrb-unset">Yoxlanılmamış suallar</p>
+        <p class="mrb-unset"><span class="test-n-w">{{ completion.pendingCount }}</span></p>
+    </div>
+    <p class="thanks-p2 mrb-unset">Qazandığınız xallar</p>
     <div class="py-2 total-coin">
         <img src="../../../assets/img/coins.svg" alt="xallar">
         <p class="mrb-unset coin">(tezliklə)</p>

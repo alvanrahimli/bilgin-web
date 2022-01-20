@@ -12,7 +12,7 @@ export class StatusIndicator {
 
     setProgress(progressText: string | undefined = undefined) {
         this.status = Status.inProgress;
-        this.errorText = progressText
+        this.inProgressText = progressText
     }
 
     setCompleted(text: string | undefined = undefined, shouldPersist: boolean = false) {

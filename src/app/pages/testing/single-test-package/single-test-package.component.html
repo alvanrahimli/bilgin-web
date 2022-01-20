@@ -2,19 +2,20 @@
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
     
     <div class="col-md-12" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
-        <app-back-button [level]="2" [confirm]="true"></app-back-button>
-        <div class="test-inner-title">
-            <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
-            <p class="icon-color mrb-unset  test-num-inner test-num">
-                <span>{{ currentTestIndex + 1 }}</span> / {{ totalTestCount }}
-            </p>
-        </div>
-        <div class="mt-4 question">
-            <div class="question-box {{ isModified ? 'question-box-true' : '' }}" 
-                 *ngFor="let isModified of modifiedTests">
+        <div id="test-package-title">
+            <app-back-button [level]="2" [confirm]="true"></app-back-button>
+            <div class="test-inner-title">
+                <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
+                <p class="icon-color mrb-unset  test-num-inner test-num">
+                    <span>{{ currentTestIndex + 1 }}</span> / {{ totalTestCount }}
+                </p>
             </div>
         </div>
-        <div *ngIf="package?.tests">
+        <div class="mt-4 question">
+            <div class="question-box {{ isModified ? 'question-box-true' : '' }}" *ngFor="let isModified of modifiedTests">
+            </div>
+        </div>
+        <div *ngIf="package?.tests?.length ?? -1 > 0">
             <!-- INDIVIDUAL TEST -->
             <div class="question-title">
                 <p class="mrb-unset icon-color mt-3 mb-3">
@@ -43,8 +44,12 @@
             </div>
         </div>
 
+        <div *ngIf="!(package?.tests?.length ?? -1 > 0)">
+            <h3>Təəssüf ki heç bir test tapılmadı</h3>
+        </div>
+
         <!-- CONTROL BUTTONS -->
-        <div class="col-md-10 m-auto">
+        <div class="col-md-10 m-auto" *ngIf="package?.tests?.length ?? -1 > 0">
             <div class="test-buttons">
                 <button class="test-prev-button" (click)="onPreviousClick()">Geri</button>
                 

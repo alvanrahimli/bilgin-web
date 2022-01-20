@@ -3,3 +3,10 @@
     font-weight: 600;
     color: #075e2f;
 }
+
+#test-package-title {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+}

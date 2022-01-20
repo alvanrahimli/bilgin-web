@@ -1,0 +1,10 @@
+#page-title {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#page-title h3 {
+    margin: auto 0 auto 15px;
+}
