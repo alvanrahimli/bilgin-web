@@ -32,6 +32,8 @@ import { TestPackResultComponent } from './pages/testing/test-pack-result/test-p
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { StatusIndicatorComponent } from './components/status-indicator/status-indicator.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
+import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     BackButtonComponent,
     StatusIndicatorComponent,
     PageTitleComponent,
+    SingleTestPackIntroComponent,
+    BilginFooterComponent,
   ],
   imports: [
     BrowserModule,

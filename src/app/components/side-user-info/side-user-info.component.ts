@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { UserResponse } from 'src/app/models/user/response/user-response';
 import { AccountService } from 'src/app/services/account/account.service';
@@ -11,7 +12,9 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 })
 export class SideUserInfoComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+    public activatedRoute: ActivatedRoute,
+    public router: Router) { }
 
   isLoggedIn: boolean = false;
   userData: UserResponse | any;

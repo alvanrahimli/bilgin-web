@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/account/register/register.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
 import { SingleTestPackageComponent } from './pages/testing/single-test-package/single-test-package.component';
 import { TestPackResultComponent } from './pages/testing/test-pack-result/test-pack-result.component';
 import { TestPackagesComponent } from './pages/testing/test-packages/test-packages.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: '', component: HomePageComponent },
     { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
     { path: 'subjects/:sId', component: TestPackagesComponent },
-    { path: 'subjects/:sId/packages/:pId', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
+    { path: 'subjects/:sId/packages/:pId/tests', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
+    { path: 'subjects/:sId/packages/:pId/intro', component: SingleTestPackIntroComponent, canActivate: [AuthGuard] },
     { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
     { path: 'discussions', component: DiscussionsComponent },
   ]},

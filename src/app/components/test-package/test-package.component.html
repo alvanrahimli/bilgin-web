@@ -1,5 +1,5 @@
 <div class="subject-inner">
-    <div class="subject-inner-head" [routerLink]="['packages', package.id]">
+    <div class="subject-inner-head" [routerLink]="['packages', package.id, 'intro']">
         <div class="d-flex">
             <!-- <div class="subject-name-img"></div> -->
             <p class="mrb-unset package-name">
@@ -7,13 +7,15 @@
             </p>
         </div>
         <div>
-            <p class="test-cost mrb-unset" *ngIf="package.price != 0">{{ package.price }} AZN</p>
+            <p class="test-cost mrb-unset" *ngIf="package.price != 0">{{ package.price / 100 }} AZN</p>
             <p class="test-cost mrb-unset" *ngIf="package.price == 0">Pulsuz</p>
         </div>
     </div>
     <div class="subject-inner-body">
         <div class="sub-author">
             <p class="mrb-unset">{{ package.description }}</p>
+            <p class="mrb-unset">{{ package.gradeName }}</p>
+            <p class="mrb-unset">{{ package.timeLimitSeconds }}</p>
             <p class="mrb-unset"></p>
         </div>
         <div class="sub-line"></div>

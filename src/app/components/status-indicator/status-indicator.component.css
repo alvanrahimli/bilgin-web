@@ -1,10 +1,13 @@
+.app-alert {
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+}
+
 /* LOADING STYLES */
 .loading-alert {
     background: #FFC278;
     padding: 12px 20px;
     color: white;
-    border-radius: 10px;
-    margin-top: 10px;
 }
 
 .loading-alert img {
@@ -24,8 +27,6 @@
     background: #42B983CC;
     padding: 12px 20px;
     color: white;
-    border-radius: 10px;
-    margin-top: 10px;
 }
 
 .completed-alert img {
@@ -45,8 +46,6 @@
     background: #EB5757;
     padding: 12px 20px;
     color: white;
-    border-radius: 10px;
-    margin-top: 10px;
 }
 
 .error-alert img {

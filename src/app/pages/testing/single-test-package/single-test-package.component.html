@@ -3,7 +3,7 @@
     
     <div class="col-md-12" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
         <div id="test-package-title">
-            <app-back-button [level]="2" [confirm]="true"></app-back-button>
+            <!-- <app-back-button [level]="2" [confirm]="true"></app-back-button> -->
             <div class="test-inner-title">
                 <h3 class="mrb-unset col-title title-color">{{ package.paragraphName}}</h3>
                 <p class="icon-color mrb-unset  test-num-inner test-num">
@@ -11,7 +11,7 @@
                 </p>
             </div>
         </div>
-        <div class="mt-4 question">
+        <div class="mt-1 question">
             <div class="question-box {{ isModified ? 'question-box-true' : '' }}" *ngFor="let isModified of modifiedTests">
             </div>
         </div>

@@ -1,13 +1,18 @@
-<div class="pp-main" *ngIf="isLoggedIn">
-    <div class="profile-photo">
+<div class="pp-main">
+    <div class="profile-photo" *ngIf="isLoggedIn">
         <img src="../../../assets/img/official.svg" alt="profile picture">
     </div>
-    <div class="profile-name">
+    <div class="profile-name" *ngIf="isLoggedIn">
         <p>{{ userData.fullName }}</p>
         <p>{{ userData.points }} xal</p>
     </div>
+    
+    <button class="sign-in" *ngIf="!isLoggedIn" (click)="this.router.navigate(['/account', 'login'])" >
+        Daxil ol
+        <i class="fas fa-sign-in-alt"></i>
+    </button>
 </div>
-
+<!-- 
 <div class="pp-main" *ngIf="!isLoggedIn">
     <a [routerLink]="['/account', 'login']">Giriş</a>
-</div>
+</div> -->
