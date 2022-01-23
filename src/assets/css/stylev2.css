@@ -357,10 +357,17 @@ body{
 
 /* FENN-UZRE TESTLER */
 .subject-inner{
-    cursor: pointer;
     border-radius: 10px;
     margin: 20px 0;
     box-shadow: 0px 1.22px 3.76px rgba(82, 82, 82, 0.029), 0px 3.38px 10.39px rgba(82, 82, 82, 0.03), 0px 8.14px 25.02px rgba(82, 82, 82, 0.0391), 0px 27px 83px rgba(82, 82, 82, 0.06);
+
+    top: 0;
+    position: relative;
+    transition: top ease 0.35s;
+}
+.subject-inner:hover{
+    cursor: pointer;
+    top: -7px;
 }
 .subject-inner-head{
     background-color: #FF9976;

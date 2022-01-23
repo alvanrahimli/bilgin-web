@@ -1,3 +1,9 @@
 .package-name {
     font-size: 1.1rem;
 }
+
+.package-detail {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}

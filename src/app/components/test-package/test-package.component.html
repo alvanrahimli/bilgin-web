@@ -1,5 +1,5 @@
-<div class="subject-inner">
-    <div class="subject-inner-head" [routerLink]="['packages', package.id, 'intro']">
+<div class="subject-inner" [routerLink]="['packages', package.id, 'intro']">
+    <div class="subject-inner-head" [ngStyle]="{'background-color': this.headerColorHex ?? '#FF9976'}">
         <div class="d-flex">
             <!-- <div class="subject-name-img"></div> -->
             <p class="mrb-unset package-name">
@@ -13,10 +13,18 @@
     </div>
     <div class="subject-inner-body">
         <div class="sub-author">
-            <p class="mrb-unset">{{ package.description }}</p>
-            <p class="mrb-unset">{{ package.gradeName }}</p>
-            <p class="mrb-unset">{{ package.timeLimitSeconds }}</p>
-            <p class="mrb-unset"></p>
+            <div class="package-detail">
+                <p class="mrb-unset">Sinif:</p>
+                <p class="mrb-unset">{{ package.gradeName }}</p>
+            </div>
+            <div class="package-detail">
+                <p class="mrb-unset">Mövzu:</p>
+                <p class="mrb-unset">{{ package.paragraphName }}</p>
+            </div>
+            <div class="package-detail">
+                <p class="mrb-unset">Vaxt limiti:</p>
+                <p class="mrb-unset">{{ (package.timeLimitSeconds / 60).toFixed() }} dəqiqə</p>
+            </div>
         </div>
         <div class="sub-line"></div>
         <div class="sub-date">

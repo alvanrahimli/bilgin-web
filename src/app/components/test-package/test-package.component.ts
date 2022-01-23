@@ -8,7 +8,10 @@ import { TestPackageBriefResponse } from 'src/app/models/test-package/response/t
 })
 export class TestPackageComponent implements OnInit {
 
-  @Input() package: TestPackageBriefResponse = {} as TestPackageBriefResponse;
+  @Input() 
+  package: TestPackageBriefResponse = {} as TestPackageBriefResponse;
+  @Input()
+  headerColorHex: string = "";
 
   constructor() { }
 
