@@ -1,6 +1,6 @@
 <div id="MTM0" class="tabcontent" style="display: block;">
     <app-page-title [level]="3" *ngIf="this.statusIndicator.isCompleted()"
-                    titleText="{{ package?.paragraphName + ', ' + package?.subjectName }}"></app-page-title> <br>
+                    titleText="{{ package?.paragraphName + ', ' + package?.subjectName }}"></app-page-title>
     <app-status-indicator [status]="this.statusIndicator"></app-status-indicator>
     <div class="profile-inner" *ngIf="this.statusIndicator.isCompleted()">
         <!-- <div class="profile-inner-head">

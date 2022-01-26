@@ -4,6 +4,7 @@ import { TestResponse } from "./TestResponse";
 
 export interface TestPackageResponse {
     id: string;
+    isAssignment: boolean;
     description: string;
     timeLimitSeconds: number;
     price: number;

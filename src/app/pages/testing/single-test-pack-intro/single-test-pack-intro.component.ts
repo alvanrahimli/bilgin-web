@@ -41,8 +41,14 @@ export class SingleTestPackIntroComponent implements OnInit {
       this.statusIndicator.setError();
     } else {
       this.package = packageResponse.data;
-      this.statusIndicator.setCompleted();
+      console.log(this.package);
+      if (this.package.isAssignment) {
+        this.statusIndicator.setCompleted("Bu test sizin ev tapşırığınızdır", true);
+        console.log("EV TAPSIRIGI");
+      }
+      else {
+        this.statusIndicator.setCompleted();
+      }
     }
   }
-
 }
