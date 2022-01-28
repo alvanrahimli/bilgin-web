@@ -34,6 +34,7 @@ import { StatusIndicatorComponent } from './components/status-indicator/status-i
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
 import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.component';
+import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.
     PageTitleComponent,
     SingleTestPackIntroComponent,
     BilginFooterComponent,
+    ClassManagementComponent,
   ],
   imports: [
     BrowserModule,

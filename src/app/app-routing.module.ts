@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/account/login/login.component';
 import { OtpComponent } from './pages/account/otp/otp.component';
 import { RegisterComponent } from './pages/account/register/register.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
+import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
@@ -23,6 +24,11 @@ const routes: Routes = [
     { path: 'subjects/:sId/packages/:pId/tests', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
     { path: 'subjects/:sId/packages/:pId/intro', component: SingleTestPackIntroComponent, canActivate: [AuthGuard] },
     { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
+    {
+      path: 'class-management', canActivate: [AuthGuard], children: [
+        {path: '', component: ClassManagementComponent}
+      ]
+    },
     { path: 'discussions', component: DiscussionsComponent },
   ]},
   { path: 'account', component: AccountComponent, children: [
