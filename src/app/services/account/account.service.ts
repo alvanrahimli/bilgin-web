@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { PhoneCodeRequest } from 'src/app/models/user/request/phone-code-request';
 import { PhoneRequest } from 'src/app/models/user/request/phone-request';
 import { RefreshTokenRequest } from 'src/app/models/user/request/refresh-token-request';
+import { StudentInfoRequest } from 'src/app/models/user/request/student-info.request';
 import { UserInfoRequest } from 'src/app/models/user/request/user-info-request';
 import { TokenResponse } from 'src/app/models/user/response/token-response';
 import { UserResponse } from 'src/app/models/user/response/user-response';
@@ -34,6 +35,10 @@ export class AccountService extends GeneralService {
 
   putAccountInfo(info: UserInfoRequest, url: string = "identity/Account") {
     return this.sendPutRequest<UserInfoRequest, any>(info, url);
+  }
+
+  postStudentInfo(info: StudentInfoRequest, url: string = "identity/Account/add-student-info") {
+    return this.sendPostRequest<StudentInfoRequest, any>(info, url);
   }
 
   getUserInfo(strict: boolean = false, url: string = "identity/Account") {

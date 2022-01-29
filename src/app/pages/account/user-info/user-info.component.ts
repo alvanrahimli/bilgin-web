@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { BaseModelResponse } from 'src/app/models/base-model/response/base-model';
+import { SchoolResponse } from 'src/app/models/shared/school.response';
+import { StudentInfoRequest } from 'src/app/models/user/request/student-info.request';
 import { UserInfoRequest } from 'src/app/models/user/request/user-info-request';
 import { AccountService } from 'src/app/services/account/account.service';
+import { SchoolsService } from 'src/app/services/schools/schools-service.service';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
@@ -19,8 +23,10 @@ export class UserInfoComponent implements OnInit {
   statusIndicator: StatusIndicator = new StatusIndicator();
   returnUrl: string | undefined;
   infoRequest: UserInfoRequest = {} as UserInfoRequest;
+  userType: string = "student";
   firstName: string = "";
   lastName: string = "";
+  schoolId: string | any = "none";
 
   async ngOnInit(): Promise<void> {
     let params = await firstValueFrom(this.activatedRoute.queryParams);
@@ -39,5 +45,9 @@ export class UserInfoComponent implements OnInit {
 
     this.statusIndicator.setCompleted();
     this.router.navigate(this.returnUrl ? [this.returnUrl] : ['/']);
+  }
+
+  chooseUserType(type: string) {
+    this.userType = type;
   }
 }

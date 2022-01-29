@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    this.statusIndicator.setProgress();
     if (!this.userAgreed) {
       this.statusIndicator.setError("Qaydalar və şərtlərlə razılaşmamısınız");
       return;

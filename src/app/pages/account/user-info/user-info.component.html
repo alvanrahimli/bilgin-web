@@ -11,17 +11,29 @@
         <input class="login-form-input" id="surname" type="text" placeholder=""
             [(ngModel)]="lastName" name="lastName">
     </label>
-    <div class="radio-group">
+    <!-- TODO: This will be moved to Home Page -->
+    <!-- <div class="radio-group">
         <label class="cont">Şagird
-            <input class="radio-in login-form-input" type="radio" checked="checked" name="radio">
+            <input class="radio-in login-form-input" type="radio" checked="checked" name="user-type"
+                (change)="chooseUserType('student')">
             <span class="checkmark"></span>
         </label>
         <label class="cont">Müəllim
-            <input class="radio-in login-form-input" type="radio" name="radio">
+            <input class="radio-in login-form-input" type="radio" name="user-type"
+                (change)="chooseUserType('teacher')">
             <span class="checkmark"></span>
         </label>
-    </div>
+    </div> -->
+    <!-- <br>
+    <label for="school-id" *ngIf="userType == 'student'">Məktəb
+        <select name="school-id" (ngModel)="schoolId" class="login-form-input">
+            <option value="none" selected="true">Seçilməyib</option>
+            <option *ngFor="let school of schools" [value]="school.id"
+                selected="{{ school.id == schools[0]?.id }}">{{ school.name }}</option>
+        </select>
+    </label> -->
+    <br>
     <button class="login-button">
-        Davam et
+        Qeydiyyatı tamamla!
     </button>
 </form>
