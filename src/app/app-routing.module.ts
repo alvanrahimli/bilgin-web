@@ -5,6 +5,7 @@ import { AccountComponent } from './pages/account/account/account.component';
 import { LoginComponent } from './pages/account/login/login.component';
 import { OtpComponent } from './pages/account/otp/otp.component';
 import { RegisterComponent } from './pages/account/register/register.component';
+import { UserInfoComponent } from './pages/account/user-info/user-info.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
@@ -37,7 +38,11 @@ const routes: Routes = [
       { path: '', component: LoginComponent },
       { path: 'otp', component: OtpComponent }
     ] },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', children: [
+      { path: '', component: RegisterComponent },
+      { path: 'otp', component: OtpComponent },
+      { path: 'user-info', component: UserInfoComponent }
+    ] }
   ]}
 ];
 

@@ -1,10 +1,10 @@
-
 <form class="login-form" (ngSubmit)="submitLogin()">
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
+    <br>
     <h2 class="icon-color login-left-title-1">Xoş gəlmisiniz!</h2>
     <h1 class="login-left-title-2">Daxil olun</h1>
-    <label for="tel-num">Mobil nömrə
-        <input class="login-form-input" id="tel-num" type="number" placeholder="5012345678" 
+    <label for="tel-num">
+        <input class="login-form-input" id="tel-num" type="text" placeholder="Mobil nömrənizi daxil edin" 
         [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber">
     </label>
     <!-- <input class="login-form-input" type="text" placeholder="Promo kod daxil edin"> -->

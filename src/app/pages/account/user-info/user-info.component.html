@@ -1,0 +1,27 @@
+<form class="login-form" (ngSubmit)="onSubmit()">
+    <app-status-indicator [status]="statusIndicator"></app-status-indicator>
+    <br>
+    <h2 class="icon-color login-left-title-1">Son addım</h2>
+    <h1 class="login-left-title-2">Özünüzü təqdim edin</h1>
+    <label for="name">Ad
+        <input class="login-form-input" id="name" type="text" placeholder=""
+        [(ngModel)]="firstName" name="firstName">
+    </label>
+    <label for="surname">Soyad
+        <input class="login-form-input" id="surname" type="text" placeholder=""
+            [(ngModel)]="lastName" name="lastName">
+    </label>
+    <div class="radio-group">
+        <label class="cont">Şagird
+            <input class="radio-in login-form-input" type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+        </label>
+        <label class="cont">Müəllim
+            <input class="radio-in login-form-input" type="radio" name="radio">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <button class="login-button">
+        Davam et
+    </button>
+</form>

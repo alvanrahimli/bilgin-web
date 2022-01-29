@@ -28,6 +28,9 @@ export class TestSubjectsComponent implements OnInit {
     } else {
       this.statusIndicator.setCompleted();
       this.subjectList = sListResponse.data;
+      if (this.subjectList.length == 0) {
+        this.statusIndicator.setError("Heç bir fənn tapılmadı");
+      }
     }
   }
 }

@@ -35,6 +35,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
 import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
+import { UserInfoComponent } from './pages/account/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ClassManagementComponent } from './pages/class/class-management/class-m
     SingleTestPackIntroComponent,
     BilginFooterComponent,
     ClassManagementComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,

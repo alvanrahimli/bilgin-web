@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { PhoneCodeRequest } from 'src/app/models/user/request/phone-code-request';
 import { PhoneRequest } from 'src/app/models/user/request/phone-request';
 import { RefreshTokenRequest } from 'src/app/models/user/request/refresh-token-request';
+import { UserInfoRequest } from 'src/app/models/user/request/user-info-request';
 import { TokenResponse } from 'src/app/models/user/response/token-response';
 import { UserResponse } from 'src/app/models/user/response/user-response';
 import { UserTokenResponse } from 'src/app/models/user/response/user-token-response';
@@ -15,12 +16,24 @@ export class AccountService extends GeneralService {
     return this.sendPostRequest<PhoneRequest, any>(phoneNumber, url, {"auth": "none"});
   }
 
+  postRegisterPhone(phoneNumber: PhoneRequest, url: string = "identity/Auth/register") {
+    return this.sendPostRequest<PhoneRequest, any>(phoneNumber, url, {"auth": "none"});
+  }
+
   postLoginVerify(phoneCodeRequest: PhoneCodeRequest, url: string = "identity/Auth/verify-login") {
     return this.sendPostRequest<PhoneCodeRequest, UserTokenResponse>(phoneCodeRequest, url, {"auth": "none"});
   }
 
-  getAccessToken(refreshToken: string, url: string ="identity/Auth/renew-token") {
+  postRegisterVerify(phoneCodeRequest: PhoneCodeRequest, url: string = "identity/Auth/verify-register") {
+    return this.sendPostRequest<PhoneCodeRequest, UserTokenResponse>(phoneCodeRequest, url, {"auth": "none"});
+  }
+
+  getAccessToken(refreshToken: string, url: string = "identity/Auth/renew-token") {
     return this.sendPostRequest<RefreshTokenRequest, TokenResponse>({refreshToken: refreshToken}, url, {"auth": "none"});
+  }
+
+  putAccountInfo(info: UserInfoRequest, url: string = "identity/Account") {
+    return this.sendPutRequest<UserInfoRequest, any>(info, url);
   }
 
   getUserInfo(strict: boolean = false, url: string = "identity/Account") {

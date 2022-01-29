@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -26,14 +27,30 @@ export class LoginComponent implements OnInit {
   }
 
   async submitLogin() {
+    this.statusIndicator.setProgress();
     let phoneNumber = `+994${this.phoneRequest.phoneNumber}`;
     let loginResponse = await this.accountService.postLoginPhone({phoneNumber: phoneNumber});
     if (loginResponse.hasError) {
       console.log("error occured", loginResponse.error);
+      if (loginResponse.error instanceof HttpErrorResponse) {
+        switch (loginResponse.error.status) {
+          case 404:
+            this.statusIndicator.setError("İstifadəçi tapılmadı");
+            break;
+        
+          default:
+            this.statusIndicator.setError();
+            break;
+        }
+      } else {
+        this.statusIndicator.setError();
+      }
     } else {
+      this.statusIndicator.setCompleted();
       this.router.navigate(['/account', 'login', 'otp'], {queryParams: {
         phone: phoneNumber,
         returnUrl: this.returnUrl,
+        t: "login",
       }});
     }
   }
