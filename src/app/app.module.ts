@@ -36,6 +36,8 @@ import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-i
 import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
 import { UserInfoComponent } from './pages/account/user-info/user-info.component';
+import { HomepageStatusComponent } from './components/home-page/homepage-status/homepage-status.component';
+import { HomepageCardComponent } from './components/home-page/homepage-card/homepage-card.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { UserInfoComponent } from './pages/account/user-info/user-info.component
     BilginFooterComponent,
     ClassManagementComponent,
     UserInfoComponent,
+    HomepageStatusComponent,
+    HomepageCardComponent,
   ],
   imports: [
     BrowserModule,

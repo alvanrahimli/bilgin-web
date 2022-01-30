@@ -1,0 +1,37 @@
+.home-card {
+    margin: 15px 0;
+    box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    color: var(--light-text-color);
+}
+
+.home-card:hover {
+    cursor: pointer;
+}
+
+.home-card-body {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--primary-color));
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.home-card-body i {
+    -o-transition: 1s;  
+    -ms-transition: 1s;
+    -moz-tranistion: 1s;
+    -webkit-transition: 1s;
+    transition: 0.2s;
+}
+
+.home-card:hover i {
+    margin-left: 5px;
+}

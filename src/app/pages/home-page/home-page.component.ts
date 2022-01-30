@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
   status: StatusIndicator = new StatusIndicator();
 
   ngOnInit(): void {
-    this.status.setError("Modul hazır deyil");
+    this.status.setCompleted();
   }
 
 }

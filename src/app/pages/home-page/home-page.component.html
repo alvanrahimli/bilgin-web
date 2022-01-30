@@ -1,2 +1,14 @@
 <app-page-title [titleText]="'Əsas səhifə'"></app-page-title>
 <app-status-indicator [status]="status"></app-status-indicator>
+
+<div class="row">
+    <div class="col-12">
+        <app-homepage-status></app-homepage-status>
+    </div>
+    <div class="col-6">
+        <app-homepage-card [bgImageLink]="'https://picsum.photos/300/300'"></app-homepage-card>
+    </div>
+    <div class="col-6">
+        <app-homepage-card [bgImageLink]="'https://picsum.photos/300/400'"></app-homepage-card>
+    </div>
+</div>
