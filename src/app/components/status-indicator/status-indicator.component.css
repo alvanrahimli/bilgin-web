@@ -5,9 +5,9 @@
 
 /* LOADING STYLES */
 .loading-alert {
-    background: #FFC278;
+    background: var(--progress-color);
     padding: 12px 20px;
-    color: white;
+    color: var(--light-text-color);
 }
 
 .loading-alert img {
@@ -24,9 +24,9 @@
 
 /* COMPLETED STYLES */
 .completed-alert {
-    background: #42B983CC;
+    background: var(--completed-color);
     padding: 12px 20px;
-    color: white;
+    color: var(--light-text-color);
 }
 
 .completed-alert img {
@@ -43,9 +43,9 @@
 
 /* ERROR STYLES */
 .error-alert {
-    background: #EB5757;
+    background: var(--error-color);
     padding: 12px 20px;
-    color: white;
+    color: var(--light-text-color);
 }
 
 .error-alert img {
