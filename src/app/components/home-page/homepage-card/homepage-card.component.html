@@ -1,13 +1,12 @@
-<div class="home-card" style="background-image: url('{{ bgImageLink }}');">
-
-<!-- <div class="home-card" [style.background-image]=""> -->
-    <div class="home-card-body">
+<div class="home-card" style="background-image: url('{{ banner.bgImageUrl }}');">
+    <div class="home-card-body" (click)="this.router.navigate([banner.actionUrl])">
         <h3>
-            Salama
+            {{ banner.title }}
             &nbsp;&nbsp;
             <i class="fas fa-angle-double-right"></i>
         </h3>
-        <p class="mrb-unset">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi,
-            molestiae exercitationem
-        </div>
+        <p class="mrb-unset">
+            {{ banner.subTitle }}
+        </p>
+    </div>
 </div>

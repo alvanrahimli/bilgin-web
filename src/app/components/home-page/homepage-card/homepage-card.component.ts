@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BannerResponse } from 'src/app/models/homepage/banner.response';
 
 @Component({
   selector: 'app-homepage-card',
@@ -7,10 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomepageCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   @Input()
-  bgImageLink: string = "";
+  banner: BannerResponse = {} as BannerResponse;
 
   ngOnInit(): void {
   }
