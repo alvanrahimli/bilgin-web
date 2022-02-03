@@ -1,11 +1,11 @@
 <app-page-title [titleText]="'Əsas səhifə'"></app-page-title>
-<app-status-indicator [status]="status"></app-status-indicator>
+<app-status-indicator [status]="statusIndicator"></app-status-indicator>
 
 <div class="row">
-    <div class="col-12">
-        <app-homepage-status></app-homepage-status>
+    <div class="col-12" *ngIf="statusIndicator.isCompleted">
+        <app-homepage-status [status]="status"></app-homepage-status>
     </div>
-    <div class="col-6" *ngFor="let homeBanner of banners">
+    <div class="col-6" *ngFor="let homeBanner of banners" data-aos="fade-up">
         <app-homepage-card [banner]="homeBanner"></app-homepage-card>
     </div>
 </div>

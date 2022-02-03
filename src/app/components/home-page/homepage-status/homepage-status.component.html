@@ -1,23 +1,23 @@
-<div class="status-card">
+<div class="status-card" style="background-image: url('{{ status.bgImageUrl }}');" [style.color]="status.textColor">
     <div class="row">
         <div class="col-md-8">
             <div class="status-left">
                 <h3 class="status-title">
-                    Xoş gəlmisiniz!
+                    {{ status.title ?? 'Xoş gəlmisiniz!' }}
                 </h3>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <p class="status-sub-title">
-                        Hesabınızı tamamlamaq üçün "Keçid et" tıqlayın
+                        {{ status.subTitle ?? 'Bilgin komandası sizə uğurlar arzu edir!' }}
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="status-left">
-                <button class="status-button">
-                    Keçid et
+                <button class="status-button" *ngIf="status.buttonText" [routerLink]="status.actionUrl">
+                    {{ status.buttonText }}
                     <i class="fas fa-angle-double-right"></i>
                 </button>
             </div>

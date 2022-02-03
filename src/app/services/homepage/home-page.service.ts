@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BannerResponse } from 'src/app/models/homepage/banner.response';
+import { StatusResponse } from 'src/app/models/homepage/status.response';
 import { GeneralService } from '../general/general.service';
 
 @Injectable({
@@ -7,7 +8,11 @@ import { GeneralService } from '../general/general.service';
 })
 export class HomePageService extends GeneralService {
 
-  async getBanners(url: string = "misc/homepage/all") {
+  getBanners(url: string = "misc/homepage/banners") {
     return this.sendGetRequest<BannerResponse[]>(url);
+  }
+
+  getStatus(url: string = "misc/homepage/status") {
+    return this.sendGetRequest<StatusResponse>(url);
   }
 }

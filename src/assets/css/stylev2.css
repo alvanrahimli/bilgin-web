@@ -8,6 +8,7 @@
     --error-color: #F13C20;
     --progress-color: #4f0;
     --completed-color: #C5C5B3;
+    --border-radius: 15px;
 }
 
 *{
@@ -36,7 +37,7 @@
     color: #4A5765;
 }
 .icon-color{
-    color: #757D8A;
+    color: var(--secondary-color);
 }
 .mrb-unset{
     margin-bottom: unset !important;
@@ -52,17 +53,13 @@
 }
 body{
     background: var(--bg-color) !important;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
-::-webkit-scrollbar {
-    width: 10px;
-  }
-::-webkit-scrollbar-track {
-    background: #E5E5E5; 
-    }
-::-webkit-scrollbar-thumb {
-    background: #42B983CC; 
-    border-radius: 5px;
-  }
+body::-webkit-scrollbar {
+    display: none;
+}
 /* RESPONSIVE-MENU */
 #toggler-button{
     position: fixed;
@@ -104,7 +101,7 @@ body{
 /* RESPONSIVE-MENU-END */
 .bg-rad{
     background: #fff;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     padding: 20px ;
     box-shadow: 0px 20px 70px rgba(86, 89, 146, 0.1);
 }
@@ -177,7 +174,7 @@ body{
 }
 .mybtn{
     width: 100%;
-    border-radius: 10px 0 0 10px;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,7 +244,7 @@ body{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background: #fff;
     width: 100%;
-    border-radius:16px;
+    border-radius:var(--border-radius);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -271,7 +268,7 @@ body{
 }
 .my-form-control{
     border: 0.84px solid rgba(204, 204, 204, 0.74);
-    border-radius:8px;
+    border-radius:var(--border-radius);
 }
 .my-form-control:focus {
     background-color: unset !important;
@@ -311,32 +308,6 @@ body{
     color: #4A5765;
     font-weight: 400;
 }
-.subject{
-    padding: 20px;
-    border-radius: 16px;
-    color: #fff;
-    font-weight: 600;
-    text-align: center;
-    margin: 20px 0;
-    height: 300px;
-
-    background-image: url('/assets/img/sub-bg-1.svg');
-    background-position: top right;
-    background-repeat: no-repeat;
-
-    top: 0;
-    position: relative;
-    transition: top ease 0.35s;
-}
-.subject p:first-of-type{
-    padding: 180px 0 0 0 ;
-    font-size: 1.5em;
-}
-.subject:hover {
-    /* box-shadow: 0px 50px 100px rgba(86, 89, 146, 0.1); */
-    cursor: pointer;
-    top: -10px;
-}
 
 .sub-1{
     background: #FF7648;
@@ -364,7 +335,7 @@ body{
 }
 .right-band{
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     height: 250px;
     margin: 0 0 20px 0;
 }
@@ -372,7 +343,7 @@ body{
 
 /* FENN-UZRE TESTLER */
 .subject-inner{
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     margin: 20px 0;
     box-shadow: 0px 1.22px 3.76px rgba(82, 82, 82, 0.029), 0px 3.38px 10.39px rgba(82, 82, 82, 0.03), 0px 8.14px 25.02px rgba(82, 82, 82, 0.0391), 0px 27px 83px rgba(82, 82, 82, 0.06);
 
@@ -390,7 +361,7 @@ body{
     /* background-image: url('../img/sub-bg-1.svg'); */
     background-position: top right;
     background-repeat: no-repeat;
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -427,7 +398,7 @@ body{
 .subject-inner-body{
     background: #fff;
     padding: 10px 15px;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 .sub-line{
     width: 100%;
@@ -441,7 +412,7 @@ body{
 /* SUAL-CAVAB */
 .comment-in input{
     border: 1px solid #B9CDE4;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     outline: none;
     padding: 5px 10px;
     width: 100%;
@@ -455,7 +426,7 @@ body{
 }
 .comment{
     border: 1px solid #B9CDE4;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     padding: 10px;
     margin: 15px 0;
 }
@@ -496,7 +467,7 @@ body{
 /* MEQALELER */
 .article{
     background: #fff;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     margin: 0 0 20px 0;
 }
 .article-bg{
@@ -506,7 +477,7 @@ body{
     background-position: center;
     height: 200px;
     width: 100%;
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 .author-bg{
     background: url('../img/pp.jpeg');
@@ -546,7 +517,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
     border: 0.8px solid rgba(185, 205, 228, 0.6);
     border-top: unset !important;
 }
@@ -560,7 +531,7 @@ body{
     top: 0;
     left: 0;
     background: #42B983E5;
-    border-radius: 0 10px 0 0;
+    border-radius: 0 var(--border-radius) 0 0;
     padding: 10px;
     color: #fff;
     font-weight: 700;
@@ -646,7 +617,7 @@ body{
 }
 .article-inner-comment{
     background: rgb(66, 185, 131);
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     color: #fff;
     padding: 10px 15px;
     position: relative;
@@ -666,7 +637,7 @@ body{
     padding: 10px 20px;
     background: #42B983E5;
     color: #fff;
-    border-radius: 10px 0 0 0;
+    border-radius: var(--border-radius) 0 0 0;
     outline: none;
     border: none;
     float:left;
@@ -677,7 +648,7 @@ body{
     padding: 18px 20px;
     background: var(--secondary-color);
     color: var(--light-text-color);
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     outline: none;
     border: none;
     /* float:left; */
@@ -747,8 +718,8 @@ body{
     /* width: 80%; */
     margin:15px auto;
     padding: 10px;
-    border: 1px solid rgba(102, 102, 102, 0.8);
-    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
     cursor: pointer;
 }
 
@@ -764,21 +735,23 @@ body{
 }
 .test-prev-button{
     background: linear-gradient(180deg, rgba(74, 87, 101, 0.8) 0%, rgba(74, 87, 101, 0.8) 100%);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     color: #fff;
     padding: 10px 40px;
     outline: none;
     border: none;
 }
 .test-next-button{
-    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);    border-radius: 8px;
+    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);    
+    border-radius: var(--border-radius);
     color: #fff;
     padding: 10px 40px;
     outline: none;
     border: none;
 }
 .danger-button{
-    background: linear-gradient(180deg, #db4b27 0%, #b65923 100%);    border-radius: 8px;
+    background: linear-gradient(180deg, #db4b27 0%, #b65923 100%);    
+    border-radius: var(--border-radius);
 }
 .test-buttons{
     display: flex;

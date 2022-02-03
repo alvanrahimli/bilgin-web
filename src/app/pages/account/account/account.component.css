@@ -1,6 +1,6 @@
 /* LOGIN */
 #left-pane{
-    background-color: #00d49e;
+    background-color: var(--primary-color);
 }
 
 .login-bg1 img{

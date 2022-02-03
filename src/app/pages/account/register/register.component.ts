@@ -34,15 +34,15 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.phoneRequest.phoneNumber = `+994${this.phoneRequest.phoneNumber}`;
+    let phoneNumber = `+994${this.phoneRequest.phoneNumber}`;
 
-    let registerResult = await this.accountService.postRegisterPhone(this.phoneRequest);
+    let registerResult = await this.accountService.postRegisterPhone({phoneNumber: phoneNumber});
     if (registerResult.hasError) {
       // TODO: Handle errors
       if (registerResult.error instanceof HttpErrorResponse) {
         switch (registerResult.error.status) {
           case 409:
-            this.statusIndicator.setError("Bu nömrə artıq qeydiyyatdan keçib");
+            this.statusIndicator.setError("Nömrəyə bağlı hesab mövcuddur");
             break;
           default:
             this.statusIndicator.setError();
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     } else {
       this.statusIndicator.setCompleted();
       this.router.navigate(['/account', 'register', 'otp'], {queryParams: {
-        phone: this.phoneRequest.phoneNumber,
+        phone: phoneNumber,
         returnUrl: this.returnUrl,
         t: "register",
       }});

@@ -7,6 +7,9 @@
     position: relative;
     overflow: hidden;
     margin-top: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 
     color: var(--light-text-color);
 }
@@ -37,7 +40,7 @@
 }
 
 .status-sub-title {
-
+    font-weight: 500;
 }
 
 .status-button i {

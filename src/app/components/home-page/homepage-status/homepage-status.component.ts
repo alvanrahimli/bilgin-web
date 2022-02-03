@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StatusResponse } from 'src/app/models/homepage/status.response';
 
 @Component({
   selector: 'app-homepage-status',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageStatusComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
+
+  @Input()
+  status: StatusResponse = {} as StatusResponse;
 
   ngOnInit(): void {
   }

@@ -6,12 +6,14 @@
     display: block;
     outline: none;
     color: black;
-    border: 1px solid #8692A6;
+    border: 1px solid var(--primary-color);
     border-radius: 6px;
     padding: 10px 5px;
     width: 400px;
     margin: 10px 0;
+    color: var(--primary-color);
     font-size: 1em;
+    font-weight: 500;
 }
 .check-in{
     display: inline-block !important;
@@ -21,9 +23,9 @@
     display: inline-block !important;
 }
 .login-button{
-    background: rgba(66, 185, 131, 0.8);
+    background: var(--primary-color);
     border-radius: 6px;
-    color:#fff;
+    color:var(--light-text-color);
     display: block;
     padding: 10px 5px;
     width: 400px;
