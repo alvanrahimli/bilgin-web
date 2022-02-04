@@ -7,6 +7,7 @@ import { OtpComponent } from './pages/account/otp/otp.component';
 import { RegisterComponent } from './pages/account/register/register.component';
 import { UserInfoComponent } from './pages/account/user-info/user-info.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
+import { ClassDetailsComponent } from './pages/class/class-details/class-details.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
     { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
     {
       path: 'class-management', canActivate: [AuthGuard], children: [
-        {path: '', component: ClassManagementComponent}
+        {path: '', component: ClassDetailsComponent}
       ]
     },
     { path: 'discussions', component: DiscussionsComponent },

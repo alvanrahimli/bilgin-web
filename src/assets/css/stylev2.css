@@ -241,7 +241,8 @@ body::-webkit-scrollbar {
 }
 .search-box{
     padding:  20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* Added with shadow class */
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     background: #fff;
     width: 100%;
     border-radius:var(--border-radius);
@@ -714,25 +715,6 @@ body::-webkit-scrollbar {
     border: 1px solid #C3C7CE;
 }
 
-.answer-box{
-    /* width: 80%; */
-    margin:15px auto;
-    padding: 10px;
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-}
-
-.answer-box-current {
-    border: 2px solid #0F296D;
-}
-
-.answer-box-selected{
-    border: 2px solid #27AE60;
-}
-.answer-box-selected p{
-    color:#0E9033 ;
-}
 .test-prev-button{
     background: linear-gradient(180deg, rgba(74, 87, 101, 0.8) 0%, rgba(74, 87, 101, 0.8) 100%);
     border-radius: var(--border-radius);

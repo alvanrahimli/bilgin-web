@@ -1,5 +1,21 @@
-<div class="answer-box {{ clicked ? 'answer-box-selected': '' }}" (click)="onAnswerClick()">
-    <!-- onclick: toggle class  -->
-    <p class="mrb-unset icon-color">{{ choice.name }}) {{ choice.content }}</p>
-    <!-- TODO: Place checked icon here -->
+<!-- Text choices -->
+<div *ngIf="!isImageChoices()">
+    <div *ngFor="let ch of choices" class="answer-box answer-text {{ amISelected(ch.id) ? 'answer-box-selected': '' }}"
+        (click)="onAnswerClick(ch.id)">
+        
+        <p class="mrb-unset icon-color">{{ ch.name }}) {{ ch.content }}</p>
+        <img src="{{ ch.imageUrl }}" alt="choice-image">
+    </div>
+</div>
+
+<!-- Image Choices -->
+<div class="row" *ngIf="isImageChoices()">
+    <div *ngFor="let ch of choices" class="col-6">
+        <div class="answer-box answer-image {{ amISelected(ch.id) ? 'answer-box-selected': '' }}" 
+            (click)="onAnswerClick(ch.id)">
+            
+            <p class="mrb-unset icon-color">{{ ch.name }}) {{ ch.content }}</p>
+            <img class="mt-2" src="{{ ch.imageUrl }}" alt="choice-image">
+        </div>
+    </div>
 </div>

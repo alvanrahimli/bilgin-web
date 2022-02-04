@@ -3,8 +3,9 @@
     border-radius: 10px;
     padding: 5px 7px;
     font-family: sans-serif;
+    border: 1px solid var(--secondary-color);
 }
 
 .open-test:focus {
-    border: 2px solid rgba(66, 185, 131);
+    border: 2px solid var(--primary-color);
 }

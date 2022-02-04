@@ -38,6 +38,7 @@ import { ClassManagementComponent } from './pages/class/class-management/class-m
 import { UserInfoComponent } from './pages/account/user-info/user-info.component';
 import { HomepageStatusComponent } from './components/home-page/homepage-status/homepage-status.component';
 import { HomepageCardComponent } from './components/home-page/homepage-card/homepage-card.component';
+import { ClassDetailsComponent } from './pages/class/class-details/class-details.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { HomepageCardComponent } from './components/home-page/homepage-card/home
     UserInfoComponent,
     HomepageStatusComponent,
     HomepageCardComponent,
+    ClassDetailsComponent,
   ],
   imports: [
     BrowserModule,

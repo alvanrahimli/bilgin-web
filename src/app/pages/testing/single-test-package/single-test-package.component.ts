@@ -54,6 +54,10 @@ export class SingleTestPackageComponent implements OnInit {
     } else {
       this.package = packageResponse.data;
       this.totalTestCount = packageResponse.data.tests.length;
+      if (this.totalTestCount == 0) {
+        this.statusIndicator.setError("Heç bir test tapılmadı");
+      }
+      
       this.modifiedTests = packageResponse.data.tests.map(() => false);
       this.statusIndicator.setCompleted();
     }
@@ -95,6 +99,8 @@ export class SingleTestPackageComponent implements OnInit {
     } else {
       this.answers.push(newAnswer);
     }
+
+    this.selectedChoiceId = answerData as string;
   }
 
   answerCleared(eventData: any): void {

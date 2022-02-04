@@ -1,7 +1,7 @@
 .question-title p {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #075e2f;
+    color: var(--primary-color);
 }
 
 #test-package-title {
@@ -11,8 +11,17 @@
     align-items: center;
 }
 
+.test-image-div {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+
 .test-image {
-    width: 100%;
     border-radius: 15px;
-    height: 300px;
+    max-height: 200px;
+}
+
+.test-answers {
+    margin-bottom: 15px;
 }

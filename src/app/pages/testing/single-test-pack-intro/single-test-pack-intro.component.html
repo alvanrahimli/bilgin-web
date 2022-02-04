@@ -28,9 +28,12 @@
                     </div>
                     <div class="profile-box">
                         Vaxt limiti
-                        <p class="mrb-unset">
+                        <p class="mrb-unset" *ngIf="package.timeLimitSeconds != 0">
                             {{ (package.timeLimitSeconds / 60).toFixed() }} dəqiqə
                             {{ package.timeLimitSeconds % 60 }} saniyə
+                        </p>
+                        <p class="mrb-unset" *ngIf="package.timeLimitSeconds == 0">
+                            Limit yoxdur
                         </p>
                     </div>
                     <div class="profile-box">

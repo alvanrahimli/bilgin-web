@@ -8,6 +8,7 @@ export interface TestResponse {
     awardPoints: number;
     help: string;
     testType: string;
+    imageUrl: string;
     testChoices: TestChoiceResponse[];
     matchings: MatchingResponse[];
 }

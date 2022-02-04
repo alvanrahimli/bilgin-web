@@ -11,11 +11,12 @@ export class TestChoicesComponent implements OnInit {
   constructor() { }
 
   @Input()
+  choices: TestChoiceResponse[] = [];
+
+  @Input()
   choice: TestChoiceResponse = {} as TestChoiceResponse;
   @Input()
   selectedId: string = "";
-  @Input()
-  clicked: boolean = false;
 
   @Output()
   onClick: EventEmitter<string> = new EventEmitter<string>();
@@ -29,17 +30,22 @@ export class TestChoicesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAnswerClick(): void {
-    if (this.clicked) {
-      this.onClear.emit(this.choice.id);
+  onAnswerClick(id: string): void {
+    console.log("selected:", this.selectedId, "now", id);
+    if (this.selectedId == id) {
+      this.onClear.emit(id);
     } else {
-      this.onClick.emit(this.choice.id);
-      this.onModified.emit(this.choice.id);
-      this.onSubmitted.emit(this.choice.id);
+      this.onClick.emit(id);
+      this.onModified.emit(id);
+      this.onSubmitted.emit(id);
     }
   }
 
-  amISelected(): boolean {
-    return this.choice.id == this.selectedId;
+  amISelected(id: string): boolean {
+    return id == this.selectedId;
+  }
+
+  isImageChoices(): boolean {
+    return this.choices.some(e => e.imageUrl != null);
   }
 }
