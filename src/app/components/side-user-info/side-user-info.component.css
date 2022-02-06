@@ -1,8 +1,50 @@
-.sign-in{
+.pp-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-name p:first-child {
+    color: #F3F5FB;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: unset !important;
+}
+
+.profile-name p:last-child {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profile-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #F3F5FB;
+    margin: auto;
+    background: url('../../../assets/img/user-female.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.profile-photo img {
+    position: absolute;
+    width: 20px;
+    top: 40px;
+    right: 0;
+}
+
+.sign-in {
     background: var(--bg-color);
     color: var(--primary-color);
     outline: none;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     padding: 10px 25px;
     font-weight: 600;
     border-radius: 10px;
@@ -15,7 +57,8 @@
     justify-content: space-between;
     gap: 10px;
 }
-.sign-in:hover{
+
+.sign-in:hover {
     background: var(--primary-color);
     color: var(--light-text-color);
     border: 1px solid var(--bg-color);

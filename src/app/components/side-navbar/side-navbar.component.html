@@ -3,8 +3,7 @@
     <div class="menu">
         <ul>
             <li>
-                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
-                    [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}">
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}">
                     <!-- <img src="../../../assets/img/nav-home.svg"/> -->
                     <svg width="30" height="30" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.65517 25.2865V21.4531C9.65515 20.4781 10.4671 19.6858 11.4731 19.6793H15.1582C16.1691 19.6793 16.9885 20.4734 16.9885 21.4531V21.4531V25.2984C16.9883 26.1263 17.67 26.8029 18.5239 26.8223H20.9807C23.4297 26.8223 25.415 24.8981 25.415 22.5246V22.5246V11.6196C25.402 10.6858 24.9496 9.80895 24.1867 9.23856L15.7847 2.67889C14.3128 1.53672 12.2203 1.53672 10.7484 2.67889L2.38327 9.25046C1.61746 9.81854 1.16434 10.6968 1.15491 11.6315V22.5246C1.15491 24.8981 3.14025 26.8223 5.58929 26.8223H8.04602C8.92116 26.8223 9.6306 26.1347 9.6306 25.2865V25.2865" stroke="#F3F5FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -13,8 +12,7 @@
                 </button>
             </li>
             <li>
-                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
-                    [routerLink]="['/subjects']">
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'" [routerLink]="['/subjects']">
                     <!-- <img src="../../../assets/img/nav-tests.svg"/> -->
                     <svg width="30" height="30" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.122 1.37598H8.92143C4.64442 1.37598 1.96277 4.39853 1.96277 8.67759V20.2208C1.96277 24.4998 4.6319 27.5224 8.92143 27.5224H21.1947C25.4856 27.5224 28.1548 24.4998 28.1548 20.2208V14.6283" stroke="#F3F5FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,17 +22,25 @@
                     Testlər
                 </button>
             </li>
-            <li>
-                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'"
-                        [routerLink]="['/class-management']">
-                        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 3V13C1 14.1046 1.89543 15 3 15H17C18.1046 15 19 14.1046 19 13V3C19 1.89543 18.1046 1 17 1H3C1.89543 1 1 1.89543 1 3Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13 6H16" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M13 9H16" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 6C9 7.10457 8.10457 8 7 8C5.89543 8 5 7.10457 5 6C5 4.89543 5.89543 4 7 4C7.53043 4 8.03914 4.21071 8.41421 4.58579C8.78929 4.96086 9 5.46957 9 6Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M3 12C5.783 8.86301 9.052 9.84901 11 12" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
+            <!-- <li>
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'" [routerLink]="['/class-management']">
+                    <svg width="33" height="23" viewBox="0 0 33 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0347 4.61796C20.033 6.45312 18.5443 7.93966 16.7092 7.93859C14.874 7.93751 13.387 6.44924 13.3876 4.61407C13.3881 2.77891 14.876 1.2915 16.7111 1.2915C17.593 1.29189 18.4385 1.64257 19.0618 2.2664C19.6851 2.89024 20.035 3.73612 20.0347 4.61796Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1411 12.8398H13.2869C10.8923 12.9151 8.98999 14.8781 8.98999 17.2739C8.98999 19.6697 10.8923 21.6327 13.2869 21.708H20.1411C22.5358 21.6327 24.4381 19.6697 24.4381 17.2739C24.4381 14.8781 22.5358 12.9151 20.1411 12.8398V12.8398Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M28.4406 7.16003C28.4398 8.56368 27.3014 9.70099 25.8977 9.70045C24.4941 9.69991 23.3565 8.56174 23.3568 7.15809C23.3571 5.75444 24.495 4.6167 25.8987 4.6167C26.5731 4.6167 27.2198 4.8847 27.6966 5.36171C28.1733 5.83872 28.4409 6.48563 28.4406 7.16003V7.16003Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.59094 7.16004C4.59094 8.56388 5.72898 9.70191 7.13282 9.70191C8.53666 9.70191 9.67469 8.56388 9.67469 7.16004C9.67469 5.7562 8.53666 4.61816 7.13282 4.61816C5.72898 4.61816 4.59094 5.7562 4.59094 7.16004V7.16004Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M26.6161 13.0669C26.2019 13.0669 25.8661 13.4027 25.8661 13.8169C25.8661 14.2311 26.2019 14.5669 26.6161 14.5669V13.0669ZM28.5222 13.8169L28.5377 13.0671C28.5325 13.0669 28.5274 13.0669 28.5222 13.0669V13.8169ZM28.5222 20.5996V21.3496C28.5274 21.3496 28.5325 21.3495 28.5377 21.3494L28.5222 20.5996ZM26.6161 19.8496C26.2019 19.8496 25.8661 20.1854 25.8661 20.5996C25.8661 21.0138 26.2019 21.3496 26.6161 21.3496V19.8496ZM6.4153 14.5669C6.82951 14.5669 7.1653 14.2311 7.1653 13.8169C7.1653 13.4027 6.82951 13.0669 6.4153 13.0669V14.5669ZM4.50925 13.8169V13.0669C4.50407 13.0669 4.49889 13.0669 4.4937 13.0671L4.50925 13.8169ZM4.50925 20.5996L4.4937 21.3494C4.49889 21.3495 4.50407 21.3496 4.50925 21.3496V20.5996ZM6.4153 21.3496C6.82951 21.3496 7.1653 21.0138 7.1653 20.5996C7.1653 20.1854 6.82951 19.8496 6.4153 19.8496V21.3496ZM26.6161 14.5669H28.5222V13.0669H26.6161V14.5669ZM28.5066 14.5667C29.9441 14.5965 31.0939 15.7704 31.0939 17.2082H32.5939C32.5939 14.9541 30.7914 13.1138 28.5377 13.0671L28.5066 14.5667ZM31.0939 17.2082C31.0939 18.6461 29.9441 19.82 28.5066 19.8498L28.5377 21.3494C30.7914 21.3027 32.5939 19.4624 32.5939 17.2082H31.0939ZM28.5222 19.8496H26.6161V21.3496H28.5222V19.8496ZM6.4153 13.0669H4.50925V14.5669H6.4153V13.0669ZM4.4937 13.0671C2.24005 13.1138 0.4375 14.9541 0.4375 17.2082H1.9375C1.9375 15.7704 3.08728 14.5965 4.5248 14.5667L4.4937 13.0671ZM0.4375 17.2082C0.4375 19.4624 2.24005 21.3027 4.4937 21.3494L4.5248 19.8498C3.08728 19.82 1.9375 18.6461 1.9375 17.2082H0.4375ZM4.50925 21.3496H6.4153V19.8496H4.50925V21.3496Z" fill="black"/>
+                    </svg>
                     Sinfim
+                </button>
+            </li> -->
+            <li>
+                <button class="menu-button tablinks mybtn" [routerLinkActive]="'active'" [routerLink]="['account']">
+                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3333 7.12484C17.3333 10.3465 14.7216 12.9582 11.5 12.9582C8.2783 12.9582 5.66663 10.3465 5.66663 7.12484C5.66663 3.90318 8.2783 1.2915 11.5 1.2915C13.0471 1.2915 14.5308 1.90609 15.6247 3.00005C16.7187 4.09401 17.3333 5.57774 17.3333 7.12484Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1.29163 21.7082C7.54477 17.8303 15.4551 17.8303 21.7083 21.7082" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Hesabım
                 </button>
             </li>
             <!-- <li>

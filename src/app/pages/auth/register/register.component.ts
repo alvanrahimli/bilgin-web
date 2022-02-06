@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       }
     } else {
       this.statusIndicator.setCompleted();
-      this.router.navigate(['/account', 'register', 'otp'], {queryParams: {
+      this.router.navigate(['/auth', 'register', 'otp'], {queryParams: {
         phone: phoneNumber,
         returnUrl: this.returnUrl,
         t: "register",

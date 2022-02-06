@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       }
     } else {
       this.statusIndicator.setCompleted();
-      this.router.navigate(['/account', 'login', 'otp'], {queryParams: {
+      this.router.navigate(['/auth', 'login', 'otp'], {queryParams: {
         phone: phoneNumber,
         returnUrl: this.returnUrl,
         t: "login",

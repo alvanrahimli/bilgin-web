@@ -21,12 +21,12 @@ import { TestAnswerComponent } from './components/test-answer/test-answer.compon
 import { TestChoicesComponent } from './components/test-choices/test-choices.component';
 import { TestOpenEndedComponent } from './components/test-open-ended/test-open-ended.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
-import { LoginComponent } from './pages/account/login/login.component';
-import { RegisterComponent } from './pages/account/register/register.component';
-import { AccountComponent } from './pages/account/account/account.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { AccountComponent } from './pages/auth/account/account.component';
 import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
 import { FormsModule } from '@angular/forms';
-import { OtpComponent } from './pages/account/otp/otp.component';
+import { OtpComponent } from './pages/auth/otp/otp.component';
 import { TokenInterceptorService } from './services/interceptors/token-interceptor.service';
 import { TestPackResultComponent } from './pages/testing/test-pack-result/test-pack-result.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
@@ -35,7 +35,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { SingleTestPackIntroComponent } from './pages/testing/single-test-pack-intro/single-test-pack-intro.component';
 import { BilginFooterComponent } from './components/bilgin-footer/bilgin-footer.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
-import { UserInfoComponent } from './pages/account/user-info/user-info.component';
+import { UserInfoComponent } from './pages/auth/user-info/user-info.component';
 import { HomepageStatusComponent } from './components/home-page/homepage-status/homepage-status.component';
 import { HomepageCardComponent } from './components/home-page/homepage-card/homepage-card.component';
 import { ClassDetailsComponent } from './pages/class/class-details/class-details.component';

@@ -57,7 +57,7 @@ export class OtpComponent implements OnInit {
       this.statusIndicator.setCompleted();
       this.accountService.persistToken(this.verifyResponse.data.token);
       if (this.requestType == "register") {
-        this.router.navigate(['/account', 'register', 'user-info'], {queryParams: {
+        this.router.navigate(['/auth', 'register', 'user-info'], {queryParams: {
           returnUrl: this.returnUrl,
           phone: this.phoneCodeRequest.phoneNumber,
         }});

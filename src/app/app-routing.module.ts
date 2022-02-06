@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailsComponent } from './pages/account/account-details/account-details.component';
-import { AccountComponent } from './pages/account/account/account.component';
-import { LoginComponent } from './pages/account/login/login.component';
-import { OtpComponent } from './pages/account/otp/otp.component';
-import { RegisterComponent } from './pages/account/register/register.component';
-import { UserInfoComponent } from './pages/account/user-info/user-info.component';
+import { AccountComponent } from './pages/auth/account/account.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { OtpComponent } from './pages/auth/otp/otp.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { UserInfoComponent } from './pages/auth/user-info/user-info.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { ClassDetailsComponent } from './pages/class/class-details/class-details.component';
 import { ClassManagementComponent } from './pages/class/class-management/class-management.component';
@@ -31,10 +31,14 @@ const routes: Routes = [
         {path: '', component: ClassDetailsComponent}
       ]
     },
+    {
+      path: 'account', canActivate: [AuthGuard], children: [
+        { path: '', component: AccountDetailsComponent },
+      ]
+    },
     { path: 'discussions', component: DiscussionsComponent },
   ]},
-  { path: 'account', component: AccountComponent, children: [
-    { path: '', component: AccountDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'auth', component: AccountComponent, children: [
     { path: 'login', children: [
       { path: '', component: LoginComponent },
       { path: 'otp', component: OtpComponent }

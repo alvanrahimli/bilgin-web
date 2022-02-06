@@ -1,1 +1,81 @@
-<p>account-details works!</p>
+<app-page-title [titleText]="'Hesab məlumatları'"></app-page-title>
+<app-status-indicator [status]="status"></app-status-indicator>
+
+<div class="profile-inner" *ngIf="this.status.isCompleted()">
+    <div class="profile-inner-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile-box">
+                    Ad Soyad
+                    <p class="mrb-unset">{{ userInfo?.fullName }}</p>
+                </div>
+                <!-- Student specific info -->
+                <div *ngIf="userInfo?.studentInfo != null">
+                    <div class="profile-box" *ngIf="userInfo?.studentInfo?.school != null">
+                        Məktəb
+                        <p class="mrb-unset">{{ userInfo?.studentInfo?.school?.name ?? 'Seçilməyib' }} </p>
+                    </div>
+                    <div class="profile-box" *ngIf="userInfo?.studentInfo?.school == null">
+                        Məktəb
+                        <p class="mrb-unset">
+                            <!-- Input -->
+                            <select name="school-input" class="" data-live-search="true">
+                                <option selected="true">Seçilməyib</option>
+                                <option *ngFor="let sc of schools" value="{{ sc.id }}">{{ sc.name }}</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Teacher specific info -->
+                <div *ngIf="userInfo?.teacherInfo != null">
+                    <div class="profile-box" *ngIf="userInfo?.teacherInfo?.school != null">
+                        Məktəb
+                        <p class="mrb-unset">{{ userInfo?.teacherInfo?.school?.name ?? 'Seçilməyib' }} </p>
+                    </div>
+                    <div class="profile-box" *ngIf="userInfo?.teacherInfo?.school == null">
+                        Məktəb
+                        <p class="mrb-unset">
+                            <!-- Input -->
+                            <select name="school-input" class="" data-live-search="true">
+                                <option selected="true">Seçilməyib</option>
+                                <option *ngFor="let sc of schools" value="{{ sc.id }}">{{ sc.name }}</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile-box">
+                    Telefon
+                    <p class="mrb-unset">{{ userInfo?.phoneNumber }}</p>
+                </div>
+                <div class="profile-box">
+                    Email
+                    <p class="mrb-unset">{{ userInfo?.email ?? 'Yoxdur' }}</p>
+                </div>
+                <div class="profile-box">
+                    Ünvan
+                    <p class="mrb-unset">{{ userInfo?.address?.title ?? 'Yoxdur' }}</p>
+                </div>
+                <div class="profile-box">
+                    Rollar
+                    <p class="mrb-unset">{{ getRoles() }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="profile-owner">
+                    <div class="profile-owner-img shadow">
+                        <img src="../../../../assets/img/placeholder.png" alt="author picture">
+                    </div>
+                    <div class="profile-owner-info">
+                        <h6><a [routerLink]="['/account']">Şəkli dəyiş</a></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br><br><br><br>
+                <app-bilgin-footer></app-bilgin-footer>
+            </div>
+        </div>
+    </div>
+</div>

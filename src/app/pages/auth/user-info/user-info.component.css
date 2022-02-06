@@ -6,7 +6,7 @@
     display: block;
     outline: none;
     color: black;
-    border: 1px solid #8692A6;
+    border: 1px solid var(--primary-color);
     border-radius: 6px;
     padding: 10px 5px;
     width: 400px;
@@ -21,7 +21,7 @@
     display: inline-block !important;
 }
 .login-button{
-    background: rgba(66, 185, 131, 0.8);
+    background: var(--primary-color);
     border-radius: 6px;
     color:#fff;
     display: block;

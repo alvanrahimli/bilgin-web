@@ -1,9 +1,8 @@
-<div id="MTM0" class="tabcontent" style="display: block;">
-    <app-page-title [level]="3" *ngIf="this.statusIndicator.isCompleted()"
-                    titleText="{{ package?.paragraphName + ', ' + package?.subjectName }}"></app-page-title>
-    <app-status-indicator [status]="this.statusIndicator"></app-status-indicator>
-    <div class="profile-inner" *ngIf="this.statusIndicator.isCompleted()">
-        <!-- <div class="profile-inner-head">
+<app-page-title [level]="3" *ngIf="this.statusIndicator.isCompleted()"
+    titleText="{{ package?.paragraphName + ', ' + package?.subjectName }}"></app-page-title>
+<app-status-indicator [status]="this.statusIndicator"></app-status-indicator>
+<div class="profile-inner" *ngIf="this.statusIndicator.isCompleted()">
+    <!-- <div class="profile-inner-head">
             <div class="d-flex">
                 <div class="profile-name-img" (click)="this.router.navigate(['../../..'], {relativeTo: this.activatedRoute})">
                     <<
@@ -11,69 +10,67 @@
                 <p class="mrb-unset">{{ package?.paragraphName }}</p>
             </div>
         </div> -->
-        <div class="profile-inner-body">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="profile-box">
-                        Sinif
-                        <p class="mrb-unset">{{ package?.gradeName }}</p>
+    <div class="profile-inner-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile-box">
+                    Sinif
+                    <p class="mrb-unset">{{ package?.gradeName }}</p>
+                </div>
+                <div class="profile-box">
+                    Fənn
+                    <p class="mrb-unset">{{ package?.subjectName }}</p>
+                </div>
+                <div class="profile-box">
+                    Mövzu
+                    <p class="mrb-unset">{{ package?.paragraphName }}</p>
+                </div>
+                <div class="profile-box">
+                    Vaxt limiti
+                    <p class="mrb-unset" *ngIf="package.timeLimitSeconds != 0">
+                        {{ (package.timeLimitSeconds / 60).toFixed() }} dəqiqə
+                        {{ package.timeLimitSeconds % 60 }} saniyə
+                    </p>
+                    <p class="mrb-unset" *ngIf="package.timeLimitSeconds == 0">
+                        Limit yoxdur
+                    </p>
+                </div>
+                <div class="profile-box">
+                    Test sayı
+                    <p class="mrb-unset">{{ package?.tests?.length }} ədəd</p>
+                </div>
+                <div class="profile-box">
+                    Test haqqında
+                    <p class="mrb-unset">{{ package?.description }}</p>
+                </div>
+                <div class="profile-box">
+                    Qiymət
+                    <p class="mrb-unset" *ngIf="package?.price == 0">PULSUZ</p>
+                    <p class="mrb-unset" *ngIf="package?.price ?? 0 != 0">
+                        {{ package?.price! / 100 }} manat
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="profile-owner">
+                    <div class="profile-owner-img">
+                        <img src="../../../../assets/img/pp.jpeg" alt="author picture">
                     </div>
-                    <div class="profile-box">
-                        Fənn
-                        <p class="mrb-unset">{{ package?.subjectName }}</p>
+                    <div class="profile-owner-info">
+                        <h5>{{ package?.author?.fullName }}</h5>
+                        <!-- <p class="mrb-unset">{{ package?.author?.role }}</p> -->
                     </div>
-                    <div class="profile-box">
-                        Mövzu
-                        <p class="mrb-unset">{{ package?.paragraphName }}</p>
-                    </div>
-                    <div class="profile-box">
-                        Vaxt limiti
-                        <p class="mrb-unset" *ngIf="package.timeLimitSeconds != 0">
-                            {{ (package.timeLimitSeconds / 60).toFixed() }} dəqiqə
-                            {{ package.timeLimitSeconds % 60 }} saniyə
-                        </p>
-                        <p class="mrb-unset" *ngIf="package.timeLimitSeconds == 0">
-                            Limit yoxdur
-                        </p>
-                    </div>
-                    <div class="profile-box">
-                        Test sayı
-                        <p class="mrb-unset">{{ package?.tests?.length }} ədəd</p>
-                    </div>
-                    <div class="profile-box">
-                        Test haqqında
-                        <p class="mrb-unset">{{ package?.description }}</p>
-                    </div>
-                    <div class="profile-box">
-                        Qiymət
-                        <p class="mrb-unset" *ngIf="package?.price == 0">PULSUZ</p>
-                        <p class="mrb-unset" *ngIf="package?.price ?? 0 != 0">
-                            {{ package?.price! / 100 }} manat
-                        </p>
+                    <div class="profile-start-button ">
+                        <button class="btn-hover color-1"
+                            (click)="router.navigate(['..', 'tests'], {relativeTo: activatedRoute})">
+                            Başla
+                        </button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="profile-owner">
-                        <div class="profile-owner-img">
-                            <img src="../../../../assets/img/pp.jpeg" alt="author picture">
-                        </div>
-                        <div class="profile-owner-info">
-                            <h5>{{ package?.author?.fullName }}</h5>
-                            <!-- <p class="mrb-unset">{{ package?.author?.role }}</p> -->
-                        </div>
-                        <div class="profile-start-button ">
-                            <button class="btn-hover color-1" 
-                                    (click)="router.navigate(['..', 'tests'], {relativeTo: activatedRoute})">
-                                Başla
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <app-bilgin-footer></app-bilgin-footer>
-                </div>
+            </div>
+            <div class="col-md-12">
+                <app-bilgin-footer></app-bilgin-footer>
             </div>
         </div>
     </div>
-
 </div>
