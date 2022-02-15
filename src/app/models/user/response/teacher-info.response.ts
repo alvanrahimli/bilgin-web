@@ -1,7 +1,6 @@
 import { SchoolResponse } from "../../shared/school.response";
 
-export interface TeacherInfoRequest {
+export interface TeacherInfoResponse {
     id: string;
     school: SchoolResponse;
-    
 }

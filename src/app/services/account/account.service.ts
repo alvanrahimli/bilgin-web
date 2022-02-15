@@ -3,6 +3,7 @@ import { PhoneCodeRequest } from 'src/app/models/user/request/phone-code-request
 import { PhoneRequest } from 'src/app/models/user/request/phone-request';
 import { RefreshTokenRequest } from 'src/app/models/user/request/refresh-token-request';
 import { StudentInfoRequest } from 'src/app/models/user/request/student-info.request';
+import { TeacherInfoRequest } from 'src/app/models/user/request/teacher-info.request';
 import { UserInfoRequest } from 'src/app/models/user/request/user-info-request';
 import { TokenResponse } from 'src/app/models/user/response/token-response';
 import { UserResponse } from 'src/app/models/user/response/user-response';
@@ -39,6 +40,10 @@ export class AccountService extends GeneralService {
 
   postStudentInfo(info: StudentInfoRequest, url: string = "identity/Account/add-student-info") {
     return this.sendPostRequest<StudentInfoRequest, any>(info, url);
+  }
+
+  postTeacherInfo(info: TeacherInfoRequest, url: string = "identity/Account/add-teacher-info") {
+    return this.sendPostRequest<TeacherInfoRequest, any>(info, url);
   }
 
   getUserInfo(strict: boolean = false, url: string = "identity/Account") {

@@ -1,8 +1,7 @@
 <app-page-title titleText="Fənlər üzrə testlər toplusu"></app-page-title>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-aos="fade-up" data-aos-offset="-200"
-        *ngFor="let s of subjectList">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-aos="fade-up" data-aos-offset="-200" *ngFor="let s of subjectList">
         <app-test-subject [subject]="s"></app-test-subject>
     </div>
 </div>

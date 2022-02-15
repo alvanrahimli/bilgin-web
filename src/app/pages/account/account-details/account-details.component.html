@@ -1,7 +1,7 @@
 <app-page-title [titleText]="'Hesab məlumatları'"></app-page-title>
 <app-status-indicator [status]="status"></app-status-indicator>
 
-<div class="profile-inner" *ngIf="this.status.isCompleted()">
+<div class="profile-inner" *ngIf="this.status.isCompleted()" data-aos="fade-up" data-aos-offset="-200">
     <div class="profile-inner-body">
         <div class="row">
             <div class="col-md-8">
@@ -9,8 +9,25 @@
                     Ad Soyad
                     <p class="mrb-unset">{{ userInfo?.fullName }}</p>
                 </div>
+                <div class="profile-box">
+                    Hesab tipi
+                    <p class="mrb-unset" *ngIf="getAccountType() == 'Seçilməyib'">
+                        <label for="teacher-radio" class="mrb-unset">
+                            <input type="radio" name="role-radio" id="teacher-radio" (change)="changeType(UserRoleType.Teacher)">    
+                            Müəllim &nbsp;&nbsp;&nbsp;
+                        </label>
+                        <label for="student-radio" class="mrb-unset">
+                            <input type="radio" name="role-radio" id="student-radio" (change)="changeType(UserRoleType.Student)">
+                            Şagird                            
+                        </label>
+                    </p>
+                    <p class="mrb-unset" *ngIf="getAccountType() != 'Seçilməyib'">
+                        {{ getAccountType() }}
+                    </p>
+                </div>
+
                 <!-- Student specific info -->
-                <div *ngIf="userInfo?.studentInfo != null">
+                <div *ngIf="roleType == UserRoleType.Student">
                     <div class="profile-box" *ngIf="userInfo?.studentInfo?.school != null">
                         Məktəb
                         <p class="mrb-unset">{{ userInfo?.studentInfo?.school?.name ?? 'Seçilməyib' }} </p>
@@ -19,7 +36,7 @@
                         Məktəb
                         <p class="mrb-unset">
                             <!-- Input -->
-                            <select name="school-input" class="" data-live-search="true">
+                            <select name="school-input" class="school-select" data-live-search="true" [(ngModel)]="studentInfoRequest.schoolId" (change)="submitInfo()">
                                 <option selected="true">Seçilməyib</option>
                                 <option *ngFor="let sc of schools" value="{{ sc.id }}">{{ sc.name }}</option>
                             </select>
@@ -28,7 +45,7 @@
                 </div>
 
                 <!-- Teacher specific info -->
-                <div *ngIf="userInfo?.teacherInfo != null">
+                <div *ngIf="roleType == UserRoleType.Teacher">
                     <div class="profile-box" *ngIf="userInfo?.teacherInfo?.school != null">
                         Məktəb
                         <p class="mrb-unset">{{ userInfo?.teacherInfo?.school?.name ?? 'Seçilməyib' }} </p>
@@ -37,7 +54,7 @@
                         Məktəb
                         <p class="mrb-unset">
                             <!-- Input -->
-                            <select name="school-input" class="" data-live-search="true">
+                            <select name="school-input" class="school-select" data-live-search="true" [(ngModel)]="teacherInfoRequest.schoolId" (change)="submitInfo()">
                                 <option selected="true">Seçilməyib</option>
                                 <option *ngFor="let sc of schools" value="{{ sc.id }}">{{ sc.name }}</option>
                             </select>
@@ -65,7 +82,7 @@
             <div class="col-md-4">
                 <div class="profile-owner">
                     <div class="profile-owner-img shadow">
-                        <img src="../../../../assets/img/placeholder.png" alt="author picture">
+                        <img src="../../../../assets/img/user-female.png" alt="author picture">
                     </div>
                     <div class="profile-owner-info">
                         <h6><a [routerLink]="['/account']">Şəkli dəyiş</a></h6>
