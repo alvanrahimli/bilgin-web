@@ -11,7 +11,7 @@ export class TestPackageComponent implements OnInit {
   @Input() 
   package: TestPackageBriefResponse = {} as TestPackageBriefResponse;
   @Input()
-  headerColorHex: string = "";
+  headerColorHex: string | null = null;
 
   constructor() { }
 

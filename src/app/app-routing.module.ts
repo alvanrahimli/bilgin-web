@@ -17,38 +17,48 @@ import { TestPackResultComponent } from './pages/testing/test-pack-result/test-p
 import { TestPackagesComponent } from './pages/testing/test-packages/test-packages.component';
 import { TestSubjectsComponent } from './pages/testing/test-subjects/test-subjects.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
+import { ClassesComponent } from './pages/class/classes/classes.component';
 
 const routes: Routes = [
-  { path: '', component: AppBaseComponent, children: [
-    { path: '', component: HomePageComponent },
-    { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
-    { path: 'subjects/:sId', component: TestPackagesComponent },
-    { path: 'subjects/:sId/packages/:pId/tests', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
-    { path: 'subjects/:sId/packages/:pId/intro', component: SingleTestPackIntroComponent, canActivate: [AuthGuard] },
-    { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
-    {
-      path: 'class-management', canActivate: [AuthGuard], children: [
-        {path: '', component: ClassDetailsComponent}
-      ]
-    },
-    {
-      path: 'account', canActivate: [AuthGuard], children: [
-        { path: '', component: AccountDetailsComponent },
-      ]
-    },
-    { path: 'discussions', component: DiscussionsComponent },
-  ]},
-  { path: 'auth', component: AccountComponent, children: [
-    { path: 'login', children: [
-      { path: '', component: LoginComponent },
-      { path: 'otp', component: OtpComponent }
-    ] },
-    { path: 'register', children: [
-      { path: '', component: RegisterComponent },
-      { path: 'otp', component: OtpComponent },
-      { path: 'user-info', component: UserInfoComponent }
-    ] }
-  ]}
+  {
+    path: '', component: AppBaseComponent, children: [
+      { path: '', component: HomePageComponent },
+      { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
+      { path: 'subjects/:sId', component: TestPackagesComponent },
+      { path: 'subjects/:sId/packages/:pId/tests', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
+      { path: 'subjects/:sId/packages/:pId/intro', component: SingleTestPackIntroComponent, canActivate: [AuthGuard] },
+      { path: 'subjects/:sId/packages/:pId/completion', component: TestPackResultComponent, canActivate: [AuthGuard] },
+      {
+        path: 'classes', canActivate: [AuthGuard], children: [
+          { path: '', component: ClassesComponent },
+          { path: ':id/details', component: ClassDetailsComponent }
+        ]
+      },
+      {
+        path: 'account', canActivate: [AuthGuard], children: [
+          { path: '', component: AccountDetailsComponent },
+        ]
+      },
+      { path: 'discussions', component: DiscussionsComponent },
+    ]
+  },
+  {
+    path: 'auth', component: AccountComponent, children: [
+      {
+        path: 'login', children: [
+          { path: '', component: LoginComponent },
+          { path: 'otp', component: OtpComponent }
+        ]
+      },
+      {
+        path: 'register', children: [
+          { path: '', component: RegisterComponent },
+          { path: 'otp', component: OtpComponent },
+          { path: 'user-info', component: UserInfoComponent }
+        ]
+      }
+    ]
+  }
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+<div class="subject-inner" [routerLink]="[teacherClass?.class?.id, 'details']">
+    <div class="subject-inner-head" [ngStyle]="{'background-color': '#FF9976'}">
+        <div class="d-flex">
+            <!-- <div class="subject-name-img"></div> -->
+            <p class="mrb-unset package-name">
+                > {{ teacherClass?.class?.name }}
+            </p>
+        </div>
+    </div>
+    <div class="subject-inner-body">
+        <div class="sub-author">
+            <div class="package-detail">
+                <p class="mrb-unset">Sinif:</p>
+                <p class="mrb-unset">{{ teacherClass?.class?.grade?.name }}</p>
+            </div>
+            <div class="package-detail">
+                <p class="mrb-unset">Məktəb:</p>
+                <p class="mrb-unset">{{ teacherClass?.class?.school?.name }}</p>
+            </div>
+            <div class="package-detail" *ngIf="teacherClass?.isLead">
+                <p class="mrb-unset">Fənn</p>
+                <p class="mrb-unset">Sinif rəhbəri</p>
+            </div>
+        </div>
+    </div>
+</div>

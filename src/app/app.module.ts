@@ -39,6 +39,9 @@ import { UserInfoComponent } from './pages/auth/user-info/user-info.component';
 import { HomepageStatusComponent } from './components/home-page/homepage-status/homepage-status.component';
 import { HomepageCardComponent } from './components/home-page/homepage-card/homepage-card.component';
 import { ClassDetailsComponent } from './pages/class/class-details/class-details.component';
+import { ClassesComponent } from './pages/class/classes/classes.component';
+import { ClassComponent } from './components/class/class/class.component';
+import { AddStudentModalComponent } from './components/class/add-student-modal/add-student-modal.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { ClassDetailsComponent } from './pages/class/class-details/class-details
     HomepageStatusComponent,
     HomepageCardComponent,
     ClassDetailsComponent,
+    ClassesComponent,
+    ClassComponent,
+    AddStudentModalComponent,
   ],
   imports: [
     BrowserModule,

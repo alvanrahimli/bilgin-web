@@ -1,0 +1,8 @@
+<app-page-title [titleText]="'Siniflər'"></app-page-title>
+<app-status-indicator [status]="status"></app-status-indicator>
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-offset="-200" *ngFor="let class of classes">
+        <app-class [teacherClass]="class"></app-class>
+    </div>
+</div>
