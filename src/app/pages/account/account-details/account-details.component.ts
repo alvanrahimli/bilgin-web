@@ -24,7 +24,7 @@ export class AccountDetailsComponent implements OnInit, AfterViewChecked {
   status: StatusIndicator = new StatusIndicator();
   userInfo: UserResponse | null = null;
   schools: SchoolResponse[] = [];
-  roleType: UserRoleType = UserRoleType.Student;
+  roleType: UserRoleType = UserRoleType.None;
   studentInfoRequest: StudentInfoRequest = {} as StudentInfoRequest;
   teacherInfoRequest: TeacherInfoRequest = {} as TeacherInfoRequest;
 
@@ -39,7 +39,12 @@ export class AccountDetailsComponent implements OnInit, AfterViewChecked {
       if (accountResponse.data.studentInfo?.school == null && accountResponse.data.teacherInfo?.school == null) {
         this.schools = await this.getSchools();
         this.roleType = UserRoleType.None;
+      } else if (accountResponse.data.studentInfo != null) {
+        this.roleType = UserRoleType.Student
+      } else if (accountResponse.data.teacherInfo != null) {
+        this.roleType = UserRoleType.Teacher
       }
+
       this.status.setCompleted();
     }
   }

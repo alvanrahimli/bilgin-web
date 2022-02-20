@@ -42,6 +42,7 @@ import { ClassDetailsComponent } from './pages/class/class-details/class-details
 import { ClassesComponent } from './pages/class/classes/classes.component';
 import { ClassComponent } from './components/class/class/class.component';
 import { AddStudentModalComponent } from './components/class/add-student-modal/add-student-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { AddStudentModalComponent } from './components/class/add-student-modal/a
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]

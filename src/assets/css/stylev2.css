@@ -7,7 +7,7 @@
     --dark-text-color: #1F337A;
     --error-color: #F13C20;
     --progress-color: #4f0;
-    --completed-color: #C5C5B3;
+    --completed-color: #3CB405;
     --border-radius: 15px;
 }
 
@@ -836,8 +836,10 @@ body::-webkit-scrollbar {
     justify-content: space-between;
 }
 
-
-/* SUAL-CAVAB-INNER-END */
-
-
-/* MAIN-CONTENT-END */
+.modal {
+    z-index: 1060;
+}
+.modal-content {
+    border: 0;
+    border-radius: var(--border-radius);
+}

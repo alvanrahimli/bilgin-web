@@ -1,30 +1,37 @@
 <div class="student-list">
     <div class="student-list-header">
-        <h4>Sinif:3B</h4>
-        <button class="add-student">
+        <h4>Sinif: {{ classDetails?.name }} ({{ classDetails?.school?.name }}) </h4>
+        <button class="add-student" (click)="openStudentModal(studentModal)">
             <i class="fas fa-user-plus"></i>
         </button>
     </div>
     <div class="table-responsive">
+        <app-status-indicator [status]="status"></app-status-indicator>
         <table class="table list-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Ad Soyad</th>
-                    <!-- <th scope="col">Soyad</th> -->
                     <th scope="col">Telefon</th>
-                    <th scope="col">Emeliyyatlar</th>
+                    <th scope="col">Əməliyyatlar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let st of classDetails.students">
-                    <th scope="row">1</th>
+                    <th scope="row">{{classDetails.students.indexOf(st) + 1}} </th>
                     <td>{{ st.fullName }}</td>
-                    <!-- <td>Rehimli</td> -->
                     <td>{{ st.phoneNumber }}</td>
-                    <td><button class="delete-student"><i class="far fa-times-circle"></i></button></td>
+                    <td>
+                        <button class="delete-student" (click)="removeStudent(st.infoId)">
+                            <i class="far fa-times-circle"></i>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<ng-template #studentModal>
+    <app-add-student-modal (onStudentSelected)="studentSelected($event)" [status]="status"></app-add-student-modal>
+</ng-template>

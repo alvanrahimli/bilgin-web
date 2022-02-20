@@ -13,8 +13,8 @@ export class GeneralService extends BaseService {
     return await this.put<RES_TYPE>(url, request, headers);
   }
 
-  public async sendDeleteRequest<RES_TYPE>(url: string) {
-    return await this.delete<RES_TYPE>(url);
+  public async sendDeleteRequest<REQ_TYPE, RES_TYPE>(request: REQ_TYPE, url: string) {
+    return await this.delete<RES_TYPE>(url, request);
   }
 
   public async sendGetRequest<RES_TYPE>(url: string, headers: any = {}) {

@@ -1,12 +1,30 @@
-<div class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="add-std-modal" id="addStd" data-backdrop="static" data-keyboard="false"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="upload-modal-content">
+        <div class="modal-header upload-modal-header">
+            <h5 class="mrb-unset">Şagird əlavə edin</h5>
+            <button type="button" class="close myclose" data-dismiss="modal" aria-label="Close"
+                (click)="closeStudetModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group search-in student-search">
+                <span class="fa fa-search form-control-feedback student-search-icon"></span>
+                <input type="text" class="student-search-input form-control my-form-control" name="search-input"
+                    placeholder="Ad və ya nömrə ilə axtarış edin" (input)="searchUser()" [(ngModel)]="searchTerm"
+                    #searchInput>
+                <app-status-indicator [status]="status"></app-status-indicator>
             </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
+            <div class="student-list">
+                <div *ngIf="searchResult.length == 0" class="student-profile-modal">
+                    <p class="mrb-unset">Şagird tapılmadı</p>
+                </div>
+
+                <div *ngFor="let st of searchResult" class="student-profile-modal" (click)="selectUser(st.infoId)">
+                    <p class="mrb-unset"> {{ st.fullName }} </p>
+                    <p class="mrb-unset"> {{ st.phoneNumber }} </p>
+                </div>
             </div>
         </div>
     </div>

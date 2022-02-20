@@ -94,11 +94,11 @@ export class BaseService {
     }
   }
 
-  async delete<T>(url: string): Promise<BaseModelResponse<T>> {
+  async delete<T>(url: string, request: any, headers: any = {}): Promise<BaseModelResponse<T>> {
     let response: BaseModelResponse<T> = {} as BaseModelResponse<T>;
 
     try {
-      let tempResponseObsr = this.http.delete<T>(this.API_EndPoint + url, { headers: this.headers });
+      let tempResponseObsr = this.http.delete<T>(this.API_EndPoint + url, { headers: this.headers, body: request });
       let tempResponse = await firstValueFrom(tempResponseObsr);
       
       if (tempResponse) {

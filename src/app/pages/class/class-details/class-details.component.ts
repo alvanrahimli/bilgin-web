@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { delay, firstValueFrom } from 'rxjs';
 import { ClassDetailsResponse } from 'src/app/models/class/class-details.response';
 import { StudentResponse } from 'src/app/models/class/student.response';
 import { ClassesService } from 'src/app/services/class/classes.service';
@@ -14,15 +16,17 @@ import { StatusIndicator } from 'src/app/utils/status-indicator';
 export class ClassDetailsComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal) { }
 
   status: StatusIndicator = new StatusIndicator();
+  modalStatus: StatusIndicator = new StatusIndicator();
   classDetails: ClassDetailsResponse = {} as ClassDetailsResponse;
-
   students: StudentResponse[] = [];
+
   async ngOnInit(): Promise<void> {
     this.status.setProgress();
-
+    
     var params = await firstValueFrom(this.activatedRoute.params);
     let detailsResponse = await this.classesService.getClass(params["id"]);
     if (detailsResponse.hasError) {
@@ -35,4 +39,52 @@ export class ClassDetailsComponent implements OnInit {
     this.status.setCompleted();
   }
 
+  async removeStudent(infoId: string): Promise<void> {
+    this.status.setProgress();
+    let removeResponse = await this.classesService.removeStudentFromClass({
+      classId: this.classDetails.id,
+      studentInfoId: infoId,
+    });
+
+    if (removeResponse.hasError) {
+      this.status.setError("Şagirdi sinifdən xaric edə bilmədik. Yenidən cəhd edin.");
+      return;
+    }
+
+    await this.ngOnInit();
+    this.status.setCompleted("Şagird sinifdən xaric olundu", true);
+  }
+
+  async studentSelected(infoId: any): Promise<void> {
+    this.status.setProgress();
+    let additionResponse = await this.classesService.addStudentToClass({
+      classId: this.classDetails.id,
+      studentInfoId: infoId,
+      phoneNumber: infoId,
+    });
+
+    if (additionResponse.hasError) {
+      if (additionResponse.error instanceof HttpErrorResponse) {
+        if (additionResponse.error.status == 409) {
+          this.status.setError("Şagird artıq sinfə əlavə olunub");
+          return;
+        }
+      } 
+      
+      this.status.setError("Şagird əlavə oluna bilmədi. Yenidən yoxlayın");
+      return;
+    }
+
+    await this.ngOnInit();
+    this.status.setCompleted("Şagird əlavə olundu", true);
+  }
+
+  openStudentModal(content: any): void {
+    this.status.setCompleted();
+    this.modalService.open(content, {ariaLabelledBy: 'modal-student-form', centered: true}).result.then(res => {
+      this.status.setCompleted();
+    }, (reason) => {
+      this.status.setCompleted();
+    });
+  }
 }
