@@ -1,0 +1,61 @@
+.add-class-modal .modal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+}
+
+.add-class-modal .form-group:last-of-type {
+    margin-bottom: unset !important;
+}
+
+.submit-btn {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    font-weight: 600;
+    transition: .2s ease;
+}
+
+.submit-btn:hover {
+    background: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.submit-btn:focus {
+    background: var(--primary-color);
+    color: var(--light-text-color);
+    /* color: var(--light-text-color); */
+}
+
+.student-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #1F337A;
+}
+
+.add-class-input{
+    background-color: var(--bg-color);
+    color: var(--primary-color) !important;
+}
+.student-search-input:focus{
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--primary-color) !important;
+}
+.student-search-input::placeholder{
+    color: #1f337a8b;
+}
+.student-list-modal{
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    margin: 20px 0;
+    background-color: #EDDFB9;
+    height: 450px;
+    overflow: auto;
+}

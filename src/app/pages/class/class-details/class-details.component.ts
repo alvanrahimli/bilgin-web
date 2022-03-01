@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { delay, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ClassDetailsResponse } from 'src/app/models/class/class-details.response';
 import { StudentResponse } from 'src/app/models/class/student.response';
 import { ClassesService } from 'src/app/services/class/classes.service';

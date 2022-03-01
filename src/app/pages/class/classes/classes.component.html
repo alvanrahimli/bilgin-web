@@ -1,4 +1,4 @@
-<app-page-title [titleText]="'Siniflər'"></app-page-title>
+<app-page-title [titleText]="'Siniflər'" [actionButtons]="actionButtons"></app-page-title>
 <app-status-indicator [status]="status"></app-status-indicator>
 
 <div class="row">
@@ -6,3 +6,7 @@
         <app-class [teacherClass]="class"></app-class>
     </div>
 </div>
+
+<ng-template #addClassModal>
+    <app-add-class-modal (onSuccess)="onSuccessfulAdd()"></app-add-class-modal>
+</ng-template>

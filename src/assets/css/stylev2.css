@@ -271,7 +271,7 @@ body::-webkit-scrollbar {
 }
 
 .my-form-control {
-    border: 0.84px solid rgba(204, 204, 204, 0.74);
+    border: 1 solid rgba(204, 204, 204, 0.74);
     border-radius: var(--border-radius);
 }
 
@@ -723,23 +723,6 @@ body::-webkit-scrollbar {
     float: left;
 }
 
-.back-to-article-2 {
-    height: 44px;
-    width: auto;
-    padding: 18px 20px;
-    background: var(--secondary-color);
-    color: var(--light-text-color);
-    border-radius: var(--border-radius);
-    outline: none;
-    border: none;
-    /* float:left; */
-    /* margin: 0 15px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
 /* MEQALELER-INNER-END */
 
 
@@ -843,3 +826,13 @@ body::-webkit-scrollbar {
     border: 0;
     border-radius: var(--border-radius);
 }
+
+.feather {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }

@@ -1,0 +1,4 @@
+<button class="action-button" (click)="clicked()">
+    <i *ngIf="button.role != ActionButtonRole.None" class="fa-solid {{ getClassNames() }}"></i>
+    <span *ngIf="button.btnText">{{ button.btnText }}</span>
+</button>

@@ -1,4 +1,4 @@
-.back-button {
+.action-button {
     height: 44px;
     width: auto;
     padding: 18px 20px;
@@ -10,4 +10,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 5px;
+}
+
+.action-button span {
+    margin-left: 5px;
 }

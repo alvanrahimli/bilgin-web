@@ -1,0 +1,32 @@
+<div class="add-class-modal" id="add-class-modal" data-backdrop="static" data-keyboard="false"
+    aria-labelledby="addClassModal" aria-hidden="true">
+    <div class="upload-modal-content">
+        <div class="modal-header upload-modal-header">
+            <h5 class="mrb-unset">Sinif məlumatlarını daxil edin</h5>
+            <button type="button" class="close myclose" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body row">
+            <app-status-indicator [status]="status" class="col-12 mb-2"></app-status-indicator>
+            <div class="col-6 col-xs-12 form-group student-search">
+                <input type="text" class="add-class-input form-control my-form-control" name="class-name-input"
+                    placeholder="Sinin adı" required [(ngModel)]="className">
+                <app-status-indicator></app-status-indicator>
+            </div>
+            <div class="col-6 col-xs-12 form-group">
+                <select name="grade-select" id="grade-select" class="add-class-input form-control my-form-control"
+                    [(ngModel)]="gradeId">
+                    <option value="-1" disabled selected>Sinif nömrəsi</option>
+                    <option value="1">1-ci sinif</option>
+                    <option value="2">2-ci sinif</option>
+                    <option value="3">3-ci sinif</option>
+                    <option value="4">4-ci sinif</option>
+                </select>
+            </div>
+            <div class="col-12 col-xs-12 form-group">
+                <button class="form-control submit-btn" (click)="addClass()">Əlavə et</button>
+            </div>
+        </div>
+    </div>
+</div>

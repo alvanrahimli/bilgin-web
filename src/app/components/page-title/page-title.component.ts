@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 
 @Component({
   selector: 'app-page-title',
@@ -17,8 +18,18 @@ export class PageTitleComponent implements OnInit {
   confirm: boolean = false;
   @Input()
   titleText: string = "";
+  @Input()
+  actionButtons: ActionButton[] = [];
 
   ngOnInit(): void {
+  }
+
+  filterActionClicked() {
+    console.log("Filter clicked");
+  }
+
+  addActionClicked() {
+    console.log("ADD CLICKED");
   }
 
 }

@@ -43,6 +43,8 @@ import { ClassesComponent } from './pages/class/classes/classes.component';
 import { ClassComponent } from './components/class/class/class.component';
 import { AddStudentModalComponent } from './components/class/add-student-modal/add-student-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TitleActionButtonComponent } from './components/title-action-button/title-action-button.component';
+import { AddClassModalComponent } from './components/class/add-class-modal/add-class-modal.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ClassesComponent,
     ClassComponent,
     AddStudentModalComponent,
+    TitleActionButtonComponent,
+    AddClassModalComponent,
   ],
   imports: [
     BrowserModule,

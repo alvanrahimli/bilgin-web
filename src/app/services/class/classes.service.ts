@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AddClassRequest } from 'src/app/models/class/add-class.request';
 import { AddToClassRequest } from 'src/app/models/class/add-to-class.request';
 import { ClassDetailsResponse } from 'src/app/models/class/class-details.response';
 import { RemoveFromClassRequest } from 'src/app/models/class/remove-from-class.request';
@@ -16,6 +17,10 @@ export class ClassesService extends GeneralService {
 
   getClass(id: string, url: string = "class/Classes/") {
     return this.sendGetRequest<ClassDetailsResponse>(url + id, {"aith": "strict"});
+  }
+
+  addClass(req: AddClassRequest, url: string = "class/Classes") {
+    return this.sendPostRequest<AddClassRequest, ClassDetailsResponse>(req, url, {"auth": "strict"});
   }
 
   removeStudentFromClass(req: RemoveFromClassRequest, url: string = "class/Students/remove-from-class") {

@@ -1,4 +1,10 @@
 <div id="page-title">
-    <app-back-button *ngIf="showBackButton" [level]="level" [confirm]="confirm"></app-back-button>
-    <h3>{{ titleText }}</h3>
+    <div id="left-panel">
+        <app-back-button *ngIf="showBackButton" [level]="level" [confirm]="confirm"></app-back-button>
+        <h3>{{ titleText }}</h3>
+    </div>
+
+    <div id="right-panel">
+        <app-title-action-button *ngFor="let b of actionButtons" [button]="b" (onClick)="b.event($event)"></app-title-action-button>
+    </div>
 </div>
