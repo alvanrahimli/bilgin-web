@@ -1,11 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
 import { ClassDetailsResponse } from 'src/app/models/class/class-details.response';
 import { StudentResponse } from 'src/app/models/class/student.response';
 import { ClassesService } from 'src/app/services/class/classes.service';
+import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
@@ -17,10 +18,17 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
     private activatedRoute: ActivatedRoute,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal) {
+      this.actionButtons.push(new ActionButton(ActionButtonRole.Add, this.openStudentModal))
+    }
+
+  @ViewChild("studentModal")
+  addStudentModal: TemplateRef<any> | undefined;
 
   status: StatusIndicator = new StatusIndicator();
   modalStatus: StatusIndicator = new StatusIndicator();
+  actionButtons: ActionButton[] = [];
+
   classDetails: ClassDetailsResponse = {} as ClassDetailsResponse;
   students: StudentResponse[] = [];
 
@@ -79,9 +87,9 @@ export class ClassDetailsComponent implements OnInit {
     this.status.setCompleted("Şagird əlavə olundu", true);
   }
 
-  openStudentModal(content: any): void {
+  openStudentModal = (): void => {
     this.status.setCompleted();
-    this.modalService.open(content, {ariaLabelledBy: 'modal-student-form', centered: true}).result.then(res => {
+    this.modalService.open(this.addStudentModal, {ariaLabelledBy: 'modal-student-form', centered: true}).result.then(res => {
       this.status.setCompleted();
     }, (reason) => {
       this.status.setCompleted();

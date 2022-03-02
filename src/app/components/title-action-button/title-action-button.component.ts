@@ -22,7 +22,7 @@ export class TitleActionButtonComponent implements OnInit {
   }
 
   clicked() {
-    this.onClick.emit("salam");
+    this.onClick.emit();
   }
 
   getClassNames(): string {

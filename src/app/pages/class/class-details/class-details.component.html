@@ -1,10 +1,9 @@
+<app-page-title [titleText]="'Sinif: ' + classDetails.name + ' (' + classDetails.school.name + ')'"
+    [actionButtons]="actionButtons" [level]="2"></app-page-title>
+
 <div class="student-list">
-    <div class="student-list-header">
-        <h4>Sinif: {{ classDetails?.name }} ({{ classDetails?.school?.name }}) </h4>
-        <button class="add-student" (click)="openStudentModal(studentModal)">
-            <i class="fas fa-user-plus"></i>
-        </button>
-    </div>
+    <!-- <div class="student-list-header">
+    </div> -->
     <div class="table-responsive">
         <app-status-indicator [status]="status"></app-status-indicator>
         <table class="table list-table">

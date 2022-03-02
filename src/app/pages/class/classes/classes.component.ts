@@ -22,9 +22,7 @@ export class ClassesComponent implements OnInit {
 
   status: StatusIndicator = new StatusIndicator();
   classes: TeacherClassResponse[] = [];
-  actionButtons: ActionButton[] = [
-    
-  ]
+  actionButtons: ActionButton[] = []
 
   async ngOnInit(): Promise<void> {
     this.status.setProgress();
