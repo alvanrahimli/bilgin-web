@@ -1,0 +1,28 @@
+<div id="filter">
+    <div class="row">
+        <div class="col-6 col-xs-12">
+            <select name="grade-select" id="grade-select" class="filter-select form-control my-form-control"
+                data-live-search="true" [(ngModel)]="selectedGrade" (ngModelChange)="submitFilter()">
+                <option value="" selected disabled>Sinif</option>
+                <option [value]="''">Təmizlə</option>
+                <option *ngFor="let g of grades" [value]="g.id">{{ g.name }}</option>
+            </select>
+        </div>
+        <!-- <div class="col-6 col-xs-12">
+            <select name="subject-select" id="subject-select" class="filter-select form-control my-form-control"
+                data-live-search="true" (change)="loadParagraphs()" [(ngModel)]="selectedSubject" (ngModelChange)="submitFilter()">
+                <option value="" selected disabled>Fənn</option>
+                <option [value]="''">Təmizlə</option>
+                <option *ngFor="let s of subjects" [value]="s.id">{{ s.name }}</option>
+            </select>
+        </div> -->
+        <div class="col-6 col-xs-12">
+            <select name="paragraph-select" id="paragraph-select" class="filter-select form-control my-form-control"
+                data-live-search="true" [(ngModel)]="selectedParagraph" (ngModelChange)="submitFilter()">
+                <option value="" selected disabled>Mövzu</option>
+                <option [value]="''">Təmizlə</option>
+                <option *ngFor="let p of paragraphs" [value]="p.id">{{ p.name }}</option>
+            </select>
+        </div>
+    </div>
+</div>

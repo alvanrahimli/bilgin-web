@@ -12,7 +12,6 @@
 }
 
 .test-image-div {
-    /* width: 100%; */
     display: flex;
     justify-content: center;
 }
@@ -24,4 +23,8 @@
 
 .test-answers {
     margin-bottom: 15px;
+}
+
+.test-content {
+    margin: 15px 0 0 0;
 }

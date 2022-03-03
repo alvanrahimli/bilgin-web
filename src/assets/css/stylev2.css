@@ -836,3 +836,47 @@ body::-webkit-scrollbar {
     stroke-linejoin: round;
     fill: none;
   }
+
+#filter {
+    padding: 2rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+}
+
+.filter-select {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+.filter-select:focus {
+    background-color: var(--bg-color);
+    border: 1px solid var(--primary-color);
+}
+
+.filter-select button {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+.filter-select button:focus {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+/* .filter-select button:focus {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+} */
+.filter-select button:active {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+.filter-select button:active {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}

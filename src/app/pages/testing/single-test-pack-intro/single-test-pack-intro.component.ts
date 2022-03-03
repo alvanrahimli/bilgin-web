@@ -51,4 +51,13 @@ export class SingleTestPackIntroComponent implements OnInit {
       }
     }
   }
+
+  getTitle(): string {
+    let title = this.package?.paragraphName == '' 
+      ? this.package?.subjectName 
+      : this.package?.paragraphName + ', ' + this.package?.subjectName;
+    
+    console.log(title);
+    return title;
+  }
 }

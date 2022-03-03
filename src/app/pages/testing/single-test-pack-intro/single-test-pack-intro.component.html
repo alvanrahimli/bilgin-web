@@ -1,5 +1,5 @@
 <app-page-title [level]="3" *ngIf="this.statusIndicator.isCompleted()"
-    titleText="{{ package?.paragraphName + ', ' + package?.subjectName }}"></app-page-title>
+    titleText="{{ getTitle() }}"></app-page-title>
 <app-status-indicator [status]="this.statusIndicator"></app-status-indicator>
 <div class="profile-inner" *ngIf="this.statusIndicator.isCompleted()">
     <!-- <div class="profile-inner-head">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="profile-box">
                     Mövzu
-                    <p class="mrb-unset">{{ package?.paragraphName }}</p>
+                    <p class="mrb-unset">{{ package?.paragraphName == '' ? 'Seçilməyib' : package?.paragraphName }}</p>
                 </div>
                 <div class="profile-box">
                     Vaxt limiti

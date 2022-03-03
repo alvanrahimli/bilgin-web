@@ -1,6 +1,6 @@
 <app-page-title [titleText]="'Test tapşırığı' + ':  ' + (currentTestIndex + 1) + '/' + totalTestCount"></app-page-title>
 
-<div class="row p-4 mar-no bg-rad mt-3">
+<div class="test-content row p-4 bg-rad mt-3">
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 
     <div class="col-md-12" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">

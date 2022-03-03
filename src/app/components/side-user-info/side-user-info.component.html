@@ -3,8 +3,10 @@
         <img src="../../../assets/img/official.svg" alt="profile picture">
     </div>
     <div class="profile-name" *ngIf="isLoggedIn">
-        <p>{{ userData.fullName }}</p>
-        <p>{{ userData.points }} xal</p>
+        <p (click)="this.router.navigate(['/account'])">
+            {{ getFirstName() }} <br> {{ getLastName() }}
+        </p>
+        <p>{{ userData?.points }} xal</p>
     </div>
     
     <button class="sign-in" *ngIf="!isLoggedIn" (click)="this.router.navigate(['/auth', 'login'])" >

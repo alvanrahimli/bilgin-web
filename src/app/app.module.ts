@@ -13,13 +13,13 @@ import { StatsBriefComponent } from './components/stats-brief/stats-brief.compon
 import { TestSubjectsComponent } from './pages/testing/test-subjects/test-subjects.component';
 import { TestPackagesComponent } from './pages/testing/test-packages/test-packages.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { TestPackageComponent } from './components/test-package/test-package.component';
-import { TestSubjectComponent } from './components/test-subject/test-subject.component';
+import { TestPackageComponent } from './components/testing/test-package/test-package.component';
+import { TestSubjectComponent } from './components/testing/test-subject/test-subject.component';
 import { DiscussionsComponent } from './pages/discussions/discussions.component';
 import { SingleTestPackageComponent } from './pages/testing/single-test-package/single-test-package.component';
-import { TestAnswerComponent } from './components/test-answer/test-answer.component';
-import { TestChoicesComponent } from './components/test-choices/test-choices.component';
-import { TestOpenEndedComponent } from './components/test-open-ended/test-open-ended.component';
+import { TestAnswerComponent } from './components/testing/test-answer/test-answer.component';
+import { TestChoicesComponent } from './components/testing/test-choices/test-choices.component';
+import { TestOpenEndedComponent } from './components/testing/test-open-ended/test-open-ended.component';
 import { AppBaseComponent } from './pages/app-base/app-base.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
@@ -42,9 +42,10 @@ import { ClassDetailsComponent } from './pages/class/class-details/class-details
 import { ClassesComponent } from './pages/class/classes/classes.component';
 import { ClassComponent } from './components/class/class/class.component';
 import { AddStudentModalComponent } from './components/class/add-student-modal/add-student-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapse, NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TitleActionButtonComponent } from './components/title-action-button/title-action-button.component';
 import { AddClassModalComponent } from './components/class/add-class-modal/add-class-modal.component';
+import { TestingFilterComponent } from './components/testing/testing-filter/testing-filter.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { AddClassModalComponent } from './components/class/add-class-modal/add-c
     AddStudentModalComponent,
     TitleActionButtonComponent,
     AddClassModalComponent,
+    TestingFilterComponent,
   ],
   imports: [
     BrowserModule,

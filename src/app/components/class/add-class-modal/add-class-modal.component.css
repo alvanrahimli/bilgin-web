@@ -27,6 +27,14 @@
     /* color: var(--light-text-color); */
 }
 
+.form-control {
+    border: 0;
+}
+
+.form-control:focus {
+    border: 1px solid var(--primary-color);
+}
+
 .student-search .form-control-feedback {
     position: absolute;
     z-index: 2;

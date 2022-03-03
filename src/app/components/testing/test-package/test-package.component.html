@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- <div class="subject-name-img"></div> -->
             <p class="mrb-unset package-name">
-                > {{ package.paragraphName }}
+                > {{ package.paragraphName == '' ? package.subjectName : package.paragraphName }}
             </p>
         </div>
         <div>
@@ -19,11 +19,11 @@
             </div>
             <div class="package-detail">
                 <p class="mrb-unset">Mövzu:</p>
-                <p class="mrb-unset">{{ package.paragraphName }}</p>
+                <p class="mrb-unset">{{ package.paragraphName == '' ? "Seçilməyib" : package.paragraphName }}</p>
             </div>
             <div class="package-detail">
                 <p class="mrb-unset">Vaxt limiti:</p>
-                <p class="mrb-unset">{{ (package.timeLimitSeconds / 60).toFixed() }} dəqiqə</p>
+                <p class="mrb-unset">{{ package.timeLimitSeconds == 0 ? 'Limit yoxdur' : (package.timeLimitSeconds / 60).toFixed() + ' dəqiqə' }}</p>
             </div>
         </div>
         <div class="sub-line"></div>

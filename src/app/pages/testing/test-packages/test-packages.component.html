@@ -1,5 +1,10 @@
-<app-page-title titleText="{{ subject.name }} üzrə mövzular"></app-page-title>
+<app-page-title titleText="{{ subject.name }} üzrə mövzular" [actionButtons]="actionButtons"></app-page-title>
+<div #collapse="ngbCollapse" [ngbCollapse]="isFilterOpen">
+    <br>
+    <app-testing-filter (onSubmit)="submitFilter($event)" [currentSubject]="subject.id"></app-testing-filter>
+</div>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
+
 <div class="row" *ngIf="statusIndicator.isCompleted()">
     <div class="col-md-6 aos-init aos-animate" data-aos="fade-up"
         *ngFor="let p of packages">

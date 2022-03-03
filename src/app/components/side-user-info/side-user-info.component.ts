@@ -17,7 +17,7 @@ export class SideUserInfoComponent implements OnInit {
     public router: Router) { }
 
   isLoggedIn: boolean = false;
-  userData: UserResponse | any;
+  userData: UserResponse | undefined;
 
   async ngOnInit(): Promise<void> {
     let userResponse = await this.accountService.getUserInfo(false);
@@ -28,5 +28,13 @@ export class SideUserInfoComponent implements OnInit {
       this.isLoggedIn = true;
       this.userData = userResponse.data;
     }
+  }
+
+  getFirstName(): string {
+    return (this.userData?.fullName ?? 'Ad Seçilməyib').split(' ')[0];
+  }
+
+  getLastName(): string {
+    return (this.userData?.fullName ?? 'Ad Seçilməyib').split(' ')[1];
   }
 }

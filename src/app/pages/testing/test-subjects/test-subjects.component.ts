@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectResponse } from 'src/app/models/test-subject/response/subjectResponse';
 import { TestSubjectsService } from 'src/app/services/tests/test-subjects/test-subjects.service';
+import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
 
 @Component({
@@ -9,9 +10,13 @@ import { StatusIndicator } from 'src/app/utils/status-indicator';
   styleUrls: ['./test-subjects.component.css']
 })
 export class TestSubjectsComponent implements OnInit {
-  constructor(private subjectsService: TestSubjectsService) { }
+  constructor(private subjectsService: TestSubjectsService) {
+    this.actionButtons.push(new ActionButton(ActionButtonRole.Filter, this.openFilter));
+  }
   
   statusIndicator = new StatusIndicator();
+  actionButtons: ActionButton[] = [];
+
   subjectList: SubjectResponse[] = [];
 
   async ngOnInit(): Promise<void> {
@@ -32,5 +37,9 @@ export class TestSubjectsComponent implements OnInit {
         this.statusIndicator.setError("Heç bir fənn tapılmadı");
       }
     }
+  }
+
+  openFilter = (): void => {
+    
   }
 }
