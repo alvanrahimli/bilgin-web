@@ -1,7 +1,7 @@
 <app-page-title titleText="{{ subject.name }} üzrə mövzular" [actionButtons]="actionButtons"></app-page-title>
 <div #collapse="ngbCollapse" [ngbCollapse]="isFilterOpen">
     <br>
-    <app-testing-filter (onSubmit)="submitFilter($event)" [currentSubject]="subject.id"></app-testing-filter>
+    <app-testing-filter *ngIf="!this.statusIndicator.isInProgress()" (onSubmit)="submitFilter($event)" [currentSubjectId]="subject.id"></app-testing-filter>
 </div>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 

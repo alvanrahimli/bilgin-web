@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCalendarPersian, NgbCollapse, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { firstValueFrom } from 'rxjs';
 import { TestingFilter } from 'src/app/models/shared/testing-filter.dto';
 import { TestPacksFilterContext } from 'src/app/models/test-package/request/filter-context';
 import { TestPackageBriefResponse } from 'src/app/models/test-package/response/test-package-brief';
@@ -27,18 +28,17 @@ export class TestPackagesComponent implements OnInit {
   actionButtons: ActionButton[] = [];
   isFilterOpen: boolean = true;
 
+  loaded = false;
+
   packages: TestPackageBriefResponse[] = [];
   subject: SubjectResponse = {} as SubjectResponse;
 
   async ngOnInit(): Promise<void> {
     this.statusIndicator.setProgress();
-    this.activatedRoute.params.subscribe(
-      async (params) => {
-        let subjectId = params["sId"];
-        await this.loadSubjectInfo(subjectId);
-        await this.loadPackageList(subjectId);
-      }
-    )
+    let params = await firstValueFrom(this.activatedRoute.params)
+    let subjectId = params["sId"];
+    await this.loadSubjectInfo(subjectId);
+    await this.loadPackageList(subjectId);
   }
 
   async loadPackageList(subId: string, gradeId: number | null = null, paragraphId: string | null = null): Promise<void> {

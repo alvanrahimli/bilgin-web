@@ -11,7 +11,6 @@ import { GeneralService } from '../../general/general.service';
 })
 export class TestPackagesService extends GeneralService {
   getPackageList(filter: TestPacksFilterContext, url: string = "tests/TestPackages/?") {
-    console.log("FILTER:", filter);
     if (filter.subjectId) url += `SubjectId=${filter.subjectId}`;
     if (filter.gradeId && filter.gradeId != null) url += `&GradeId=${filter.gradeId}`;
     if (filter.paragraphId && filter.paragraphId != null) url += `&ParagraphId=${filter.paragraphId}`;

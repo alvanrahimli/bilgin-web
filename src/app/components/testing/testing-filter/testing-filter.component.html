@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-6 col-xs-12">
             <select name="grade-select" id="grade-select" class="filter-select form-control my-form-control"
-                data-live-search="true" [(ngModel)]="selectedGrade" (ngModelChange)="submitFilter()">
-                <option value="" selected disabled>Sinif</option>
+                data-live-search="true" title="Sinif seçin" [(ngModel)]="selectedGrade" (ngModelChange)="submitFilter()">
+                <!-- <option value="" selected disabled>Sinif</option> -->
                 <option [value]="''">Təmizlə</option>
                 <option *ngFor="let g of grades" [value]="g.id">{{ g.name }}</option>
             </select>
@@ -18,8 +18,8 @@
         </div> -->
         <div class="col-6 col-xs-12">
             <select name="paragraph-select" id="paragraph-select" class="filter-select form-control my-form-control"
-                data-live-search="true" [(ngModel)]="selectedParagraph" (ngModelChange)="submitFilter()">
-                <option value="" selected disabled>Mövzu</option>
+                data-live-search="true" title="Mövzu seçin" [(ngModel)]="selectedParagraph" (ngModelChange)="submitFilter()">
+                <!-- <option value="" selected disabled>Mövzu</option> -->
                 <option [value]="''">Təmizlə</option>
                 <option *ngFor="let p of paragraphs" [value]="p.id">{{ p.name }}</option>
             </select>

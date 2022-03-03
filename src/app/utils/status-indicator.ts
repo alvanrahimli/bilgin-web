@@ -24,6 +24,10 @@ export class StatusIndicator {
     isCompleted(): boolean {
         return this.status == Status.completed;
     }
+
+    isInProgress(): boolean {
+        return this.status == Status.inProgress;
+    }
 }
 
 export enum Status {
