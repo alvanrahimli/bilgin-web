@@ -1,5 +1,5 @@
 <app-page-title [level]="3" *ngIf="this.statusIndicator.isCompleted()"
-    titleText="{{ getTitle() }}"></app-page-title>
+    titleText="{{ getTitle() }}" [actionButtons]="actionButtons"></app-page-title>
 <app-status-indicator [status]="this.statusIndicator"></app-status-indicator>
 <div class="profile-inner" *ngIf="this.statusIndicator.isCompleted()">
     <!-- <div class="profile-inner-head">
@@ -54,16 +54,20 @@
             <div class="col-md-4">
                 <div class="profile-owner">
                     <div class="profile-owner-img">
-                        <img src="../../../../assets/img/pp.jpeg" alt="author picture">
+                        <img src="../../../../assets/img/user-female.png" alt="author picture">
                     </div>
                     <div class="profile-owner-info">
                         <h5>{{ package?.author?.fullName }}</h5>
                         <!-- <p class="mrb-unset">{{ package?.author?.role }}</p> -->
                     </div>
                     <div class="profile-start-button ">
-                        <button class="btn-hover color-1"
+                        <button *ngIf="pageMode == 'testing'" class="btn-hover color-1"
                             (click)="router.navigate(['..', 'tests'], {relativeTo: activatedRoute})">
                             Başla
+                        </button>
+                        <button *ngIf="pageMode == 'assignment'" class="btn-hover color-1"
+                            (click)="router.navigate(['..', 'tests'], {relativeTo: activatedRoute, queryParams: {mode: pageMode, class: assignmentClassId}})">
+                            Sualları nəzərdən keçirin
                         </button>
                     </div>
                 </div>

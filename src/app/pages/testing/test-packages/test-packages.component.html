@@ -8,6 +8,6 @@
 <div class="row" *ngIf="statusIndicator.isCompleted()">
     <div class="col-md-6 aos-init aos-animate" data-aos="fade-up"
         *ngFor="let p of packages">
-        <app-test-package [package]="p" [headerColorHex]="subject.color"></app-test-package>
+        <app-test-package [package]="p" [headerColorHex]="subject.color" [mode]="pageMode" [assignmentClassId]="assignmentClassId"></app-test-package>
     </div>
 </div>

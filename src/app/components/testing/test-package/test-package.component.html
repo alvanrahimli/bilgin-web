@@ -1,4 +1,4 @@
-<div class="subject-inner" [routerLink]="['packages', package.id, 'intro']">
+<div class="subject-inner" [routerLink]="['packages', package.id, 'intro']" [queryParams]="{mode: mode, class: assignmentClassId}">
     <div class="subject-inner-head" [ngStyle]="{'background-color': this.headerColorHex ?? '#FF9976'}">
         <div class="d-flex">
             <!-- <div class="subject-name-img"></div> -->

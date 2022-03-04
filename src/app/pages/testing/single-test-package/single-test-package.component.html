@@ -1,5 +1,6 @@
-<app-page-title [titleText]="'Test tapşırığı' + ':  ' + (currentTestIndex + 1) + '/' + totalTestCount"></app-page-title>
-
+<app-page-title [titleText]="'Test tapşırığı' + ':  ' + (currentTestIndex + 1) + '/' + totalTestCount"
+    [actionButtons]="actionButtons" [confirm]="true" [sameLevelPage]="'intro'"></app-page-title>
+<app-status-indicator [status]="assignmentStatus"></app-status-indicator>
 <div class="test-content row p-4 bg-rad mt-3">
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 
@@ -54,7 +55,7 @@
 
                 <button class="test-next-button" *ngIf="!isCurrentTheLast()" (click)="onNextClick()">Irəli</button>
 
-                <button class="test-next-button danger-button" *ngIf="isCurrentTheLast()"
+                <button class="test-next-button danger-button" *ngIf="isCurrentTheLast() && pageMode != 'assignment'"
                     (click)="finishTestClick()">TESTİ BİTİR</button>
             </div>
         </div>

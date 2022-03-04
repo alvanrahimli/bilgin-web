@@ -15,6 +15,8 @@ export class BackButtonComponent implements OnInit {
   level: number = 1;
   @Input()
   confirm: boolean = false;
+  @Input()
+  sameLevelPage: string | undefined;
 
   ngOnInit(): void {
   }
@@ -27,6 +29,7 @@ export class BackButtonComponent implements OnInit {
     }
 
     let route = "../".repeat(this.level);
-    this.router.navigate([route], {relativeTo: this.activatedRoute});
+    if (this.sameLevelPage) route += this.sameLevelPage;
+    this.router.navigate([route], {relativeTo: this.activatedRoute, queryParamsHandling: "merge"});
   }
 }

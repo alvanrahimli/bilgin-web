@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
 import { ClassDetailsResponse } from 'src/app/models/class/class-details.response';
@@ -18,8 +18,20 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private modalService: NgbModal) {
-      this.actionButtons.push(new ActionButton(ActionButtonRole.Add, this.openStudentModal))
+      this.actionButtons.push({
+        btnText: "Yeni şagird",
+        role: ActionButtonRole.Add,
+        event: this.openStudentModal,
+        visible: true
+      });
+      this.actionButtons.push({
+        btnText: "Tapşırıq ver",
+        role: ActionButtonRole.Add,
+        event: this.startAssignment,
+        visible: true
+      });
     }
 
   @ViewChild("studentModal")
@@ -93,6 +105,23 @@ export class ClassDetailsComponent implements OnInit {
       this.status.setCompleted();
     }, (reason) => {
       this.status.setCompleted();
+    });
+  }
+
+  getSchoolName(): string {
+    if (this.classDetails?.school?.name.length <= 16) {
+      return `  (${this.classDetails?.school?.name})`;
+    } else {
+      return `  (${this.classDetails?.school?.name.substring(0, 16)}...)`
+    }
+  }
+
+  startAssignment = (): void => {
+    this.router.navigate(["/subjects"], {
+      queryParams: {
+        mode: 'assignment',
+        class: this.classDetails.id
+      }
     });
   }
 }

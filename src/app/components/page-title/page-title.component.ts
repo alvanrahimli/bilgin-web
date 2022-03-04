@@ -17,6 +17,8 @@ export class PageTitleComponent implements OnInit {
   @Input()
   confirm: boolean = false;
   @Input()
+  sameLevelPage: string | undefined;
+  @Input()
   titleText: string = "";
   @Input()
   actionButtons: ActionButton[] = [];

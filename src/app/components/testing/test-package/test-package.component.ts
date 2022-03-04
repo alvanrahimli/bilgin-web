@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TestPackageBriefResponse } from 'src/app/models/test-package/response/test-package-brief';
+import { TestingPageMode } from 'src/app/utils/testing-mode';
 
 @Component({
   selector: 'app-test-package',
@@ -12,6 +13,10 @@ export class TestPackageComponent implements OnInit {
   package: TestPackageBriefResponse = {} as TestPackageBriefResponse;
   @Input()
   headerColorHex: string | null = null;
+  @Input()
+  mode: TestingPageMode = "testing";
+  @Input()
+  assignmentClassId: string | undefined;
 
   constructor() { }
 

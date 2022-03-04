@@ -5,8 +5,11 @@ import { firstValueFrom } from 'rxjs';
 import { NavigationDirection } from 'src/app/models/enums/navigation-direction';
 import { MatchingAnswerRequest, TestAnswerRequest } from 'src/app/models/test-package/request/test-package';
 import { TestPackageResponse } from "src/app/models/test-package/response/TestPackageResponse";
+import { ClassesService } from 'src/app/services/class/classes.service';
 import { TestPackagesService } from 'src/app/services/tests/test-packages/test-packages.service';
+import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
+import { TestingPageMode } from 'src/app/utils/testing-mode';
 
 @Component({
   selector: 'app-single-test-package',
@@ -19,9 +22,14 @@ export class SingleTestPackageComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private testPackageService: TestPackagesService) { }
+    private testPackageService: TestPackagesService,
+    private classesService: ClassesService) { }
   
   statusIndicator: StatusIndicator = new StatusIndicator();
+  assignmentStatus: StatusIndicator = new StatusIndicator();
+  pageMode: TestingPageMode = "testing";
+  assignmentClassId: string | undefined;
+  actionButtons: ActionButton[] = [];
 
   package: TestPackageResponse = {} as TestPackageResponse;
   totalTestCount: number = 0;
@@ -36,6 +44,22 @@ export class SingleTestPackageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     var params = await firstValueFrom(this.activatedRoute.params);
     await this.loadPackage(params["pId"]);
+
+    let queryParams = await firstValueFrom(this.activatedRoute.queryParams);
+    if (queryParams["mode"] == "assignment") {
+      this.pageMode = "assignment";
+      this.assignmentClassId = queryParams["class"];
+    }
+
+    if (this.pageMode == "assignment") {
+      this.assignmentStatus.setCompleted("Sualları nəzərdən keçirin, \"Tapşır\" seçib təstiqləyin", true);
+      this.actionButtons.push({
+        btnText: "Tapşır",
+        role: ActionButtonRole.Add,
+        visible: true,
+        event: this.giveAssignment
+      });
+    }
   }
 
   async loadPackage(pId: string): Promise<void> {
@@ -188,5 +212,22 @@ export class SingleTestPackageComponent implements OnInit {
 
   isCurrentTheLast(): boolean {
     return this.currentTestIndex == this.package?.tests?.length - 1;
+  }
+
+  giveAssignment = async (): Promise<void> => {
+    this.assignmentStatus.setProgress();
+    let assignmentResponse = await this.classesService.assignPackage({
+      testPackageId: this.package.id,
+      classId: this.assignmentClassId ?? ""
+    });
+    if (assignmentResponse.hasError) {
+      this.assignmentStatus.setError();
+      return;
+    }
+
+    this.assignmentStatus.setCompleted("Test sinifə tapşırıldı. Testlər səhifəsinə yönləndiriləcəksiniz", true);
+    setTimeout(() => {
+      this.router.navigate(["../../../"], {relativeTo: this.activatedRoute, queryParamsHandling: 'merge'});
+    }, 3000);
   }
 }

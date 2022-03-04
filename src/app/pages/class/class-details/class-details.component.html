@@ -1,4 +1,4 @@
-<app-page-title [titleText]="'Sinif: ' + classDetails.name + ' (' + classDetails.school.name + ')'"
+<app-page-title [titleText]="'Sinif: ' + classDetails.name + getSchoolName()"
     [actionButtons]="actionButtons" [level]="2"></app-page-title>
 
 <div class="student-list">

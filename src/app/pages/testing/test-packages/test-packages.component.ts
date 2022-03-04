@@ -10,6 +10,7 @@ import { TestPackagesService } from 'src/app/services/tests/test-packages/test-p
 import { TestSubjectsService } from 'src/app/services/tests/test-subjects/test-subjects.service';
 import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
+import { TestingPageMode } from 'src/app/utils/testing-mode';
 
 @Component({
   selector: 'app-test-packages',
@@ -27,6 +28,8 @@ export class TestPackagesComponent implements OnInit {
   statusIndicator = new StatusIndicator();
   actionButtons: ActionButton[] = [];
   isFilterOpen: boolean = true;
+  pageMode: TestingPageMode = "testing";
+  assignmentClassId: string | undefined;
 
   loaded = false;
 
@@ -37,8 +40,18 @@ export class TestPackagesComponent implements OnInit {
     this.statusIndicator.setProgress();
     let params = await firstValueFrom(this.activatedRoute.params)
     let subjectId = params["sId"];
+    let queryParams = await firstValueFrom(this.activatedRoute.queryParams);
+    if (queryParams["mode"] == "assignment") {
+      this.pageMode = "assignment";
+      this.assignmentClassId = queryParams["class"];
+    }
+
     await this.loadSubjectInfo(subjectId);
     await this.loadPackageList(subjectId);
+
+    if (this.pageMode == "assignment") {
+      this.statusIndicator.setCompleted("Siz sinif üçün test tapşırığı seçirsiniz", true);
+    }
   }
 
   async loadPackageList(subId: string, gradeId: number | null = null, paragraphId: string | null = null): Promise<void> {

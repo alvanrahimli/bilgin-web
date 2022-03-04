@@ -1,5 +1,5 @@
 <div class="subject" [style.background]="subject.color" 
-    [routerLink]="[subject.id]">
+    [routerLink]="[subject.id]" [queryParams]="{mode: mode, class: assignmentClassId}">
 
     <img src="{{ subject.imageUrl }}">
 
