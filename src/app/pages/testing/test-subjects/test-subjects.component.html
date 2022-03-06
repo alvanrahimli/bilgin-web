@@ -1,6 +1,16 @@
 <app-page-title titleText="Fənlər üzrə testlər toplusu" [actionButtons]="actionButtons"></app-page-title>
 <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-aos="fade-up" data-aos-offset="-200">
+        <!-- Assignments -->
+        <div class="subject" [style.background]="'rgb(255, 136, 0)'" 
+            [routerLink]="['assignments']">
+    
+            <img src="../../../../assets/img/assignments.png">
+    
+            <p>{{ "Tapşırıqlarım" }}</p>
+        </div>
+    </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" data-aos="fade-up" data-aos-offset="-200" *ngFor="let s of subjectList">
         <app-test-subject [subject]="s" [mode]="pageMode" [assignmentClassId]="assignmentClassId"></app-test-subject>
     </div>

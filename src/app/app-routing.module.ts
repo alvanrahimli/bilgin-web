@@ -18,12 +18,14 @@ import { TestPackagesComponent } from './pages/testing/test-packages/test-packag
 import { TestSubjectsComponent } from './pages/testing/test-subjects/test-subjects.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { ClassesComponent } from './pages/class/classes/classes.component';
+import { AssignmentsComponent } from './pages/testing/assignments/assignments.component';
 
 const routes: Routes = [
   {
     path: '', component: AppBaseComponent, children: [
       { path: '', component: HomePageComponent },
       { path: 'subjects', component: TestSubjectsComponent, pathMatch: 'full' },
+      { path: 'subjects/assignments', component: AssignmentsComponent, pathMatch: 'full' },
       { path: 'subjects/:sId', component: TestPackagesComponent },
       { path: 'subjects/:sId/packages/:pId/tests', component: SingleTestPackageComponent, canActivate: [AuthGuard] },
       { path: 'subjects/:sId/packages/:pId/intro', component: SingleTestPackIntroComponent, canActivate: [AuthGuard] },

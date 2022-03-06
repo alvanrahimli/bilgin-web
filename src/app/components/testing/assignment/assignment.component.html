@@ -1,0 +1,42 @@
+<div class="subject-inner" [routerLink]="['..', assignment.assignmentTestPack.subjectId, 'packages', assignment.assignmentTestPack.id, 'intro']"
+    [ngStyle]="{'opacity': assignment.completed ? '50%' : '100%'}">
+    <div class="subject-inner-head" [ngStyle]="{'background-color': 'rgb(255, 136, 0);'}">
+        <div class="d-flex">
+            <!-- <div class="subject-name-img"></div> -->
+            <p class="mrb-unset package-name">
+                > {{ assignment.type == "TestPackage" ? "Test tapşırığı" : "TODO" }}
+            </p>
+        </div>
+        <div>
+            <p class="test-cost mrb-unset" *ngIf="assignment.dueDate != null && !assignment.completed">
+                Son tarix: {{ getHumanizedDueDate() }}
+            </p>
+            <p class="test-cost mrb-unset" *ngIf="assignment.completed">
+                <strong>Bitirmisiniz</strong>
+            </p>
+        </div>
+    </div>
+    <div class="subject-inner-body">
+        <div class="sub-author">
+            <div class="package-detail">
+                <p class="mrb-unset">Sinif:</p>
+                <p class="mrb-unset">{{ assignment.assignmentTestPack.gradeName }}</p>
+            </div>
+            <div class="package-detail">
+                <p class="mrb-unset">Mövzu:</p>
+                <p class="mrb-unset">{{ assignment.assignmentTestPack.paragraphName == '' 
+                    ? "Seçilməyib" : assignment.assignmentTestPack.paragraphName }}</p>
+            </div>
+            <div class="package-detail">
+                <p class="mrb-unset">Vaxt limiti:</p>
+                <p class="mrb-unset">{{ assignment.assignmentTestPack.timeLimitSeconds == 0 
+                    ? 'Limit yoxdur' : (assignment.assignmentTestPack.timeLimitSeconds / 60).toFixed() + ' dəqiqə' }}</p>
+            </div>
+        </div>
+        <div class="sub-line"></div>
+        <div class="sub-date">
+            <p class="mrb-unset">Müəllif:</p>
+            <p class="mrb-unset">{{ assignment.assignmentTestPack.author.fullName }}</p>
+        </div>
+    </div>
+</div>

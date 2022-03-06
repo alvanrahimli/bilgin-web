@@ -56,6 +56,7 @@ export class ClassDetailsComponent implements OnInit {
 
     this.classDetails = detailsResponse.data;
     this.students = detailsResponse.data.students;
+    console.log(this.students);
     this.status.setCompleted();
   }
 

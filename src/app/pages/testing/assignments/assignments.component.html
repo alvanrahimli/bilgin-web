@@ -1,0 +1,7 @@
+<app-page-title [titleText]="'Mənim tapşırıqlarım'"></app-page-title>
+<app-status-indicator [status]="status"></app-status-indicator>
+<div class="row" *ngIf="status.isCompleted">
+    <div class="col-md-6 aos-animate" data-aos="fade-up" *ngFor="let a of assignments">
+        <app-assignment [assignment]="a"></app-assignment>
+    </div>
+</div>

@@ -46,6 +46,8 @@ import { NgbCollapse, NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-boot
 import { TitleActionButtonComponent } from './components/title-action-button/title-action-button.component';
 import { AddClassModalComponent } from './components/class/add-class-modal/add-class-modal.component';
 import { TestingFilterComponent } from './components/testing/testing-filter/testing-filter.component';
+import { AssignmentsComponent } from './pages/testing/assignments/assignments.component';
+import { AssignmentComponent } from './components/testing/assignment/assignment.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import { TestingFilterComponent } from './components/testing/testing-filter/test
     TitleActionButtonComponent,
     AddClassModalComponent,
     TestingFilterComponent,
+    AssignmentsComponent,
+    AssignmentComponent,
   ],
   imports: [
     BrowserModule,

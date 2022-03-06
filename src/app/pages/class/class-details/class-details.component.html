@@ -19,12 +19,16 @@
                 <tr *ngFor="let st of classDetails.students">
                     <th scope="row">{{classDetails.students.indexOf(st) + 1}} </th>
                     <td>{{ st.fullName }}</td>
-                    <td *ngIf="st.completedCount == st.totalAssignmentCount">
+                    <td *ngIf="st.completedCount == st.totalAssignmentCount && st.totalAssignmentCount != 0">
                         Bitirib (cəmi: {{ st.totalAssignmentCount }})
+                    </td>
+                    <td *ngIf="st.totalAssignmentCount == 0">
+                        Tapşırığı yoxdur
                     </td>
                     <td *ngIf="st.completedCount != st.totalAssignmentCount">
                         {{ st.completedCount }} hazır (cəmi: {{ st.totalAssignmentCount }})
                     </td>
+                    
                     <td>
                         <button class="delete-student" (click)="removeStudent(st.infoId)">
                             <i class="far fa-times-circle"></i>
