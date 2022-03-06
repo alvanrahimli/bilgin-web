@@ -5,4 +5,6 @@ export interface StudentResponse {
     phoneNumber: string;
     points: number;
     schoolName: string;
+    totalAssignmentCount: number;
+    completedCount: number;
 }
