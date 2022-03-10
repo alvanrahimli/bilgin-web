@@ -21,12 +21,14 @@ export class ClassDetailsComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal) {
       this.actionButtons.push({
+        id: "btn-add-student",
         btnText: "Yeni şagird",
         role: ActionButtonRole.Add,
         event: this.openStudentModal,
         visible: true
       });
       this.actionButtons.push({
+        id: "btn-assign",
         btnText: "Tapşırıq ver",
         role: ActionButtonRole.Add,
         event: this.startAssignment,

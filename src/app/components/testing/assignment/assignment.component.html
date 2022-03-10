@@ -9,7 +9,7 @@
         </div>
         <div>
             <p class="test-cost mrb-unset" *ngIf="assignment.dueDate != null && !assignment.completed">
-                Son tarix: {{ getHumanizedDueDate() }}
+                {{ remains }}
             </p>
             <p class="test-cost mrb-unset" *ngIf="assignment.completed">
                 <strong>Bitirmisiniz</strong>

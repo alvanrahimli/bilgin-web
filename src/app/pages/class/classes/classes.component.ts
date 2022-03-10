@@ -15,6 +15,7 @@ export class ClassesComponent implements OnInit {
   constructor(private classesService: ClassesService,
     private modalService: NgbModal) {
       this.actionButtons.push({
+        id: "btn-add-class",
         btnText: "Yeni sinif",
         role: ActionButtonRole.Add,
         visible: true,

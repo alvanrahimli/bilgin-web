@@ -2,6 +2,7 @@ import { Component, OnInit, ɵpublishDefaultGlobalUtils } from '@angular/core';
 import { AssignmentResponse } from 'src/app/models/assignment/assignment.response';
 import { AssignmentsService } from 'src/app/services/assignments/assignments.service';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
+import { localizeDateTime } from 'src/app/utils/time-helper';
 
 @Component({
   selector: 'app-assignments',
@@ -24,6 +25,9 @@ export class AssignmentsComponent implements OnInit {
     }
 
     this.assignments = assignmentsResponse.data.sort(a => a.completed ? 1 : 0);
+    this.assignments.forEach(a => {
+      a.dueDate = localizeDateTime(a.dueDate);
+    });
     if (this.assignments.length == 0) {
       this.status.setError("Heç bir tapşırığınız yoxdur! 🥳");
     } else {

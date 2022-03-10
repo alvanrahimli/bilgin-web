@@ -1,3 +1,4 @@
+import { AssignmentResponse } from "../../assignment/assignment.response";
 import { UserBriefResponse } from "../../user/response/user-brief-response";
 import { TestResponse } from "./TestResponse";
 
@@ -16,5 +17,6 @@ export interface TestPackageResponse {
     paragraphId: string;
     paragraphName: string;
     author: UserBriefResponse;
+    assignment: AssignmentResponse;
     tests: TestResponse[];
 }

@@ -41,6 +41,7 @@ export class SingleTestPackIntroComponent implements OnInit {
     if (this.pageMode == "assignment") {
       this.statusIndicator.setCompleted("Siz sinif üçün test tapşırığı seçirsiniz", true);
       this.actionButtons.push({
+        id: "btn-assign",
         btnText: "Tapşır",
         role: ActionButtonRole.Add,
         visible: true,
@@ -58,6 +59,9 @@ export class SingleTestPackIntroComponent implements OnInit {
           case 409:
             this.router.navigate(["..", "completion"], {relativeTo: this.activatedRoute});
             break;
+          case 452:
+            this.statusIndicator.setError("Test üçün cavabların qəbulu vaxtı başa çatıb 😥");
+            return;
         }
       }
       this.statusIndicator.setError();

@@ -1,4 +1,5 @@
 export class ActionButton {
+    id: string = "";
     visible: boolean = false;
     role: ActionButtonRole = ActionButtonRole.None;
     btnText: string | undefined;

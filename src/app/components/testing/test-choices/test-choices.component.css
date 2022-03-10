@@ -2,15 +2,14 @@
     max-height: 150px;
     margin-left: 15px;
     border-radius: var(--border-radius);
-    /* display: inline; */
 }
 
 .answer-box {
-    /* width: 80%; */
     margin:15px auto;
     padding: 10px;
-    border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
     cursor: pointer;
     text-align: center;
 }
@@ -24,9 +23,9 @@
 }
 
 .answer-box-selected{
-    border: 3px solid var(--primary-color);
+    border: 3px solid var(--secondary-color);
 }
 .answer-box-selected p{
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
     font-weight: bolder;
 }

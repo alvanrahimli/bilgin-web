@@ -28,3 +28,12 @@
 .test-content {
     margin: 15px 0 0 0;
 }
+
+#time-up {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#time-up h2 {
+    text-align: center;
+}

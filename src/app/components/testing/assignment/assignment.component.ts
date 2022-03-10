@@ -13,19 +13,42 @@ export class AssignmentComponent implements OnInit {
 
   @Input()
   assignment: AssignmentResponse = {} as AssignmentResponse;
+  remains: string = "Hesablanır...";
 
   now = moment();
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.remains = this.getRemainingTime();
+    }, 1000);
   }
 
-  getHumanizedDueDate(): string {
-    if (this.now.isAfter(this.assignment.dueDate)) {
-      return "Vaxtı keçib";
+  getRemainingTime(): string {
+    if (!this.assignment.dueDate) {
+      return "Vaxt limiti yoxdur";
     }
 
-    // return this.assignment.dueDate?.toLocaleTimeString("az");
-    return new Date(this.assignment.dueDate).toLocaleTimeString("az");
+    if (moment().isAfter(this.assignment.dueDate)) {
+      return "Vaxt bitib";
+    }
+
+    let duration = moment.duration(moment(this.assignment.dueDate).diff(moment.now()));
+    let hours = Math.floor(duration.asHours());
+    let minutes = Math.floor(duration.asMinutes() % 60);
+    let seconds = Math.floor(duration.asSeconds() % 60);
+
+    let remainingStr = "";
+    if (hours > 0) {
+      remainingStr += `${hours} saat `;
+    }
+    if (minutes > 0) {
+      remainingStr += `${minutes} dəq, `;
+    }
+    if (seconds > 0) {
+      remainingStr += `${seconds} san.`;
+    }
+    
+    return `${remainingStr} qalıb`;
   }
 
 }

@@ -26,11 +26,6 @@
             <!-- CHOICES -->
             <div class="answers col-md-10 mt-3 ml-auto mr-auto"
                 *ngIf="package.tests[currentTestIndex].testType == 'MultipleChoice'">
-                <!-- <app-test-choices *ngFor="let choice of package.tests[currentTestIndex].testChoices" [choice]="choice"
-                    [choices]="package.tests[currentTestIndex].testChoices"
-                    [clicked]="selectedChoiceId == choice.id" (onClick)="choiceClicked($event)"
-                    (onModified)="answerModified($event)" (onSubmitted)="answerSubmitted($event)"
-                    (onClear)="answerCleared($event)"></app-test-choices> -->
                 <app-test-choices [choices]="package.tests[currentTestIndex].testChoices"
                     [selectedId]="selectedChoiceId" (onModified)="answerModified($event)" 
                     (onSubmitted)="answerSubmitted($event)" (onClear)="answerCleared($event)"></app-test-choices>
@@ -61,3 +56,9 @@
         </div>
     </div>
 </div>
+
+<ng-template #timeupModal>
+<div id="time-up">
+    <h2>Vaxt bitdiyinə görə cavablarını təsdiqləməli olduq 😥</h2>
+</div>
+</ng-template>
