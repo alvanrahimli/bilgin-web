@@ -303,4 +303,8 @@ export class SingleTestPackageComponent implements OnInit {
     
     return remainingStr;
   }
+
+  ngOnDestroy() {
+    clearInterval(this.remainingTimeIntervalId);
+  }
 }
