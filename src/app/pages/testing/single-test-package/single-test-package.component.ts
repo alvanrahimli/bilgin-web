@@ -7,10 +7,12 @@ import { firstValueFrom } from 'rxjs';
 import { NavigationDirection } from 'src/app/models/enums/navigation-direction';
 import { MatchingAnswerRequest, TestAnswerRequest } from 'src/app/models/test-package/request/test-package';
 import { TestPackageResponse } from "src/app/models/test-package/response/TestPackageResponse";
+import { TestResponse } from 'src/app/models/test-package/response/TestResponse';
 import { ClassesService } from 'src/app/services/class/classes.service';
 import { TestPackagesService } from 'src/app/services/tests/test-packages/test-packages.service';
 import { ActionButton, ActionButtonRole } from 'src/app/utils/action-button';
 import { StatusIndicator } from 'src/app/utils/status-indicator';
+import { TestStatus } from 'src/app/utils/test-status';
 import { TestingPageMode } from 'src/app/utils/testing-mode';
 import { localizeDateTime } from 'src/app/utils/time-helper';
 
@@ -42,12 +44,14 @@ export class SingleTestPackageComponent implements OnInit {
   package: TestPackageResponse = {} as TestPackageResponse;
   totalTestCount: number = 0;
 
+  currentTestId: string = "";
   currentTestIndex: number = 0;
   selectedChoiceId: string = "";
   writtenAnswerText: string = "";
 
   answers: TestAnswerRequest[] = [];
   modifiedTests: boolean[] = [];
+  testStatuses: TestStatus[] = [];
 
   async ngOnInit(): Promise<void> {
     var params = await firstValueFrom(this.activatedRoute.params);
@@ -88,9 +92,14 @@ export class SingleTestPackageComponent implements OnInit {
           this.onTimeIsUp();
         }
       }, 1000);
+    } else if (this.pageMode == "testing") {
+      this.currentTestId = this.package.tests[0].id;
     }
   }
 
+  // Gets package data from API
+  // Localizes assignment due date if exists
+  // Initializes testStatuses (marks first as isCurrent)
   async loadPackage(pId: string): Promise<void> {
     this.statusIndicator.setProgress("Test yüklənir...");
     let packageResponse = await this.testPackageService.getPackage(pId);
@@ -117,43 +126,63 @@ export class SingleTestPackageComponent implements OnInit {
         this.package.assignment.dueDate = localizeDateTime(this.package.assignment.dueDate);
       }
       this.modifiedTests = packageResponse.data.tests.map(() => false);
+      this.testStatuses = packageResponse.data.tests.map(t => {
+        return {
+          testId: t.id,
+          isCurrent: false,
+          modified: false
+        }
+      });
+
+      this.currentTestId = packageResponse.data.tests[0].id;
+      this.testStatuses[0].isCurrent = true;
       this.statusIndicator.setCompleted();
     }
   }
 
   //#region EVENT EMITTER HANDLERS
 
+  // Updates this.selectedChoiceId to incoming choiceId
   choiceClicked(choiceId: string): void {
     this.selectedChoiceId = choiceId;
   }
 
+  // Finds modified answer from answers list
+  // Updates it to modified = TRUE
   answerModified(data: any): void {
-    this.modifiedTests[this.currentTestIndex] = true;
+    let modifiedTest = this.testStatuses.find(t => t.testId == this.currentTestId);
+    if (modifiedTest) {
+      modifiedTest.modified = true;
+    }
   }
 
+  // Finds answered test
+  // Upserts new answer to answers list
+  // Updates this.selectedChoiceId to currently answered test
   answerSubmitted(answerData: any): void {
-    // Upsert new answer to answers list
+    let answeredTest = this.package.tests.find(t => t.id == this.currentTestId);
+    if (!answeredTest) {
+      console.log("Answered test not found");
+      return;
+    }
+
     let newAnswer = {
-      testId: this.package.tests[this.currentTestIndex].id,
+      testId: answeredTest?.id,
     } as TestAnswerRequest;
 
-    if (this.package.tests[this.currentTestIndex].testType == "MultipleChoice") {
+    if (answeredTest.testType == "MultipleChoice") {
       newAnswer.choiceId = answerData as string;
-    } else if (this.package.tests[this.currentTestIndex].testType == "Open") {
+    } else if (answeredTest.testType == "Open") {
       newAnswer.text = answerData as string;
-    } else if (this.package.tests[this.currentTestIndex].testType == "Matching") {
+    } else if (answeredTest.testType == "Matching") {
       newAnswer.matchings = answerData as MatchingAnswerRequest[];
     }
 
-    let alreadyAnswered = this.answers.find(a => a.testId == this.package.tests[this.currentTestIndex].id);
+    let alreadyAnswered = this.answers.find(a => a.testId == this.currentTestId);
     if (alreadyAnswered) {
-      this.answers.forEach(e => {
-        if (e.testId == this.package.tests[this.currentTestIndex].id) {
-          e.choiceId = newAnswer.choiceId;
-          e.matchings = newAnswer.matchings;
-          e.text = newAnswer.text;
-        }
-      })
+      alreadyAnswered.choiceId = answeredTest.id;
+      alreadyAnswered.matchings = newAnswer.matchings;
+      alreadyAnswered.text = newAnswer.text;
     } else {
       this.answers.push(newAnswer);
     }
@@ -161,17 +190,32 @@ export class SingleTestPackageComponent implements OnInit {
     this.selectedChoiceId = answerData as string;
   }
 
+  // Finds answered test
+  // Finds answer from answers list and deletes that item
+  // Updates testStatuses list (sets modified to false)
   answerCleared(eventData: any): void {
-    let currentTest = this.package.tests[this.currentTestIndex];
-    let answerIndex = this.answers.findIndex(a => a.testId == currentTest.id);
+    let currentTest = this.package.tests.find(t => t.id == this.currentTestId);
+    if (!currentTest) {
+      console.log("Current test not found");
+      return;
+    }
+
+    let answerIndex = this.answers.findIndex(a => a.testId == currentTest?.id);
     if (answerIndex >= 0) {
       this.answers.splice(answerIndex, 1);
       this.selectedChoiceId = "";
       this.writtenAnswerText = "";
     }
-    this.modifiedTests[this.currentTestIndex] = false;
+
+    let answeredTestStatus = this.testStatuses.find(t => t.testId == currentTest?.id);
+    if (answeredTestStatus) {
+      answeredTestStatus.modified = false;
+    }
   }
 
+  // Submits answers to API
+  // If package has showResultImmediately set to TRUE, redirect to result page
+  // If package has showResultImmediately set to FALSE, show friendly message
   async finishTestClick(): Promise<void> {
     this.statusIndicator.setProgress();
     let response = await this.testPackageService.submitAnswers(this.package.id, this.answers);
@@ -211,41 +255,87 @@ export class SingleTestPackageComponent implements OnInit {
 
   //#endregion
 
+  // Returns current test based on this.currentTestId
+  getCurrentTest(): TestResponse {
+    let test = this.package.tests.find(t => t.id == this.currentTestId);
+    if (test) {
+      return test;
+    } else {
+      console.error("Current test id not found");
+      return {} as TestResponse;
+    }
+  }
+
+  getCurrentTestUserFriendlyIndex(testId: string): number {
+    return this.package.tests.findIndex(t => t.id == testId) + 1;
+  }
+
+  // Decides on navigating direction
+  // Loads navigated test to current test
+  // Loads selectedChoiceId, text or matchings
   navigateTests(dir: NavigationDirection): void {
+    let currentTestIndex = this.package.tests.findIndex(t => t.id == this.currentTestId);
+    if (currentTestIndex < 0) {
+      return;
+    }
+
+    // Get test that will be navigated:
+    let futureTest: TestResponse = {} as TestResponse;
     if (dir == NavigationDirection.Forward) {
-      if (this.currentTestIndex < this.package.tests.length - 1) {
-        this.currentTestIndex++;
+      if (currentTestIndex < this.package.tests.length - 1) {
+        futureTest = this.package.tests[currentTestIndex + 1];
       }
     } else if (dir == NavigationDirection.Backward) {
-      if (this.currentTestIndex > 0) {
-        this.currentTestIndex--;
+      if (currentTestIndex > 0) {
+        futureTest = this.package.tests[currentTestIndex - 1];
       }
     }
 
-    // Load current test selected answer
-    let currentTest = this.package.tests[this.currentTestIndex];
-    let currentAnswer = this.answers.find(a => a.testId == currentTest.id);
-    if (currentAnswer) {
-      if (currentTest.testType == "MultipleChoice") {
-        this.selectedChoiceId = currentAnswer.choiceId;
-      } else if (currentTest.testType == "Open") {
-        this.writtenAnswerText = currentAnswer.text;
-      } else if (currentTest.testType == "Matching") {
+    this.navigateByTestId(futureTest.id);
+  }
+
+  navigateByTestId(testId: string): void {
+    let futureTest = this.package.tests.find(t => t.id == testId);
+    if (!futureTest) {
+      return;
+    }
+
+    this.currentTestId = futureTest.id;
+    this.testStatuses.forEach(ts => {
+      if (ts.testId == this.currentTestId) {
+        ts.isCurrent = true;
+      } else {
+        ts.isCurrent = false;
+      }
+    });
+    
+    let futureTestsAnswer = this.answers.find(a => a.testId == futureTest?.id);
+    if (futureTestsAnswer) {
+      if (futureTest.testType == "MultipleChoice") {
+        this.selectedChoiceId = futureTestsAnswer.choiceId;
+      } else if (futureTest.testType == "Open") {
+        this.writtenAnswerText = futureTestsAnswer.text;
+      } else if (futureTest.testType == "Matching") {
         // TODO: Add loading matching test's answer
       }
     }
   }
 
+  // Shorthand for navigateTest()
   onPreviousClick() {
     this.navigateTests(NavigationDirection.Backward);
   }
 
+  // Shorthand for navigateTest()
   onNextClick() {
     this.navigateTests(NavigationDirection.Forward);
   }
 
+  // Finds current test
+  // Returns TRUE if it is the last
   isCurrentTheLast(): boolean {
-    return this.currentTestIndex == this.package?.tests?.length - 1;
+    let currentTestIndex = this.package.tests.findIndex(t => t.id == this.currentTestId);
+    return currentTestIndex == this.package?.tests?.length - 1;
   }
 
   giveAssignment = async (): Promise<void> => {
@@ -265,17 +355,18 @@ export class SingleTestPackageComponent implements OnInit {
     }, 3000);
   }
 
+  // Opens time-up modal
+  // Submits test on behalf of student
+  // Clears remainingTime interval
   async onTimeIsUp() {
-    this.modalService.open(this.timeupModal, {ariaLabelledBy: 'modal-timeup', centered: true}).result.then(res => {
-      
-    }, (reason) => {
+    this.modalService.open(this.timeupModal, {ariaLabelledBy: 'modal-timeup', centered: true})
+      .result.then(res => { }, (reason) => { });
 
-    });
     await this.finishTestClick();
     clearInterval(this.remainingTimeIntervalId);
-    console.log("Finish test");
   }
 
+  // Returns user-friendly text for remaining time to show at actionButton
   getRemainingTime = (): string => {
     if (!this.package.assignment.dueDate) {
       return "Vaxt limiti yoxdur";

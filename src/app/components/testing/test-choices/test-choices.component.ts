@@ -31,7 +31,6 @@ export class TestChoicesComponent implements OnInit {
   }
 
   onAnswerClick(id: string): void {
-    console.log("selected:", this.selectedId, "now", id);
     if (this.selectedId == id) {
       this.onClear.emit(id);
     } else {

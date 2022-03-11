@@ -775,8 +775,13 @@ body::-webkit-scrollbar {
 }
 
 .question-box-true {
-    background: rgba(66, 185, 131, 0.8);
+    background-color: var(--primary-color);
+    border: 0;
     color: #fff;
+}
+
+.question-box-current {
+    border: 5px solid var(--secondary-color);
 }
 
 .question-box-wrong {

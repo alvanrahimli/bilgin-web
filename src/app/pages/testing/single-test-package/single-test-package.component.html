@@ -1,39 +1,40 @@
-<app-page-title [titleText]="'Test tapşırığı' + ':  ' + (currentTestIndex + 1) + '/' + totalTestCount"
-    [actionButtons]="actionButtons" [confirm]="true" [sameLevelPage]="'intro'"></app-page-title>
+<app-page-title [titleText]="'Test tapşırığı'" [actionButtons]="actionButtons" 
+    [confirm]="true" [sameLevelPage]="'intro'"></app-page-title>
 <app-status-indicator [status]="assignmentStatus"></app-status-indicator>
 <div class="test-content row p-4 bg-rad mt-3">
     <app-status-indicator [status]="statusIndicator"></app-status-indicator>
 
     <div class="col-md-12" *ngIf="statusIndicator.isCompleted() && !statusIndicator.persist">
         <div class="question">
-            <div class="question-box {{ isModified ? 'question-box-true' : '' }}"
-                *ngFor="let isModified of modifiedTests">
+            <div *ngFor="let tst of testStatuses" (click)="navigateByTestId(tst.testId)"
+                class="question-box {{ tst.modified ? 'question-box-true' : '' }} {{ tst.isCurrent ? 'question-box-current' : '' }}">
+                {{getCurrentTestUserFriendlyIndex(tst.testId)}}
             </div>
         </div>
         <div class="test-answers" *ngIf="package?.tests?.length ?? -1 > 0">
             <!-- INDIVIDUAL TEST -->
             <div class="question-title">
                 <p class="mrb-unset icon-color mt-3 mb-3">
-                    > {{ package.tests[currentTestIndex].question }}
+                    > {{ getCurrentTest().question }}
                 </p>
             </div>
 
             <div class="test-image-div">
-                <img class="test-image" *ngIf="package.tests[currentTestIndex].imageUrl"
-                    src="{{ package.tests[currentTestIndex].imageUrl }}">
+                <img class="test-image" *ngIf="getCurrentTest().imageUrl"
+                    src="{{ getCurrentTest().imageUrl }}">
             </div>
 
             <!-- CHOICES -->
             <div class="answers col-md-10 mt-3 ml-auto mr-auto"
-                *ngIf="package.tests[currentTestIndex].testType == 'MultipleChoice'">
-                <app-test-choices [choices]="package.tests[currentTestIndex].testChoices"
+                *ngIf="getCurrentTest().testType == 'MultipleChoice'">
+                <app-test-choices [choices]="getCurrentTest().testChoices"
                     [selectedId]="selectedChoiceId" (onModified)="answerModified($event)" 
                     (onSubmitted)="answerSubmitted($event)" (onClear)="answerCleared($event)"></app-test-choices>
             </div>
 
             <!-- OPEN ENDED -->
             <div class="answers col-md-10 mt-3 ml-auto mr-auto"
-                *ngIf="package.tests[currentTestIndex].testType == 'Open'">
+                *ngIf="getCurrentTest().testType == 'Open'">
                 <app-test-open-ended [answerText]="writtenAnswerText" (onModified)="answerModified($event)"
                     (onSubmitted)="answerSubmitted($event)" (onClear)="answerCleared($event)"></app-test-open-ended>
             </div>
