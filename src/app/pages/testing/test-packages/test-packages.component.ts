@@ -85,7 +85,7 @@ export class TestPackagesComponent implements OnInit {
   }
 
   async submitFilter(filter: TestingFilter): Promise<void> {
-    await this.loadPackageList(filter.subjectId, filter.gradeId, filter.paragraphId);
+    await this.loadPackageList(this.subject.id, filter.gradeId, filter.paragraphId);
   }
 
   toggleFilter = (): void => {

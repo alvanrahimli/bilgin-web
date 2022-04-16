@@ -4,7 +4,8 @@
     <h1 class="login-left-title-2">OTP daxil edin</h1>
     <div style="width: 400px;">
         <input class="login-form-input" type="text" inputmode="numeric" placeholder="OTP-ni daxil edin"
-               [(ngModel)]="phoneCodeRequest.code" name="otp-input">
+               [(ngModel)]="phoneCodeRequest.code" name="otp-input"
+               [imask]="{mask: '0 0 0 0', lazy: false}" [unmask]="true">
         <button class="login-button" type="submit">Daxil olun</button>
     </div>
     <p class="mrb-unset text-center py-3">

@@ -48,6 +48,7 @@ import { AddClassModalComponent } from './components/class/add-class-modal/add-c
 import { TestingFilterComponent } from './components/testing/testing-filter/testing-filter.component';
 import { AssignmentsComponent } from './pages/testing/assignments/assignments.component';
 import { AssignmentComponent } from './components/testing/assignment/assignment.component';
+import { IMaskModule } from 'angular-imask';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { AssignmentComponent } from './components/testing/assignment/assignment.
     HttpClientModule,
     FormsModule,
     NgbModule,
+    IMaskModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]

@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   async submitLogin() {
+    console.log(this.phoneRequest.phoneNumber);
     this.statusIndicator.setProgress();
-    let phoneNumber = `+994${this.phoneRequest.phoneNumber}`;
-    let loginResponse = await this.accountService.postLoginPhone({phoneNumber: phoneNumber});
+    let loginResponse = await this.accountService.postLoginPhone({phoneNumber: this.phoneRequest.phoneNumber});
     if (loginResponse.hasError) {
       console.log("error occured", loginResponse.error);
       if (loginResponse.error instanceof HttpErrorResponse) {
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.statusIndicator.setCompleted();
       this.router.navigate(['/auth', 'login', 'otp'], {queryParams: {
-        phone: phoneNumber,
+        phone: this.phoneRequest.phoneNumber,
         returnUrl: this.returnUrl,
         t: "login",
       }});

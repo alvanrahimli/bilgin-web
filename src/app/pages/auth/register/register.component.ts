@@ -33,10 +33,8 @@ export class RegisterComponent implements OnInit {
       this.statusIndicator.setError("Qaydalar və şərtlərlə razılaşmamısınız");
       return;
     }
-
-    let phoneNumber = `+994${this.phoneRequest.phoneNumber}`;
-
-    let registerResult = await this.accountService.postRegisterPhone({phoneNumber: phoneNumber});
+    
+    let registerResult = await this.accountService.postRegisterPhone({phoneNumber: this.phoneRequest.phoneNumber});
     if (registerResult.hasError) {
       // TODO: Handle errors
       if (registerResult.error instanceof HttpErrorResponse) {
@@ -54,7 +52,7 @@ export class RegisterComponent implements OnInit {
     } else {
       this.statusIndicator.setCompleted();
       this.router.navigate(['/auth', 'register', 'otp'], {queryParams: {
-        phone: phoneNumber,
+        phone: this.phoneRequest.phoneNumber,
         returnUrl: this.returnUrl,
         t: "register",
       }});

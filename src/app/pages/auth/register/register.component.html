@@ -5,12 +5,13 @@
     <h1 class="login-left-title-2">Hesab yaradın</h1>
     <label for="tel-num">
         <input class="login-form-input" id="tel-num" type="text" placeholder="Möbil nömrənizi daxil edin"
-            [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber">
+            [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber"
+            [imask]="{mask: '{+994} (\\000) 000 00 00', lazy: false}" [unmask]="true">
     </label>
     <input class="check-in login-form-input" type="checkbox" id="save"
         [(ngModel)]="userAgreed" [checked]="userAgreed" name="user-agrees">
-    <label for="save" class="for-check-in icon-color"> 
-        <a href="">&nbsp;Qaydalar və şərtlərlə </a> razıyam
+    <label for="save" class="for-check-in" style="color: var(--third-color);"> 
+        &nbsp;Qaydalar və şərtlərlə razıyam <i class="fa fa-external-link" style="cursor: pointer;"></i>
     </label>
     <button class="login-button">
         Davam et

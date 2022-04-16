@@ -5,7 +5,8 @@
     <h1 class="login-left-title-2">Daxil olun</h1>
     <label for="tel-num">
         <input class="login-form-input" id="tel-num" type="text" placeholder="Mobil nömrənizi daxil edin" 
-        [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber">
+        [(ngModel)]="phoneRequest.phoneNumber" name="phoneNumber"
+        [imask]="{mask: '{+994} (\\000) 000 00 00', lazy: false}" [unmask]="true">
     </label>
     <!-- <input class="login-form-input" type="text" placeholder="Promo kod daxil edin"> -->
     <button class="login-button" type="submit">
