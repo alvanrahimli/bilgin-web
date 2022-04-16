@@ -40,6 +40,8 @@ export class SingleTestPackageComponent implements OnInit {
   remainingTimeIntervalId: number | undefined;
   @ViewChild("timeupModal")
   timeupModal: TemplateRef<any> | undefined;
+  @ViewChild("assignedModal")
+  assignedModal: TemplateRef<any> | undefined;
 
   package: TestPackageResponse = {} as TestPackageResponse;
   totalTestCount: number = 0;
@@ -160,6 +162,7 @@ export class SingleTestPackageComponent implements OnInit {
   // Upserts new answer to answers list
   // Updates this.selectedChoiceId to currently answered test
   answerSubmitted(answerData: any): void {
+    console.log("Answered", answerData);
     let answeredTest = this.package.tests.find(t => t.id == this.currentTestId);
     if (!answeredTest) {
       console.log("Answered test not found");
@@ -180,7 +183,7 @@ export class SingleTestPackageComponent implements OnInit {
 
     let alreadyAnswered = this.answers.find(a => a.testId == this.currentTestId);
     if (alreadyAnswered) {
-      alreadyAnswered.choiceId = answeredTest.id;
+      alreadyAnswered.choiceId = newAnswer.choiceId;
       alreadyAnswered.matchings = newAnswer.matchings;
       alreadyAnswered.text = newAnswer.text;
     } else {
@@ -310,6 +313,7 @@ export class SingleTestPackageComponent implements OnInit {
     });
     
     let futureTestsAnswer = this.answers.find(a => a.testId == futureTest?.id);
+    console.log(futureTestsAnswer);
     if (futureTestsAnswer) {
       if (futureTest.testType == "MultipleChoice") {
         this.selectedChoiceId = futureTestsAnswer.choiceId;
@@ -342,7 +346,8 @@ export class SingleTestPackageComponent implements OnInit {
     this.assignmentStatus.setProgress();
     let assignmentResponse = await this.classesService.assignPackage({
       testPackageId: this.package.id,
-      classId: this.assignmentClassId ?? ""
+      classId: this.assignmentClassId ?? "",
+      dueDate: null,
     });
     if (assignmentResponse.hasError) {
       this.assignmentStatus.setError();
@@ -350,6 +355,13 @@ export class SingleTestPackageComponent implements OnInit {
     }
 
     this.assignmentStatus.setCompleted("Test sinifə tapşırıldı. Testlər səhifəsinə yönləndiriləcəksiniz", true);
+    
+    this.modalService.open(this.assignedModal, {ariaLabelledBy: 'modal-assigned', centered: true})
+      .result.then(res => { }, (reason) => { });
+    setTimeout(() => {
+        this.modalService.dismissAll();
+    }, 2500);
+
     setTimeout(() => {
       this.router.navigate(["../../../"], {relativeTo: this.activatedRoute, queryParamsHandling: 'merge'});
     }, 3000);

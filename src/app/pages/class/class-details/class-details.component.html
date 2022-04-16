@@ -2,11 +2,19 @@
     [actionButtons]="actionButtons" [level]="2"></app-page-title>
 
 <div class="student-list">
-    <!-- <div class="student-list-header">
-    </div> -->
+    <div class="list-header">
+        <button class="tab-btn {{getActiveClass(PageTab.Students)}}" (click)="setCurrentTab(PageTab.Students)">
+            Şagirdlər</button>
+        <button class="tab-btn {{getActiveClass(PageTab.Teachers)}}" (click)="setCurrentTab(PageTab.Teachers)">
+            Müəllimlər</button>
+        <button class="tab-btn {{getActiveClass(PageTab.Assignments)}}" (click)="setCurrentTab(PageTab.Assignments)">
+            Tapşırıqlar</button>
+    </div>
     <div class="table-responsive">
         <app-status-indicator [status]="status"></app-status-indicator>
-        <table class="table list-table">
+        
+        <!-- STUDENT LIST TABLE -->
+        <table class="table list-table" *ngIf="currentTab == PageTab.Students">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -28,10 +36,65 @@
                     <td *ngIf="st.completedCount != st.totalAssignmentCount">
                         {{ st.completedCount }} hazır (cəmi: {{ st.totalAssignmentCount }})
                     </td>
-                    
+
                     <td>
                         <button class="delete-student" (click)="removeStudent(st.infoId)">
                             <i class="far fa-times-circle"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TEACHER LIST TABLE -->
+        <table class="table list-table" *ngIf="currentTab == PageTab.Teachers">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ad Soyad</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col">Fənn</th>
+                    <th></th>
+                    <!-- <th scope="col">Əməliyyatlar</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tc of classDetails.teachers">
+                    <th scope="row">{{classDetails.teachers.indexOf(tc) + 1}} </th>
+                    <td>{{ tc.fullName }}</td>
+                    <td>{{ tc.phoneNumber }}</td>
+                    <td>{{ 'Sinif rəhbəri' }}</td>
+                    <td></td>
+                    <!-- <td>
+                        <button class="delete-student" (click)="removeTeacher(tc.infoId)">
+                            <i class="far fa-times-circle"></i>
+                        </button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ASSIGNMENT LIST TABLE -->
+        <table class="table list-table" *ngIf="currentTab == PageTab.Assignments">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tapşırıq növü</th>
+                    <th scope="col">Başlama tarixi</th>
+                    <th scope="col">Son tarix</th>
+                    <!-- <th></th> -->
+                    <th scope="col">Əməliyyatlar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ass of classDetails.assignments">
+                    <th scope="row">{{classDetails.assignments.indexOf(ass) + 1}} </th>
+                    <td>{{ localizeType(ass.type) }}</td>
+                    <td>{{ localizeDateTime(ass.assignmentDate) | date:'dd MMM yyyy, hh:mm' }}</td>
+                    <td>{{ ass.dueDate == null ? 'Limit yoxdur' : getRemainingTime(ass.dueDate) }}</td>
+                    <td>
+                        <button class="delete-student" (click)="goToAssignment(ass.type, ass.relatedItemId)">
+                            <i class="fa fa-external-link"></i>
                         </button>
                     </td>
                 </tr>

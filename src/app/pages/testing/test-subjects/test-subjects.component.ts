@@ -15,7 +15,7 @@ import { TestingPageMode } from 'src/app/utils/testing-mode';
 export class TestSubjectsComponent implements OnInit {
   constructor(private subjectsService: TestSubjectsService,
     private route: ActivatedRoute) {
-    this.actionButtons.push(new ActionButton(ActionButtonRole.Filter, this.openFilter));
+    // this.actionButtons.push(new ActionButton(ActionButtonRole.Filter, this.openFilter));
   }
   
   statusIndicator = new StatusIndicator();

@@ -15,8 +15,6 @@ export class AssignmentComponent implements OnInit {
   assignment: AssignmentResponse = {} as AssignmentResponse;
   remains: string = "Hesablanır...";
 
-  now = moment();
-
   ngOnInit(): void {
     setInterval(() => {
       this.remains = this.getRemainingTime();

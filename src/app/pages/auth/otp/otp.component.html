@@ -3,7 +3,7 @@
     <h2 class="icon-color login-left-title-1">Xoş gəlmisiniz{{ loggedInUser }}!</h2>
     <h1 class="login-left-title-2">OTP daxil edin</h1>
     <div style="width: 400px;">
-        <input class="login-form-input" type="number" placeholder="OTP-ni daxil edin"
+        <input class="login-form-input" type="text" inputmode="numeric" placeholder="OTP-ni daxil edin"
                [(ngModel)]="phoneCodeRequest.code" name="otp-input">
         <button class="login-button" type="submit">Daxil olun</button>
     </div>

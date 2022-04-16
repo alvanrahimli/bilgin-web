@@ -47,7 +47,7 @@ export interface AssignmentTestPack {
 export interface AssignmentResponse {
     type: string;
     assignmentDate: Date;
-    dueDate: Date;
+    dueDate: Date | null;
     completed: boolean;
     assignmentTestPack: AssignmentTestPack;
 }

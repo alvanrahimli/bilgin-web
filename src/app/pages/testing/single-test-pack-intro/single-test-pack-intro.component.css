@@ -144,6 +144,15 @@
     outline: none;
 }
 
+.modal-notice {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.modal-notice h2 {
+    text-align: center;
+}
+
 /* .profile-start-button button{
     outline: none;
     border-radius: 10px;

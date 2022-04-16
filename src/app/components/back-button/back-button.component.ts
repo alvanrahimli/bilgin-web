@@ -28,8 +28,9 @@ export class BackButtonComponent implements OnInit {
       }
     }
 
-    let route = "../".repeat(this.level);
-    if (this.sameLevelPage) route += this.sameLevelPage;
-    this.router.navigate([route], {relativeTo: this.activatedRoute, queryParamsHandling: "merge"});
+    // let route = "../".repeat(this.level);
+    // if (this.sameLevelPage) route += this.sameLevelPage;
+    // this.router.navigate([route], {relativeTo: this.activatedRoute, queryParamsHandling: "merge"});
+    history.back();
   }
 }

@@ -26,7 +26,7 @@ export class AssignmentsComponent implements OnInit {
 
     this.assignments = assignmentsResponse.data.sort(a => a.completed ? 1 : 0);
     this.assignments.forEach(a => {
-      a.dueDate = localizeDateTime(a.dueDate);
+      a.dueDate = a.dueDate != null ? localizeDateTime(a.dueDate) : null;
     });
     if (this.assignments.length == 0) {
       this.status.setError("Heç bir tapşırığınız yoxdur! 🥳");

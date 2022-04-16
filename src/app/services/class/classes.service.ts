@@ -17,7 +17,7 @@ export class ClassesService extends GeneralService {
   }
 
   getClass(id: string, url: string = "class/Classes/") {
-    return this.sendGetRequest<ClassDetailsResponse>(url + id, {"aith": "strict"});
+    return this.sendGetRequest<ClassDetailsResponse>(url + id, {"auth": "strict"});
   }
 
   addClass(req: AddClassRequest, url: string = "class/Classes") {

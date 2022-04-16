@@ -1,15 +1,45 @@
 
-.student-list-header{
+.list-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border-bottom: 2px solid #EDDFB9;
-    padding: 0 0 10px 0;
+    padding: 0 0 20px 0;
 }
-.student-list-header h4{
-    color: #1F337A;
-    font-weight: bold;
+.list-header button.tab-btn:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
+.list-header button.tab-btn:last-of-type {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.list-header button.tab-btn:not(:first-of-type):not(:last-of-type) {
+    border-radius: 0;
+}
+.list-header button.tab-btn {
+    display: inline-block;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    border: 0;
+    color: var(--dark-text-color);
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem 2rem;
+    line-height: 1.5;
+    
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out; 
+    transition: all .2s ease-in-out;
+}
+.list-header button.active {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
 .add-student{
     width: 40px;
     height: 40px;
@@ -39,14 +69,15 @@
 }
 .list-table td{
     border: none;
-    background: #EDDFB9;
+    background: var(--bg-color);
     color: #000;
     text-align: left;
     padding-left: 30px;
-    font-weight: 700;
+    font-weight: 500;
 }
 .list-table th{
-    border: none !important;
+    border: none;
+    font-weight: 700;
 }
 .list-table thead th{
     text-align: left;
@@ -54,18 +85,20 @@
     padding-left: 30px;
 }
 .list-table tbody th{
-    background: #1F337A;
-    color: #fff;
-    text-align: center;
+    background: var(--bg-color);
+    /* border-right-width: 1px;
+    border-right-color: red; */
+    /* color: #fff; */
+    /* text-align: center; */
 }
 .list-table td:first-child,
 .list-table th:first-child {
-  border-radius: 16px 0 0 16px;
+  border-radius: 10px 0 0 10px;
   text-align: center;
 }
 .list-table td:last-child,
 .list-table th:last-child {
-    border-radius: 0 16px 16px 0;
+    border-radius: 0 10px 10px 0;
     text-align: center;
 }
 .delete-student{
@@ -76,4 +109,13 @@
 .delete-student i{
     color: red;
     font-size: 1.2em;
+}
+
+.tab-navbar {
+    width: 100%;
+}
+
+.tab-nav-item {
+    display: flex;
+    justify-content: center;
 }

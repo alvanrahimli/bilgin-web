@@ -9,7 +9,7 @@ import { BaseModelResponse } from 'src/app/models/base-model/response/base-model
 export class BaseService {
   headers: HttpHeaders;
   protected http: HttpClient;
-  public API_EndPoint = "http://localhost:8080/";
+  public API_EndPoint = "https://api.bilgin.az/";
 
   constructor(http: HttpClient) {
     this.http = http;

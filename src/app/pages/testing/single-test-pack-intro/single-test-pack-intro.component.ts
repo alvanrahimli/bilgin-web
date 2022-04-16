@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { delay, firstValueFrom } from 'rxjs';
 import { TestPackageResponse } from 'src/app/models/test-package/response/TestPackageResponse';
 import { ClassesService } from 'src/app/services/class/classes.service';
@@ -19,12 +20,15 @@ export class SingleTestPackIntroComponent implements OnInit {
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     private testPackageService: TestPackagesService,
-    private classesService: ClassesService) { }
+    private classesService: ClassesService,
+    private modalService: NgbModal) { }
   
   statusIndicator: StatusIndicator = new StatusIndicator();
   actionButtons: ActionButton[] = [];
   pageMode: TestingPageMode = "testing";
   assignmentClassId: string | undefined;
+  @ViewChild("assignedModal")
+  assignedModal: TemplateRef<any> | undefined;
 
   package: TestPackageResponse = {} as TestPackageResponse;
 
@@ -88,14 +92,22 @@ export class SingleTestPackIntroComponent implements OnInit {
     this.statusIndicator.setProgress();
     let assignmentResponse = await this.classesService.assignPackage({
       testPackageId: this.package.id,
-      classId: this.assignmentClassId ?? ""
+      classId: this.assignmentClassId ?? "",
+      dueDate: null,
     });
     if (assignmentResponse.hasError) {
       this.statusIndicator.setError();
       return;
     }
 
-    this.statusIndicator.setCompleted("Test sinifə tapşırıldı. Testlər səhifəsinə yönləndiriləcəksiniz", true);
+    this.statusIndicator.setCompleted("Test sinifə tapşırıldı 🥳. Testlər səhifəsinə yönləndiriləcəksiniz", true);
+    
+    this.modalService.open(this.assignedModal, {ariaLabelledBy: 'modal-assigned', centered: true})
+      .result.then(res => { }, (reason) => { });
+    setTimeout(() => {
+        this.modalService.dismissAll();
+    }, 2500);
+
     setTimeout(() => {
       this.router.navigate(["../../../"], {relativeTo: this.activatedRoute, queryParamsHandling: 'merge'});
     }, 3000);
