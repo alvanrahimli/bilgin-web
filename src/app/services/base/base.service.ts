@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { BaseModelResponse } from 'src/app/models/base-model/response/base-model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { BaseModelResponse } from 'src/app/models/base-model/response/base-model
 export class BaseService {
   headers: HttpHeaders;
   protected http: HttpClient;
-  public API_EndPoint = "https://api.bilgin.az/";
+  // public API_EndPoint = "https://api.bilgin.az/";
+  public API_EndPoint = environment.apiUrl;
 
   constructor(http: HttpClient) {
     this.http = http;
