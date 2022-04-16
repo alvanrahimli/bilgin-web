@@ -1,5 +1,5 @@
 <div class="home-card" style="background-image: url('{{ banner.bgImageUrl }}');">
-    <div class="home-card-body" (click)="this.router.navigate([banner.actionUrl])">
+    <div class="home-card-body" (click)="goToUrl(banner.actionUrl)">
         <h3>
             {{ banner.title }}
             &nbsp;&nbsp;

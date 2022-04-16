@@ -16,5 +16,9 @@ export class HomepageCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  goToUrl(url: string): void {
+    window.location.href = url;
+  }
 
 }
