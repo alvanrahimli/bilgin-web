@@ -1,7 +1,7 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, RouterStateSnapshot } from '@angular/router';
-import { catchError, concatAll, from, map, Observable } from 'rxjs';
+import { catchError, concatAll, firstValueFrom, from, map, Observable } from 'rxjs';
 import { AccountService } from '../account/account.service';
 
 @Injectable({
@@ -35,23 +35,38 @@ export class TokenInterceptorService implements HttpInterceptor {
       }
     }
 
-    return from(this.accountService.getAccessToken(tokens.refreshToken)).pipe(
-      map((tokenResponse) => {
-        if (tokenResponse.hasError) {
-          console.debug("ERROR IN INTERCEPTOR:", tokenResponse.error);
-          if (isStrict) {
-            this.router.navigate(["/account", "login"], {queryParams: {returnUrl: this.router.url}});
-          } else {
-            return next.handle(request);
-          }
+    let newHeaders = request.headers.append("Authorization", `Bearer ${tokens.accessToken}`);
+    const possibleAuthRequest = request.clone({headers: newHeaders});
+    return next.handle(possibleAuthRequest).pipe(
+      catchError(error => {
+        console.log("error occured", error);
+        if (error instanceof HttpErrorResponse && error.status == 401) {
+          return from(this.accountService.getAccessToken(tokens.refreshToken)).pipe(
+            map(tokenResponse => {
+              if (tokenResponse.hasError) {
+                console.error("ERROR IN INTERCEPTOR:", tokenResponse.error);
+                if (isStrict) {
+                  this.router.navigate(["/account", "login"], {queryParams: {returnUrl: this.router.url}});
+                } else {
+                  return next.handle(request);
+                }
+              }
+      
+              this.accountService.persistToken(tokenResponse.data);
+              let newHeaders = request.headers.append("Authorization", `Bearer ${tokenResponse.data.accessToken}`);
+              const authRequest = request.clone({headers: newHeaders});
+              return next.handle(authRequest);
+            }),
+            concatAll(),
+          );
+        } else {
+          this.router.navigate(["/account", "login"], {queryParams: {returnUrl: this.router.url}});
+          
+          return next.handle(request);
         }
+      })
+    )
 
-        this.accountService.persistToken(tokenResponse.data);
-        let newHeaders = request.headers.append("Authorization", `Bearer ${tokenResponse.data.accessToken}`);
-        const authRequest = request.clone({headers: newHeaders});
-        return next.handle(authRequest);
-      }),
-      concatAll(),
-    );
+    
   }
 }
