@@ -45,6 +45,7 @@ export class ClassesComponent implements OnInit {
 
   async onSuccessfulAdd(): Promise<void> {
     await this.ngOnInit();
+    this.modalService.dismissAll();
   }
 
   openAddClassModal = () => {
